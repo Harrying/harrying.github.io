@@ -1,0 +1,390 @@
+
+<!DOCTYPE html>
+<html lang class="loading">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Spring_IOC - HaiRui.hexo</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="Harrying,"> 
+    <meta name="description" content="一个java程序猿的空间,IOC的相关功能1.set方式注入（必须依靠set方法）可以注入的内容有:
+    基本类型（8中基本类型+字符串）的装配
+    对象类型的装配
+    集合的装配基本类型的装配方式: 配置元素&amp;,"> 
+    <meta name="author" content="海瑞"> 
+    <link rel="alternative" href="atom.xml" title="HaiRui.hexo" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+</html>
+<body class="loading">
+    <span id="config-title" style="display:none">HaiRui.hexo</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" data-url="http://yoursite.com"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">Spring_IOC</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class="main">
+        <h1 class="title">Spring_IOC</h1>
+        <div class="stuff">
+            <span>七月 24, 2019</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Spring-IOC/">Spring_IOC</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h2 id="IOC的相关功能"><a href="#IOC的相关功能" class="headerlink" title="IOC的相关功能"></a>IOC的相关功能</h2><h3 id="1-set方式注入（必须依靠set方法）"><a href="#1-set方式注入（必须依靠set方法）" class="headerlink" title="1.set方式注入（必须依靠set方法）"></a>1.set方式注入（必须依靠set方法）</h3><pre><code>可以注入的内容有:
+    基本类型（8中基本类型+字符串）的装配
+    对象类型的装配
+    集合的装配</code></pre><h4 id="基本类型的装配"><a href="#基本类型的装配" class="headerlink" title="基本类型的装配"></a>基本类型的装配</h4><pre><code>方式: 配置元素&lt;value/&gt;
+例子:</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class HelloBean &#123;</span><br><span class="line">	private String name;</span><br><span class="line">	private int age;</span><br><span class="line">	public String sayHello()&#123;</span><br><span class="line">		return &quot;hello &quot;+name +&quot;,your age is&quot; + age;</span><br><span class="line">	&#125;</span><br><span class="line">	.............</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="配置文件set-xml"><a href="#配置文件set-xml" class="headerlink" title="配置文件set.xml"></a>配置文件set.xml</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;helloBean&quot; class=&quot;ioc.HelloBean&quot;&gt;</span><br><span class="line">	&lt;property name=&quot;name&quot;&gt;</span><br><span class="line">		&lt;value&gt;tom&lt;/value&gt;</span><br><span class="line">	&lt;/property&gt;</span><br><span class="line">		&lt;property name=&quot;age&quot; value=&quot;20&quot;&gt;</span><br><span class="line">	&lt;/property&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+
+<pre><code>&lt;!--
+id是Bean的唯一标识,要求在整个配置文件中要唯一,也可使用name属性,bean标签里面的id和name属性都可以用来标识这个配置的对象,但是id会帮我们检查给对象起的名字是否规范(名字不能重复、不能用数字开头、不能有空格等等),如果检查出来了那么就会报错name属性不会帮检查这些东西
+ --&gt;
+&lt;!--property 对于所有用set方式来注入的必须使用该标签--&gt;
+&lt;!--value    是对以基本类型,都用value(标签/属性)来注入,可以实现自动的数据类型转换--&gt;</code></pre><h4 id="测试类"><a href="#测试类" class="headerlink" title="测试类:"></a>测试类:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">  main:</span><br><span class="line">ApplicationContext ac = </span><br><span class="line">	new ClassPathXmlApplicationContext(&quot;set.xml&quot;);</span><br><span class="line">//获取容器的一个实例</span><br><span class="line">HelloBean hb = (HelloBean) ac.getBean(&quot;helloBean&quot;);</span><br><span class="line">System.out.println(hb.sayHello());</span><br></pre></td></tr></table></figure>
+
+<pre><code>对象类型的装配
+    使用property的ref属性引用    </code></pre><h4 id="集合的装配"><a href="#集合的装配" class="headerlink" title="集合的装配"></a>集合的装配</h4><pre><code>    方式:配置元素&lt;list&gt; &lt;set&gt; &lt;map&gt; &lt;props&gt;
+例如:</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">public class SomeBean &#123;</span><br><span class="line">	private List listProperty;</span><br><span class="line">	private Set setProperty;</span><br><span class="line">	private Map mapProperty;</span><br><span class="line">	private Properties&lt;String,String&gt; property;</span><br><span class="line">	public List getListProperty() &#123;</span><br><span class="line">		return listProperty;</span><br><span class="line">	&#125;</span><br><span class="line">	public void setListProperty(List listProperty) &#123;</span><br><span class="line">		this.listProperty = listProperty;</span><br><span class="line">	&#125;</span><br><span class="line">	public Set getSetProperty() &#123;</span><br><span class="line">		return setProperty;</span><br><span class="line">	&#125;</span><br><span class="line">	public void setSetProperty(Set setProperty) &#123;</span><br><span class="line">		this.setProperty = setProperty;</span><br><span class="line">	&#125;</span><br><span class="line">	public Map getMapProperty() &#123;</span><br><span class="line">		return mapProperty;</span><br><span class="line">	&#125;</span><br><span class="line">	public void setMapProperty(Map mapProperty) &#123;</span><br><span class="line">		this.mapProperty = mapProperty;</span><br><span class="line">	&#125;</span><br><span class="line">	public Properties getProperty() &#123;</span><br><span class="line">		return property;</span><br><span class="line">	&#125;</span><br><span class="line">	public void setProperty(Properties property) &#123;</span><br><span class="line">		this.property = property;</span><br><span class="line">	&#125;</span><br><span class="line">	public void printInfo()&#123;</span><br><span class="line">		System.out.println(&quot;listProperty&quot;);</span><br><span class="line">		System.out.println(listProperty);</span><br><span class="line">		System.out.println(&quot;setProperty&quot;);</span><br><span class="line">		System.out.println(setProperty);</span><br><span class="line">		Set set = mapProperty.entrySet();</span><br><span class="line">		Iterator it = set.iterator();</span><br><span class="line">		while(it.hasNext())&#123;</span><br><span class="line">			 Map.Entry entry = (Entry) it.next();</span><br><span class="line">			 System.out.println(&quot;Key &quot; +entry.getKey() );</span><br><span class="line">			 System.out.println(&quot;value &quot;+entry.getValue());</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(&quot;props: &quot;);</span><br><span class="line">		Set set2 = property.entrySet();</span><br><span class="line">		Iterator it2 = set2.iterator();</span><br><span class="line">		while(it2.hasNext())&#123;</span><br><span class="line">			Map.Entry entry= (Entry) it2.next();</span><br><span class="line">			System.out.println(&quot;key &quot;+entry.getKey());</span><br><span class="line">			System.out.println(&quot;value &quot;+entry.getValue());</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="applcationContext-xml的写法"><a href="#applcationContext-xml的写法" class="headerlink" title="applcationContext.xml的写法:"></a>applcationContext.xml的写法:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;someBean&quot; class=&quot;ioc.SomeBean&quot;&gt;</span><br><span class="line">	&lt;property name=&quot;listProperty&quot;&gt;</span><br><span class="line">		&lt;list&gt;</span><br><span class="line">			&lt;value&gt;list1&lt;/value&gt;</span><br><span class="line">		    &lt;value&gt;list1&lt;/value&gt;</span><br><span class="line">		    &lt;value&gt;list3&lt;/value&gt;</span><br><span class="line">		&lt;/list&gt;</span><br><span class="line">	&lt;/property&gt;</span><br><span class="line">	&lt;property name=&quot;setProperty&quot;&gt;</span><br><span class="line">		&lt;set&gt;</span><br><span class="line">		    &lt;value&gt;set1&lt;/value&gt;</span><br><span class="line">		    &lt;value&gt;set1&lt;/value&gt;</span><br><span class="line">		    &lt;value&gt;set3&lt;/value&gt;</span><br><span class="line">		&lt;/set&gt;</span><br><span class="line">	&lt;/property&gt;</span><br><span class="line">	&lt;property name=&quot;mapProperty&quot;&gt;</span><br><span class="line">		&lt;map&gt;</span><br><span class="line">		    &lt;entry key=&quot;key1&quot;&gt;</span><br><span class="line">			  &lt;value&gt;value1&lt;/value&gt;</span><br><span class="line">		    &lt;/entry&gt;</span><br><span class="line">		    &lt;entry key=&quot;key2&quot;&gt;</span><br><span class="line">			  &lt;value&gt;value2&lt;/value&gt;</span><br><span class="line">		    &lt;/entry&gt;</span><br><span class="line">		&lt;/map&gt;</span><br><span class="line">	&lt;/property&gt;</span><br><span class="line">	&lt;property name=&quot;property&quot;&gt;</span><br><span class="line">	    &lt;props&gt;</span><br><span class="line">		  &lt;prop key=&quot;key1&quot;&gt;prop1&lt;/prop&gt;</span><br><span class="line">		  &lt;prop key=&quot;key2&quot;&gt;prop2&lt;/prop&gt;</span><br><span class="line">		  &lt;prop key=&quot;key3&quot;&gt;prop3&lt;/prop&gt;</span><br><span class="line">	    &lt;/props&gt;</span><br><span class="line">	&lt;/property&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="测试类-1"><a href="#测试类-1" class="headerlink" title="测试类:"></a>测试类:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">main:</span><br><span class="line">	String path = &quot;ioc/applicationContext.xml&quot;;</span><br><span class="line">	ApplicationContext  ac =</span><br><span class="line">		new ClassPathXmlApplicationContext(path);</span><br><span class="line">	SomeBean sb = (SomeBean) ac.getBean(&quot;someBean&quot;);</span><br><span class="line">	sb.printInfo();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   2.基于构造器注入</span><br><span class="line">	方式: 配置&lt;constructor-arg&gt;元素</span><br><span class="line">	在Bean中不用写set方法,但是要有相应的构造器</span><br><span class="line"></span><br><span class="line">	构造器注入有俩种形式 一个是根据参数类型 一个是根据参数位置的下标</span><br><span class="line">	&lt;constructor-arg type=&quot;int&quot; value=&quot;&quot;&gt;</span><br><span class="line">	&lt;constructor-arg  index=&quot;0&quot; value=&quot;&quot;&gt;</span><br><span class="line"></span><br><span class="line">例如:</span><br><span class="line">&lt;bean name=&quot;student&quot; class=&quot;com.briup.bean.Student&quot;&gt;</span><br><span class="line">	&lt;constructor-arg type=&quot;int&quot; value=&quot;25&quot;&gt;</span><br><span class="line">	&lt;/constructor-arg&gt;</span><br><span class="line">	</span><br><span class="line">	&lt;constructor-arg type=&quot;java.lang.String&quot; value=&quot;tom&quot;&gt;</span><br><span class="line">	&lt;/constructor-arg&gt;</span><br><span class="line">	</span><br><span class="line">	&lt;constructor-arg type=&quot;long&quot; value=&quot;100&quot;&gt;</span><br><span class="line">	&lt;/constructor-arg&gt;</span><br><span class="line">   	 </span><br><span class="line">&lt;/bean&gt;</span><br><span class="line"></span><br><span class="line">或者:</span><br><span class="line">&lt;bean name=&quot;student&quot; class=&quot;com.briup.bean.Student&quot;&gt;</span><br><span class="line">	&lt;constructor-arg index=&quot;2&quot;&gt;</span><br><span class="line">		&lt;value&gt;30&lt;/value&gt;</span><br><span class="line">	&lt;/constructor-arg&gt;</span><br><span class="line">	 </span><br><span class="line">	&lt;constructor-arg index=&quot;0&quot;&gt;</span><br><span class="line">		&lt;value&gt;200&lt;/value&gt;</span><br><span class="line">	&lt;/constructor-arg&gt;</span><br><span class="line">	 </span><br><span class="line">	&lt;constructor-arg index=&quot;1&quot;&gt;</span><br><span class="line">		&lt;value&gt;lily&lt;/value&gt;</span><br><span class="line">	&lt;/constructor-arg&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-自动注入-容器依照一些规则去装配bean中的一个属性"><a href="#3-自动注入-容器依照一些规则去装配bean中的一个属性" class="headerlink" title="3.自动注入 :容器依照一些规则去装配bean中的一个属性"></a>3.自动注入 :容器依照一些规则去装配bean中的一个属性</h3><pre><code>注意:自动装配只对[对象类型]起作用,对基本类型不起作用.
+第一种情况:
+    在beans标签中配置装载方式:default-autowire=&quot;byName&quot;
+
+    在根元素beans中加入这个属性,那么下面所有的bean都会
+    使用byName的方式进行自动注入,如果在下面的某一个bean
+    里面想使用其他的方式进行注入,可以用autowire=&quot;&quot;属性进行
+    说明,或者某一个bean不想使用任何自动注入就使用autowire=&quot;no&quot;
+
+第二种情况:
+    在bean标签中指定配置方式
+
+    autowire=&quot;byName&quot;:
+    spring容器会到当前的类中找property的名字,然后
+    再根据这个名字去spring容器中找有没有和这个property
+    名字相同的对象,有的话,就把这个对象当做参数放到
+    setXxxx这个方法里面注入进来.
+    注意:了解property指的类中的什么东西
+
+    autowire=&quot;byType&quot;:
+    spring容器会根据当前类中的set方法里面参数的类型,
+    去容器中找相匹配的对象,如果没找到就算了,如果找到
+    一个就注入进来,如果找到多个,那么就会报错了.
+
+    autowire=&quot;constructor&quot; 
+    根据构造器的参数类型去匹配</code></pre><h4 id="4-继承"><a href="#4-继承" class="headerlink" title="4.继承"></a>4.继承</h4><pre><code>配置文件中,一个bean的配置可以继承另一个bean的配置
+
+bean标签中的俩个属性:</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">abstract属性</span><br><span class="line">&lt;bean name=&quot;..&quot; class=&quot;..&quot; abstract=&quot;true&quot;&gt;</span><br><span class="line">注:bean中一旦定义为了abstract=&quot;true&quot;,则说明该bean是用来被继承的,不能通过该bean获得对象了</span><br><span class="line"></span><br><span class="line">parent属性,指定继承哪个bean的配置</span><br><span class="line">&lt;bean name=&quot;..&quot; parent=&quot;另一个bean的名字&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<pre><code>例子:</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean name=&quot;student&quot; class=&quot;com.briup.bean.Student&quot;&gt;</span><br><span class="line">	&lt;property name=&quot;name&quot;&gt;</span><br><span class="line">		&lt;value&gt;zhangsan&lt;/value&gt;</span><br><span class="line">	&lt;/property&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+
+<pre><code>&lt;!-- 
+    abstract=&quot;true&quot; 表示当前的配置是一个抽象的配置,
+    这时候我们在代码中就不能通过这个bean的名字teacher来
+    获得相应的对象了(和java中的抽象类不能直接new对象的道理一样)
+
+    但是我们可以在写一个配置去继承这个抽象的配置,当然即使当前
+    这个配置不是抽象的,也能够被继承(和java中继承一样)
+--&gt;
+
+&lt;bean name=&quot;teacher&quot; class=&quot;com.briup.bean.Teacher&quot; abstract=&quot;true&quot;&gt;
+    &lt;property name=&quot;student&quot; ref=&quot;student&quot;&gt;&lt;/property&gt;
+&lt;/bean&gt;
+
+&lt;!-- 
+    parent=&quot;teacher&quot; 表示当前配置是继承了另外一个名字叫
+    teacher的bean的配置,配置和配置的继承像java中的类和类
+    直接的继承一样,子类会把父类中的对象继承过来.
+    当然在子配置里面依然是可以覆盖父配置中已经写的配置信息.
+--&gt;</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean name=&quot;t&quot; parent=&quot;teacher&quot;&gt;</span><br><span class="line"></span><br><span class="line">	&lt;property name=&quot;id&quot;&gt;</span><br><span class="line">		&lt;value&gt;11&lt;/value&gt;</span><br><span class="line">	&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">	&lt;property name=&quot;name&quot;&gt;</span><br><span class="line">		&lt;value&gt;TeacherWang&lt;/value&gt;</span><br><span class="line">	&lt;/property&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="8-Bean对象的在IOC容器中的生命周期"><a href="#8-Bean对象的在IOC容器中的生命周期" class="headerlink" title="8 Bean对象的在IOC容器中的生命周期"></a>8 Bean对象的在IOC容器中的生命周期</h3><pre><code>例如:我们需要从容器中获得一个Bean的对象:</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">  1、容器创建该Bean的对象</span><br><span class="line"></span><br><span class="line">   2、容器给这个Bean对象注入依赖</span><br><span class="line"></span><br><span class="line">   3、如果这个Bean已经实现了BeanNameAware接口,容器会调用它实现的setBeanName(String)方法,此处传递的就是Spring配置文件中Bean的id值</span><br><span class="line"></span><br><span class="line">   4、如果这个Bean已经实现了BeanFactoryAware接口,容器会调用它实现的setBeanFactory方法</span><br><span class="line">该方法接收的参数就是容器本身(可以用这个方式来获取其它Bean)</span><br><span class="line"></span><br><span class="line">   5、如果这个Bean已经实现了ApplicationContextAware接口,容器会调用setApplicationContext方法,该步和第四步类似,ApplicationContext是BeanFactory的子接口,有更多的实现方法</span><br><span class="line"></span><br><span class="line">   6、如果spring容器中配置了BeanPostProcessor接口的实现类,容器将会调用该实现类中的postProcessBeforeInitialization方法,表示可以在Bean对象执行 初始化方法之前 做点事情</span><br><span class="line"></span><br><span class="line">   7、如果Bean在Spring配置文件中配置了init-method属性则会自动调用其配置的初始化方法</span><br><span class="line"></span><br><span class="line">   8、如果spring容器中配置了BeanPostProcessor接口的实现类,容器将会调用该实现类中的postProcessAfterInitialization方法,表示可以在Bean对象执行 初始化方法之后 做点事情</span><br><span class="line"></span><br><span class="line">   注:以上工作完成以后就可以使用这个Bean对象了</span><br><span class="line"></span><br><span class="line">   9、当Bean不再需要时,会经过清理阶段,如果Bean实现了DisposableBean这个接口,会调用那个其实现的destroy()方法；</span><br><span class="line"></span><br><span class="line">   10、最后,如果这个Bean的Spring配置中配置了destroy-method属性,会自动调用其配置的销毁方法</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>但是一般情况下,我们定义的Bean都是些普通的类,没有用到任何spring的接口,所以大多数时候我们只考虑Bean对象的创建、依赖注入、初始化、使用、销毁即可,并且可以把Bean分为单例和非单例俩种情况:</code></pre><h4 id="单例管理的对象"><a href="#单例管理的对象" class="headerlink" title="单例管理的对象:"></a>单例管理的对象:</h4><pre><code>1.默认情况下,spring在读取xml文件的时候,就会创建对象
+2.进行依赖注入,如果有依赖的话
+3.会去调用init-method=&quot;..&quot;属性值中所指定的方法,如果有该配置的话
+4.Bean对象可以被正常使用
+5.对象在被销毁的时候,会调用destroy-method=&quot;...&quot;属性值中所指定的方法,如果有该配置的话
+
+注意1:调用container.destroy()方法会销毁单例对象
+注意2:lazy-init=&quot;true&quot;,可以让这个Bean对象在第一次被访问的时候创建,而不是读取xml文件就被创建
+注意3:因为是单例,所以该对象只会被创建一次</code></pre><h4 id="非单例管理的对象"><a href="#非单例管理的对象" class="headerlink" title="非单例管理的对象:"></a>非单例管理的对象:</h4><pre><code>1.使用这个对象的时候,spring容器会创建这个对象
+2.进行依赖注入,如果有依赖的话
+3.会去调用init-method=&quot;..&quot;属性值中所指定的方法,如果有该配置的话
+4.Bean对象可以被正常使用
+
+注意1:spring容器不会销毁非单例对象
+注意2:因为是非单例,所以每次使用都会创建一个新的Bean对象</code></pre><h3 id="9-xml文件导入其他xml文件配置"><a href="#9-xml文件导入其他xml文件配置" class="headerlink" title="9 xml文件导入其他xml文件配置"></a>9 xml文件导入其他xml文件配置</h3><pre><code>如果我们在spring框架中配置了多个xml文件,我们可以在读取配置文件的时候把这些xml文件一下全都读取,也可以只读一个总的xml文件,在这个总的xml文件中把其他的xml全都都导入进来。
+例如:</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">student.xml文件:</span><br><span class="line">&lt;bean name=&quot;student&quot; class=&quot;com.briup.bean.Student&quot;&gt;</span><br><span class="line">	&lt;property name=&quot;id&quot;&gt;</span><br><span class="line">		&lt;value&gt;25&lt;/value&gt;</span><br><span class="line">	&lt;/property&gt;</span><br><span class="line">&lt;/bean&gt;</span><br><span class="line"></span><br><span class="line">teacher.xml文件:</span><br><span class="line">&lt;bean name=&quot;teacher&quot; class=&quot;com.briup.bean.Teacher&quot;&gt;</span><br><span class="line">   	&lt;property name=&quot;student&quot; ref=&quot;student&quot;&gt;&lt;/property&gt;</span><br><span class="line">&lt;/bean&gt;</span><br><span class="line"></span><br><span class="line">import.xml文件:</span><br><span class="line">&lt;import resource=&quot;teacher.xml&quot;/&gt;</span><br><span class="line">&lt;import resource=&quot;student.xml&quot;/&gt;</span><br><span class="line"></span><br><span class="line">main:</span><br><span class="line">String[] path = &#123;&quot;com/briup/ioc/imp/import.xml&quot;&#125;;</span><br><span class="line">ApplicationContext container = </span><br><span class="line">		new ClassPathXmlApplicationContext(path);</span><br><span class="line"></span><br><span class="line">Teacher t = (Teacher) container.getBean(&quot;teacher&quot;);</span><br><span class="line">System.out.println(t.getStudent());</span><br></pre></td></tr></table></figure>
+
+<h3 id="10-spring容器创建bean对象的方式"><a href="#10-spring容器创建bean对象的方式" class="headerlink" title="10 spring容器创建bean对象的方式"></a>10 spring容器创建bean对象的方式</h3><pre><code>1)xml文件中有bean的配置,而且这个bean所对应的java类中存在一个无参构造器,那么这个时候spring容器就可以使用反射调用无参构造器来创建实例了(常规的方式)
+
+
+2)通过工厂类获得实例(工厂类实现了接口FactoryBean&lt;?&gt;)
+    注意spring中的PropertyPlaceholderConfigurer类的使用,在htmlsingle中直接搜索类名即可
+    例如:
+//工厂类实现指定接口并且实现接口中的三个抽象方法:</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">  public class ConnectionFactory implements FactoryBean&lt;Connection&gt;&#123;</span><br><span class="line">private String driver;</span><br><span class="line">private String url;</span><br><span class="line">private String username;</span><br><span class="line">private String password;</span><br><span class="line"></span><br><span class="line">@Override</span><br><span class="line">public Connection getObject() throws Exception &#123;</span><br><span class="line">	Class.forName(driver);</span><br><span class="line">	Connection conn = </span><br><span class="line">		DriverManager.getConnection(url,username,password);</span><br><span class="line">	return conn;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@Override</span><br><span class="line">public boolean isSingleton() &#123;</span><br><span class="line">	return false;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@Override</span><br><span class="line">public Class&lt;Connection&gt; getObjectType() &#123;</span><br><span class="line">	return Connection.class;</span><br><span class="line">&#125;</span><br><span class="line">set/get</span><br><span class="line">....</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+
+<pre><code>xml文件:
+
+&lt;!-- 
+    下面配置的这个类,可以自动的帮我们去读取指定的properties文件的内容,文件中用key-value的形式存放数据,读完之后我们就可以用${key}这种形式去拿文件中的value值了
+
+    在htmlsingle中直接搜索类名即可得到相关配置样例
+
+    classpath指的是从src下面找.
+--&gt;</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">  &lt;bean class=&quot;org.springframework.beans.factory.config.PropertyPlaceholderConfigurer&quot;&gt;</span><br><span class="line">  	&lt;property name=&quot;location&quot;&gt;</span><br><span class="line">  		&lt;value&gt;classpath:oracle.properties&lt;/value&gt;</span><br><span class="line">  	&lt;/property&gt;</span><br><span class="line">  &lt;/bean&gt;</span><br><span class="line"> </span><br><span class="line">  	因为这个类是一个工厂类,所以我们用名字conn在容器中拿对象的时候,</span><br><span class="line">  	拿到并不是这个工厂类对象,而是这个工厂类对象调用完工厂方法后所返回的对象.</span><br><span class="line">  </span><br><span class="line">  &lt;bean name=&quot;conn&quot; class=&quot;com.briup.ioc.factory.ConnectionFactory&quot;&gt;</span><br><span class="line">  	&lt;property name=&quot;driver&quot;&gt;</span><br><span class="line">  		&lt;value&gt;$&#123;driver&#125;&lt;/value&gt;</span><br><span class="line">  	&lt;/property&gt;</span><br><span class="line">  	</span><br><span class="line">  	&lt;property name=&quot;url&quot;&gt;</span><br><span class="line">  		&lt;value&gt;$&#123;url&#125;&lt;/value&gt;</span><br><span class="line">  	&lt;/property&gt;</span><br><span class="line">  	</span><br><span class="line">  	&lt;property name=&quot;username&quot;&gt;</span><br><span class="line">  		&lt;value&gt;$&#123;username&#125;&lt;/value&gt;</span><br><span class="line">  	&lt;/property&gt;</span><br><span class="line">  	</span><br><span class="line">  	&lt;property name=&quot;password&quot;&gt;</span><br><span class="line">  		&lt;value&gt;$&#123;password&#125;&lt;/value&gt;</span><br><span class="line">  	&lt;/property&gt;</span><br><span class="line">  &lt;/bean&gt;</span><br><span class="line"></span><br><span class="line">  main:</span><br><span class="line">String path = &quot;com/briup/ioc/factory/factory.xml&quot;;</span><br><span class="line">ApplicationContext container = </span><br><span class="line">	new ClassPathXmlApplicationContext(path);</span><br><span class="line">Connection conn = </span><br><span class="line">	(Connection)container.getBean(&quot;conn&quot;);</span><br><span class="line"></span><br><span class="line">System.out.println(conn);</span><br></pre></td></tr></table></figure>
+
+<pre><code>3)通过实例工厂获得bean对象(不需要实现或者继承任何接口或者父类),就是一个普通的工厂实例instanceFactory
+//一个普通的工厂类 </code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">  public class ConnectionFactory&#123;</span><br><span class="line">private String driver;</span><br><span class="line">private String url;</span><br><span class="line">private String username;</span><br><span class="line">private String password;</span><br><span class="line"></span><br><span class="line">public Object getConnection() throws Exception &#123;</span><br><span class="line">	Class.forName(driver);</span><br><span class="line">	Connection conn = </span><br><span class="line">		DriverManager.getConnection(url,username,password);</span><br><span class="line">	return conn;</span><br><span class="line">&#125;</span><br><span class="line">get/set</span><br><span class="line">....</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<pre><code>xml文件:
+
+&lt;!-- 读取properties文件 --&gt;</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">   &lt;bean class=&quot;org.springframework.beans.factory.config.PropertyPlaceholderConfigurer&quot;&gt;</span><br><span class="line">	&lt;property name=&quot;location&quot;&gt;</span><br><span class="line">		&lt;value&gt;classpath:oracle.properties&lt;/value&gt;</span><br><span class="line">	&lt;/property&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+
+
+<pre><code>&lt;!-- 配置工厂类 --&gt;</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean name=&quot;factory&quot; class=&quot;com.briup.ioc.instanceFactory.ConnectionFactory&quot;&gt;</span><br><span class="line">	&lt;property name=&quot;driver&quot;&gt;</span><br><span class="line">		&lt;value&gt;$&#123;driver&#125;&lt;/value&gt;</span><br><span class="line">	&lt;/property&gt;</span><br><span class="line">	</span><br><span class="line">	&lt;property name=&quot;url&quot;&gt;</span><br><span class="line">		&lt;value&gt;$&#123;url&#125;&lt;/value&gt;</span><br><span class="line">	&lt;/property&gt;</span><br><span class="line">	</span><br><span class="line">	&lt;property name=&quot;username&quot;&gt;</span><br><span class="line">		&lt;value&gt;$&#123;username&#125;&lt;/value&gt;</span><br><span class="line">	&lt;/property&gt;</span><br><span class="line">	</span><br><span class="line">	&lt;property name=&quot;password&quot;&gt;</span><br><span class="line">		&lt;value&gt;$&#123;password&#125;&lt;/value&gt;</span><br><span class="line">	&lt;/property&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+
+
+<pre><code>&lt;!-- 
+    将来通过这个conn来拿对象,拿到的是名字为factory的工厂类调用完
+    名字为getConnection方法之后所返回的对象。
+--&gt;</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean name=&quot;conn&quot; factory-bean=&quot;factory&quot; factory-method=&quot;getConnection&quot;&gt;&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<pre><code>main:</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">String path = &quot;com/briup/ioc/instanceFactory/instanceFactory.xml&quot;;</span><br><span class="line">ApplicationContext container = </span><br><span class="line">	new ClassPathXmlApplicationContext(path);</span><br><span class="line"></span><br><span class="line">Connection conn = </span><br><span class="line">	(Connection)container.getBean(&quot;conn&quot;);</span><br><span class="line"></span><br><span class="line">System.out.println(conn);</span><br></pre></td></tr></table></figure>
+
+<pre><code>4)通过静态工厂获得实例
+
+    例如
+//静态工厂类</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">  public class ConnectionFactory&#123;</span><br><span class="line">private static String driver = </span><br><span class="line">	&quot;oracle.jdbc.driver.OracleDriver&quot;;</span><br><span class="line">private static String url = </span><br><span class="line">	&quot;jdbc:oracle:thin:@127.0.0.1:1521:XE&quot;;</span><br><span class="line">private static String username = &quot;briup&quot;;</span><br><span class="line">private static String password = &quot;briup&quot;;</span><br><span class="line"></span><br><span class="line">public static Object getConnection() throws Exception &#123;</span><br><span class="line">	Class.forName(driver);</span><br><span class="line">	Connection conn = </span><br><span class="line">		DriverManager.getConnection(url,username,password);</span><br><span class="line">	return conn;</span><br><span class="line">&#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<pre><code>xml文件:
+    &lt;!-- 这样配置一定要求getConnection方法是静态方法 --&gt;</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean name=&quot;conn&quot; class=&quot;com.briup.ioc.staticFactory.ConnectionFactory&quot; factory-method=&quot;getConnection&quot;&gt;&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+
+
+<pre><code>main:</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">String path = &quot;com/briup/ioc/staticFactory/staticFactory.xml&quot;;</span><br><span class="line">ApplicationContext container = </span><br><span class="line">	new ClassPathXmlApplicationContext(path);</span><br><span class="line"></span><br><span class="line">Connection conn = </span><br><span class="line">	(Connection)container.getBean(&quot;conn&quot;);</span><br><span class="line"></span><br><span class="line">System.out.println(conn);</span><br></pre></td></tr></table></figure>
+
+<h3 id="11-自定义属性编辑器PropertyEditor"><a href="#11-自定义属性编辑器PropertyEditor" class="headerlink" title="11 自定义属性编辑器PropertyEditor"></a>11 自定义属性编辑器PropertyEditor</h3><pre><code>Spring中我们可以使用属性编辑器来将特定的字符串转换为对象
+    String--转换--&gt;object
+
+java.beans.PropertyEditor(JDK中的接口)用于将xml文件中字符串转换为特定的类型,同时JDK为我们提供一个实现类java.beans.PropertyEditorSupport
+
+Spring在注入时,如果遇到类型不一致(例如需要Address类型但是用户传了个String)则会去调用相应的属性编辑器进行转换
+
+spring会调用属性编辑器的setAsText(String str)进行处理用户传的字符串,并调用getValue()方法获取处理后得到的对象
+在代码中处理完后需要调用setValue方法,要不然spring调用getValue方法拿不到处理后转换成的对象
+
+
+//自定义编辑器类</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">  public class AddressEditor extends PropertyEditorSupport &#123;</span><br><span class="line"></span><br><span class="line">@Override</span><br><span class="line">public String getAsText() &#123;</span><br><span class="line">	return super.getAsText();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<pre><code>//Spring遇到数据类型不一致并且不能自己处理的时候会调用这个方法处理字符串</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public void setAsText(String text) throws IllegalArgumentException &#123;</span><br><span class="line">	String[] str = text.split(&quot;,&quot;);</span><br><span class="line">	String city = str[0];</span><br><span class="line">	String street = str[1];</span><br><span class="line">	String country = str[2];</span><br><span class="line">	Address add = new Address(city, street, country);</span><br><span class="line">	setValue(add);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  //Address类</span><br><span class="line">  public class Address &#123;</span><br><span class="line">private String city;</span><br><span class="line">private String street;</span><br><span class="line">private String country;</span><br><span class="line">set/get</span><br><span class="line">.....</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  //Student类</span><br><span class="line">  public class Student &#123;</span><br><span class="line">private long id;</span><br><span class="line">private String name;</span><br><span class="line">private boolean gender;</span><br><span class="line">private int age;</span><br><span class="line">private Address address;</span><br><span class="line">get/set</span><br><span class="line">...</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+
+   <!-- spring发现address的类型是Address的时候,就会调用对应的属性编辑器处理AddressEditor了 -->
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;student&quot; class=&quot;com.briup.ioc.proEdit.Student&quot;&gt;</span><br><span class="line">	&lt;property name=&quot;id&quot; value=&quot;1&quot;/&gt;</span><br><span class="line">	&lt;property name=&quot;name&quot; value=&quot;tom&quot;/&gt;</span><br><span class="line">	&lt;property name=&quot;age&quot; value=&quot;45&quot;/&gt;</span><br><span class="line">	&lt;property name=&quot;gender&quot; value=&quot;true&quot;/&gt;</span><br><span class="line">	&lt;property name=&quot;address&quot;&gt;</span><br><span class="line">		&lt;value&gt;kunshan,xueyuan,China&lt;/value&gt;</span><br><span class="line">	&lt;/property&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="12-自定义事件"><a href="#12-自定义事件" class="headerlink" title="12 自定义事件"></a>12 自定义事件</h3><pre><code>在spring中我们可以自定义事件,并且可以使用ApplicationContext类型对象(就是spring容器container)来发布这个事件
+事件发布之后,所有的ApplicaitonListener(监听器)实例都会被触发并调用指定方法onApplicationEvent()来处理.
+
+例如:
+自定义事件类RainEvent:</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public class RainEvent extends ApplicationEvent &#123;</span><br><span class="line">	public RainEvent(Object source) &#123;</span><br><span class="line">		super(source);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<pre><code>监听器类RainListener1</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class RainListener1 implements ApplicationListener&lt;RainEvent&gt;&#123;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	public void onApplicationEvent(RainEvent event) &#123;</span><br><span class="line">		System.out.println(&quot;唐僧大喊：&quot; + event.getSource() + &quot;赶快收衣服喽！&quot;);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<pre><code>监听器类RainListener2</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public class RainListener2 implements ApplicationListener&lt;RainEvent&gt;&#123;</span><br><span class="line"></span><br><span class="line">	public void onApplicationEvent(RainEvent event) &#123;</span><br><span class="line">		System.out.println(&quot;我们：&quot; + event.getSource() + &quot;太好了不用上课了！&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<pre><code>xml文件:</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 只需要把这俩个监听器类交给spring容器管理就可以了 --&gt;</span><br><span class="line">&lt;bean class=&quot;com.briup.ioc.event.RainListener1&quot;&gt;&lt;/bean&gt;</span><br><span class="line">&lt;bean class=&quot;com.briup.ioc.event.RainListener2&quot;&gt;&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+
+
+<pre><code>main:</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">String path = &quot;com/briup/ioc/event/event.xml&quot;;</span><br><span class="line">ApplicationContext container = </span><br><span class="line">	new ClassPathXmlApplicationContext(path);</span><br><span class="line">container.publishEvent(new RainEvent(&quot;下雨了！&quot;));</span><br></pre></td></tr></table></figure>
+
+<h3 id="13-ioc中的annotation配置"><a href="#13-ioc中的annotation配置" class="headerlink" title="13 ioc中的annotation配置"></a>13 ioc中的annotation配置</h3><pre><code>@Autowired 注入（不能缺失初始化Bean）
+1) @Autowired使用后需要在xml文件加入以下配置才能生效: &lt;context:annotation-config/&gt;
+
+2) @Autowired注解可以写在成员变量（最常用）、setter方法、构造器函数上面
+
+3) @Autowired默认按照byType匹配的方式进行注入,如果没有一个bean的类型是匹配的则会抛异常,
+如果有多个bean的类型都匹配成功了,那么再按byName方式进行选择。如果name没有找到，则也会抛出异常
+
+4) @Autowired如果最终匹配不成功(注意一定是一个都没有找到的情况)则会抛出异常,但是如果设置为 @Autowired(required=false),则最终匹配不成功没有不会抛出异常。
+
+5) @Autowired可以结合@Qualifier(&quot;beanName&quot;)来使用,则可以达到byName的效果</code></pre><p><img src="_v_images/_1563934567_5539.png" alt>      </p>
+<pre><code>@Resource（java提供）
+1) @Resource使用后需要在xml文件加入以下配置才能生效:&lt;context:annotation-config/&gt;
+
+2) @Resource的作用和@Autowired差不多,只不过 @Resource是默认先用byName,如果找不到合适的就再用byType来注入
+
+3) @Resource有俩个属性,name和type,使用name属性则表示要byName匹配,使用type属性则表示要byType匹配
+
+
+
+@PostConstruct和@PreDestroy
+1) 标注了@PostConstruct注解的方法将在类实例化后调用
+2) 标注了@PreDestroy注解的方法将在类销毁之前调用
+
+
+@Component
+1) @Component注解可以直接定义bean,而无需在xml定义。但是若两种定义同时存在,xml中的定义会覆盖类中注解的Bean定义
+
+2) @Component注解直接写在类上面即可
+
+3) @Component有一个可选的参数,用于指定bean的名称
+    @Component(&quot;boss&quot;)
+    public class Boss{}
+
+4) @Component如果不指定参数,则bean的名称为当前类的类名小写
+    //和上面例子的相关相同
+    @Component
+    public class Boss{}
+
+5) @Component使用之后需要在xml文件配置一个标签
+    &lt;context:component-scan/&gt;
+
+6) &lt;context:component-scan base-package=&quot;com.briup.ioc.annotation&quot; /&gt; 
+    表示spring检查指定包下的java类,看它们是否使用了 @Component注解
+
+7) @Component定义的bean默认情况下都是单例模式的,如果要让这个bean变为非单例,可以再结合这个@Scope注解来达到目标@Scope(&quot;prototype&quot;)
+
+
+@Component是Spring中所有bean组件的通用形式, @Repository @Service @Controller 则是 @Component的细化,用来表示更具体的用例,分别对应了持久化层、服务层和表现层。但是至少到现在为止这个四种注解的实质区别很小(甚至几乎没有),都是把当前类注册为spring容器中的一个bean
+
+
+注意:
+1.component-scan标签默认情况下自动扫描指定路径下的包(含所有子包)
+
+2.component-scan标签将带有@Component @Repository @Service @Controller注解的类自动注册到spring容器中
+
+3.component-scan标签对标记了@Required @Autowired @PostConstruct @PreDestroy @Resource @WebServiceRef @EJB   @PersistenceContext @PersistenceUnit等注解的类进行对应的操作,使注解生效
+
+4.component-scan标签包含了annotation-config标签的作用</code></pre>
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="true">
+                <source type="audio/mpeg" src="http://domain.com/awesome.mp3">
+            </audio>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link" data-ae="false" data-ci data-cs data-r data-o data-a data-d="false">查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>
