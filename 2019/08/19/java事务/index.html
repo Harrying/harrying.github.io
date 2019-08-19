@@ -1,0 +1,254 @@
+
+<!DOCTYPE html>
+<html lang class="loading">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>java事务 - HaiRui.hexo</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="Harrying,"> 
+    <meta name="description" content="一个java程序猿的空间,什么是事务？事务（Transaction），一般是指要做的或所做的事情。在计算机术语中是指访问并可能更新数据库中各种数据项的一个程序执行单元(unit)。事务通常由高级数据库操纵语言或编程语言（如S,"> 
+    <meta name="author" content="海瑞"> 
+    <link rel="alternative" href="atom.xml" title="HaiRui.hexo" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+</html>
+<body class="loading">
+    <span id="config-title" style="display:none">HaiRui.hexo</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" data-url="http://yoursite.com"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">java事务</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class="main">
+        <h1 class="title">java事务</h1>
+        <div class="stuff">
+            <span>八月 19, 2019</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Spring-AOP/">Spring_AOP</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h2 id="什么是事务？"><a href="#什么是事务？" class="headerlink" title="什么是事务？"></a>什么是事务？</h2><p>事务（Transaction），一般是指要做的或所做的事情。在计算机术语中是指访问并可能更新数据库中各种数据项的一个程序执行单元(unit)。事务通常由高级数据库操纵语言或编程语言（如SQL，C++或Java）书写的用户程序的执行所引起，并用形如begin transaction和end transaction语句（或函数调用）来界定。事务由事务开始(begin transaction)和事务结束(end transaction)之间执行的全体操作组成。</p>
+<h2 id="为什么要事务？"><a href="#为什么要事务？" class="headerlink" title="为什么要事务？"></a>为什么要事务？</h2><p>事务是为解决数据安全操作提出的，事务控制实际上就是控制数据的安全访问。<strong>保证数据的一致性和完整性</strong></p>
+<p>用一个简单例子说明：银行转帐业务，账户A要将自己账户上的1000元转到B账户下面，A账户余额首先要减去1000元，然后B账户要增加1000元。假如在中间网络出现了问题，A账户减去1000元已经结束，B因为网络中断而操作失败，那么整个业务失败，必须做出控制，要求A账户转帐业务撤销。这才能保证业务的正确性，完成这个操走就需要事务，将A账户资金减少和B账户资金增加放到同一个事务里，要么全部执行成功，要么全部撤销，这样就保证了数据的安全性。</p>
+<h2 id="事务的4个特性（ACID）："><a href="#事务的4个特性（ACID）：" class="headerlink" title="事务的4个特性（ACID）："></a>事务的4个特性（ACID）：</h2><h4 id="1-原子性（atomicity）：事务是数据库的逻辑工作单位，而且是必须是原子工作单位，对于其数据修改，要么全部执行，要么全部不执行。"><a href="#1-原子性（atomicity）：事务是数据库的逻辑工作单位，而且是必须是原子工作单位，对于其数据修改，要么全部执行，要么全部不执行。" class="headerlink" title="1) 原子性（atomicity）：事务是数据库的逻辑工作单位，而且是必须是原子工作单位，对于其数据修改，要么全部执行，要么全部不执行。"></a>1) 原子性（atomicity）：事务是数据库的逻辑工作单位，而且是必须是原子工作单位，对于其数据修改，要么全部执行，要么全部不执行。</h4><h4 id="2-一致性（consistency）：事务在完成时，必须是所有的数据都保持一致状态。在相关数据库中，所有规则都必须应用于事务的修改，以保持所有数据的完整性。（实例：转账，两个账户余额相加，值不变。）"><a href="#2-一致性（consistency）：事务在完成时，必须是所有的数据都保持一致状态。在相关数据库中，所有规则都必须应用于事务的修改，以保持所有数据的完整性。（实例：转账，两个账户余额相加，值不变。）" class="headerlink" title="2) 一致性（consistency）：事务在完成时，必须是所有的数据都保持一致状态。在相关数据库中，所有规则都必须应用于事务的修改，以保持所有数据的完整性。（实例：转账，两个账户余额相加，值不变。）"></a>2) 一致性（consistency）：事务在完成时，必须是所有的数据都保持一致状态。在相关数据库中，所有规则都必须应用于事务的修改，以保持所有数据的完整性。（实例：转账，两个账户余额相加，值不变。）</h4><h4 id="3-隔离性（isolation）：一个事务的执行不能被其他事务所影响。"><a href="#3-隔离性（isolation）：一个事务的执行不能被其他事务所影响。" class="headerlink" title="3) 隔离性（isolation）：一个事务的执行不能被其他事务所影响。"></a>3) 隔离性（isolation）：一个事务的执行不能被其他事务所影响。</h4><h4 id="4-持久性（durability）：一个事务一旦提交，事物的操作便永久性的保存在DB中。即便是在数据库系统遇到故障的情况下也不会丢失提交事务的操作。"><a href="#4-持久性（durability）：一个事务一旦提交，事物的操作便永久性的保存在DB中。即便是在数据库系统遇到故障的情况下也不会丢失提交事务的操作。" class="headerlink" title="4) 持久性（durability）：一个事务一旦提交，事物的操作便永久性的保存在DB中。即便是在数据库系统遇到故障的情况下也不会丢失提交事务的操作。"></a>4) 持久性（durability）：一个事务一旦提交，事物的操作便永久性的保存在DB中。即便是在数据库系统遇到故障的情况下也不会丢失提交事务的操作。</h4><h2 id="Java有几种类型的事务？"><a href="#Java有几种类型的事务？" class="headerlink" title="Java有几种类型的事务？"></a>Java有几种类型的事务？</h2><h4 id="Java事务的类型有三种：JDBC事务、JTA（Java-Transaction-API）事务、容器事务。"><a href="#Java事务的类型有三种：JDBC事务、JTA（Java-Transaction-API）事务、容器事务。" class="headerlink" title="Java事务的类型有三种：JDBC事务、JTA（Java Transaction API）事务、容器事务。"></a>Java事务的类型有三种：JDBC事务、JTA（Java Transaction API）事务、容器事务。</h4><h4 id="1-JDBC事务"><a href="#1-JDBC事务" class="headerlink" title="1.JDBC事务"></a>1.JDBC事务</h4><p>在JDBC中处理事务，都是通过Connection完成的。同一事务中所有的操作，都在使用同一个Connection对象。JDBC事务默认是开启的，并且是默认提交。</p>
+<p>JDBC Connection 接口提供了两种事务模式：自动提交和手工提交</p>
+<p>JDBC中的事务java.sql.Connection 的三个方法与事务有关：</p>
+<p>setAutoCommit（boolean）:设置是否为自动提交事务，如果true（默认值为true）表示自动提交，也就是每条执行的SQL语句都是一个单独的事务，如果设置为false，需要手动提交事务。</p>
+<p>commit（）：提交结束事务。</p>
+<p>rollback（）：回滚结束事务。</p>
+<p>传统JDBC操作流程：</p>
+<p>  1).获取JDBC连接<br>  2).声明SQL<br>  3).预编译SQL<br>  4).执行SQL<br>  5).处理结果集<br>  6).释放结果集<br>  7).释放Statement<br>  8).提交事务<br>  9).处理异常并回滚事务<br>  10).释放JDBC连接</p>
+<p>JDBC优缺点：1.冗长、重复     2.显示事务控制     3.每个步骤不可获取    4.显示处理受检查异常</p>
+<p>JDBC为使用Java进行数据库的事务操作提供了最基本的支持。通过JDBC事务，我们可以将多个SQL语句放到同一个事务中，保证其ACID特性。JDBC事务的主要优点就是API比较简单，可以实现最基本的事务操作，性能也相对较好。但是，JDBC事务有一个局限：一个 JDBC 事务不能跨越多个数据库！所以，如果涉及到多数据库的操作或者分布式场景，JDBC事务就无能为力了。</p>
+<h4 id="2-JTA事务"><a href="#2-JTA事务" class="headerlink" title="2.JTA事务"></a>2.JTA事务</h4><p>JTA(Java Transaction API)提供了跨数据库连接（或其他JTA资源）的事务管理能力。JTA事务管理则由JTA容器实现，J2ee框架中事务管理器与应用程序，资源管理器，以及应用服务器之间的事务通讯。</p>
+<p>1)JTA的构成</p>
+<p>a、高层应用事务界定接口，供事务客户界定事务边界的</p>
+<p>b、X/Open XA协议(资源之间的一种标准化的接口)的标准Java映射，它可以使事务性的资源管理器参与由外部事务管理器控制的事务中</p>
+<p>c、高层事务管理器接口，允许应用程序服务器为其管理的应用程序界定事务的边界</p>
+<p>2)JTA的主要接口位于javax.transaction包中</p>
+<p>a、UserTransaction接口：让应用程序得以控制事务的开始、挂起、提交、回滚等。由Java客户端程序或EJB调用。</p>
+<p>b、TransactionManager 接口：用于应用服务器管理事务状态</p>
+<p>c、Transaction接口：用于执行相关事务操作</p>
+<p>d、XAResource接口：用于在分布式事务环境下，协调事务管理器和资源管理器的工作</p>
+<p>e、Xid接口：为事务标识符的Java映射</p>
+<p>注：前3个接口位于Java EE版的类库 javaee.jar 中，Java SE中没有提供！UserTransaction是编程常用的接口,JTA只提供了接口，没有具体的实现。</p>
+<p>JTS(Java Transaction Service)是服务OTS的JTA的实现。简单的说JTS实现了JTA接口，并且符合OTS的规范。</p>
+<p>JTA的事务周期可横跨多个JDBC Connection生命周期，对众多Connection进行调度，实现其事务性要求。</p>
+<p>JTA可以处理任何提供符合XA接口的资源。包括：JDBC连接，数据库，JMS，商业对象等等。</p>
+<p>3)JTA编程的基本步骤</p>
+<p>a、首先配置JTA ，建立相应的数据源</p>
+<p>b、建立事务：通过创建UserTransaction类的实例来开始一个事务。代码如下：</p>
+<pre><code>Context ctx = new InitialContext(p) ;
+
+UserTransaction trans = (UserTransaction) ctx.lookup(&quot;javax. Transaction.UserTransaction&quot;)</code></pre><p>c、开始事务：代码为 trans.begin() ;</p>
+<p>d、找出数据源：从Weblogic Server上找到数据源，代码如下：</p>
+<p>DataSource ds = (DataSource) ctx.lookup(“mysqldb”) ;</p>
+<p>e、建立数据库连接：Connection mycon = ds.getConnection() ;</p>
+<p>f、执行SQL操作：stmt.executeUpdate(sqlS);</p>
+<p>g、完成事务：trans.commit(); / trans.rollback();</p>
+<p>h、关闭连接：mycon.close() ;</p>
+<p>JTA的优缺点：</p>
+<p>JTA的优点很明显，就是提供了分布式事务的解决方案，严格的ACID。但是，标准的JTA方式的事务管理在日常开发中并不常用。</p>
+<p>JTA的缺点是实现复杂，通常情况下，JTA UserTransaction需要从JNDI获取。这意味着，如果我们使用JTA，就需要同时使用JTA和JNDI。</p>
+<p>JTA本身就是个笨重的API，通常JTA只能在应用服务器环境下使用，因此使用JTA会限制代码的复用性。</p>
+<h4 id="3、Spring容器事务"><a href="#3、Spring容器事务" class="headerlink" title="3、Spring容器事务"></a>3、Spring容器事务</h4><p>Spring事务管理的实现有许多细节，如果对整个接口框架有个大体了解会非常有利于我们理解事务，下面通过讲解Spring的事务接口来了解Spring实现事务的具体策略。</p>
+<p>Spring事务管理涉及的接口及其联系：<br><img src="_v_images/_1564454891_7325.png" alt></p>
+<p>Spring并不直接管理事务，而是提供了多种事务管理器，他们将事务管理的职责委托给Hibernate或者JTA等持久化机制所提供的相关平台框架的事务来实现。 Spring事务管理器的接口是org.springframework.transaction.PlatformTransactionManager，通过这个接口，Spring为各个平台如JDBC、Hibernate等都提供了对应的事务管理器，但是具体的实现就是各个平台自己的事情了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Public interface PlatformTransactionManager&#123;  </span><br><span class="line">       // 由TransactionDefinition得到TransactionStatus对象</span><br><span class="line">       TransactionStatus getTransaction(TransactionDefinition definition) throws TransactionException;</span><br><span class="line">    // 提交</span><br><span class="line">       Void commit(TransactionStatus status) throws TransactionException;  </span><br><span class="line">       // 回滚</span><br><span class="line">       Void rollback(TransactionStatus status) throws TransactionException;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>1)、Spring JDBC事务<br>如果应用程序中直接使用JDBC来进行持久化，DataSourceTransactionManager会为你处理事务边界。为了使用     DataSourceTransactionManager，你需要使用如下的XML将其装配到应用程序的上下文定义中：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;transactionManager&quot; class=&quot;org.springframework.jdbc.datasource.DataSourceTransactionManager&quot;&gt;</span><br><span class="line">     &lt;property name=&quot;dataSource&quot; ref=&quot;dataSource&quot; /&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+
+<p>  实际上，DataSourceTransactionManager是通过调用java.sql.Connection来管理事务。通过调用连接的commit()方法来提交事务，同样，事务失败则通过调用rollback()方法进行回滚。</p>
+<p>2)、Hibernate事务</p>
+<p>如果应用程序的持久化是通过Hibernate实现的，那么你需要使用HibernateTransactionManager。对于Hibernate3，需要在Spring上下文定义中添加如下的<bean>声明：</bean></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;transactionManager&quot; class=&quot;org.springframework.orm.hibernate3.HibernateTransactionManager&quot;&gt;</span><br><span class="line">     &lt;property name=&quot;sessionFactory&quot; ref=&quot;sessionFactory&quot; /&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+
+
+<p>sessionFactory属性需要装配一个Hibernate的session工厂，HibernateTransactionManager的实现细节是它将事务管理的职责委托给org.hibernate.Transaction对象，而后者是从Hibernate Session中获取到的。当事务成功完成时，HibernateTransactionManager将会调用Transaction对象的commit()方法，反之，将会调用rollback()方法。<br>3)、Java持久化API事务（JPA）</p>
+<p>Hibernate多年来一直是事实上的Java持久化标准，但是现在Java持久化API作为真正的Java持久化标准进入大家的视野。如果你计划使用JPA的话，那你需要使用Spring的JpaTransactionManager来处理事务。你需要在Spring中这样配置JpaTransactionManager：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;transactionManager&quot; class=&quot;org.springframework.orm.jpa.JpaTransactionManager&quot;&gt;</span><br><span class="line">     &lt;property name=&quot;sessionFactory&quot; ref=&quot;sessionFactory&quot; /&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+
+<p>JpaTransactionManager只需要装配一个JPA实体管理工厂（javax.persistence.EntityManagerFactory接口的任意实现）。JpaTransactionManager将与由工厂所产生的JPA EntityManager合作来构建事务。</p>
+<p>基本的事务属性的定义:</p>
+<p>事务管理器接口PlatformTransactionManager通过getTransaction(TransactionDefinition definition)方法来得到事务，这个方法里面的参数是TransactionDefinition类，这个类就定义了一些基本的事务属性。</p>
+<p>事务属性可以理解成事务的一些基本配置，描述了事务策略如何应用到方法上。</p>
+<p>事务属性包含了5个方面:</p>
+<p>传播行为、隔离规则、回滚规则、事务超时、是否只读</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">TransactionDefinition：</span><br><span class="line"></span><br><span class="line">public interface TransactionDefinition &#123;</span><br><span class="line">    int getPropagationBehavior(); // 返回事务的传播行为</span><br><span class="line">    int getIsolationLevel(); // 返回事务的隔离级别，事务管理器根据它来控制另外一个事务可以看到本事务内的哪些数据</span><br><span class="line">    int getTimeout();  // 返回事务必须在多少秒内完成</span><br><span class="line">    boolean isReadOnly(); // 事务是否只读，事务管理器能够根据这个返回值进行优化，确保事务是只读的</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>7种传播行为：</p>
+<p>PROPAGATION_REQUIRED：如果当前没有事务，就新建一个事务，如果已经存在一个事务中，加入到这个事务中。这是最常见的选择。</p>
+<p>PROPAGATION_SUPPORTS：支持当前事务，如果当前没有事务，就以非事务方式执行。</p>
+<p>PROPAGATION_MANDATORY：支持当前事务，如果当前没有事务，就抛出异常。</p>
+<p>PROPAGATION_REQUIRES_NEW：新建事务，如果当前存在事务，把当前事务挂起。</p>
+<p>PROPAGATION_NOT_SUPPORTED：以非事务方式执行操作，如果当前存在事务，就把当前事务挂起。</p>
+<p>PROPAGATION_NEVER：以非事务方式执行，如果当前存在事务，则抛出异常。 </p>
+<p>虽然有7种，但是常用的就第一种REQUIRED和第四种REQUIRES_NEW</p>
+<p>五个隔离级别：</p>
+<p>ISOLATION_DEFAULT：这是一个PlatfromTransactionManager默认的隔离级别，使用数据库默认的事务隔离级别.</p>
+<p>另外四个与JDBC的隔离级别相对应；</p>
+<p>ISOLATION_READ_UNCOMMITTED：这是事务最低的隔离级别，它充许别外一个事务可以看到这个事务未提交的数据。</p>
+<p>这种隔离级别会产生脏读，不可重复读和幻像读。</p>
+<p>ISOLATION_READ_COMMITTED：保证一个事务修改的数据提交后才能被另外一个事务读取。另外一个事务不能读取该事务未提交的数据。</p>
+<p>这种事务隔离级别可以避免脏读出现，但是可能会出现不可重复读和幻像读。</p>
+<p>ISOLATION_REPEATABLE_READ：这种事务隔离级别可以防止脏读，不可重复读。但是可能出现幻像读。</p>
+<p>它除了保证一个事务不能读取另一个事务未提交的数据外，还保证了避免下面的情况产生(不可重复读)。</p>
+<p>ISOLATION_SERIALIZABLE：这是花费最高代价但是最可靠的事务隔离级别。事务被处理为顺序执行。</p>
+<p>除了防止脏读，不可重复读外，还避免了幻像读。</p>
+<p>事务的属性可同通过注解方式或配置文件配置:</p>
+<p>注解方式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">@Transactional只能被应用到public方法上,对于其它非public的方法,如果标记了@Transactional也不会报错,但方法没有事务功能.</span><br><span class="line">默认情况下,一个有事务方法, 遇到RuntimeException 时会回滚 . 遇到 受检查的异常 是不会回滚 的. 要想所有异常都回滚,要加上 @Transactional( rollbackFor=&#123;Exception.class,其它异常&#125;) </span><br><span class="line"></span><br><span class="line">@Transactional(</span><br><span class="line">    readOnly = false, //读写事务</span><br><span class="line">    timeout = -1 ,     //事务的超时时间，-1为无限制</span><br><span class="line">    noRollbackFor = ArithmeticException.class, //遇到指定的异常不回滚</span><br><span class="line">    isolation = Isolation.DEFAULT, //事务的隔离级别，此处使用后端数据库的默认隔离级别</span><br><span class="line">    propagation = Propagation.REQUIRED //事务的传播行为</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>配置文件( aop拦截器方式):</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;tx:advice id=&quot;advice&quot; transaction-manager=&quot;txManager&quot;&gt;</span><br><span class="line">          &lt;tx:attributes&gt;</span><br><span class="line">            &lt;!-- tx:method的属性:</span><br><span class="line">                * name 是必须的,表示与事务属性关联的方法名(业务方法名),对切入点进行细化。通配符 </span><br><span class="line">                     （*）可以用来指定一批关联到相同的事务属性的方法。</span><br><span class="line">                      如：&apos;get*&apos;、&apos;handle*&apos;、&apos;on*Event&apos;等等.</span><br><span class="line">                * propagation：不是必须的,默认值是REQUIRED表示事务传播行为,</span><br><span class="line">                  包括REQUIRED,SUPPORTS,MANDATORY,REQUIRES_NEW,NOT_SUPPORTED,NEVER,NESTED</span><br><span class="line">                * isolation：不是必须的 默认值DEFAULT ，表示事务隔离级别(数据库的隔离级别)</span><br><span class="line">                * timeout：不是必须的 默认值-1(永不超时)，表示事务超时的时间（以秒为单位）</span><br><span class="line">                * read-only：不是必须的 默认值false不是只读的表示事务是否只读？</span><br><span class="line">                * rollback-for： 不是必须的表示将被触发进行回滚的 Exception(s)；以逗号分开。</span><br><span class="line">                   如：&apos;com.foo.MyBusinessException,ServletException&apos;</span><br><span class="line">                * no-rollback-for：不是必须的表示不被触发进行回滚的 Exception(s),以逗号分开。                                        </span><br><span class="line">                   如：&apos;com.foo.MyBusinessException,ServletException&apos;   </span><br><span class="line">                任何 RuntimeException 将触发事务回滚，但是任何 checked Exception 将不触发事务回滚                     </span><br><span class="line">            --&gt;</span><br><span class="line">             &lt;tx:method name=&quot;save*&quot; propagation=&quot;REQUIRED&quot; isolation=&quot;DEFAULT&quot; read-only=&quot;false&quot;/&gt;</span><br><span class="line">             &lt;tx:method name=&quot;update*&quot; propagation=&quot;REQUIRED&quot; isolation=&quot;DEFAULT&quot; read-only=&quot;false&quot;/&gt;</span><br><span class="line">             &lt;tx:method name=&quot;delete*&quot; propagation=&quot;REQUIRED&quot; isolation=&quot;DEFAULT&quot; read-only=&quot;false&quot;  rollback-for=&quot;Exception&quot;/&gt;</span><br><span class="line">             &lt;!-- 其他的方法之只读的 --&gt;</span><br><span class="line">             &lt;tx:method name=&quot;*&quot; read-only=&quot;true&quot;/&gt;</span><br><span class="line">          &lt;/tx:attributes&gt;</span><br><span class="line">&lt;/tx:advice&gt;</span><br></pre></td></tr></table></figure>
+
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="true">
+                <source type="audio/mpeg" src>
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        <li title="0" data-url="https://link.hhtjim.com/163/461301470.mp3"></li>
+                    
+                        <li title="1" data-url="https://link.hhtjim.com/163/191146.mp3"></li>
+                    
+                        <li title="2" data-url="https://link.hhtjim.com/163/436514312.mp3"></li>
+                    
+                        <li title="3" data-url="http://link.hhtjim.com/163/5146554.mp3"></li>
+                    
+                        <li title="4" data-url="http://link.hhtjim.com/qq/001faIUs4M2zna.mp3"></li>
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link" data-ae="false" data-ci data-cs data-r data-o data-a data-d="false">查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>
