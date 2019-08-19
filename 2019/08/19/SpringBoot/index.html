@@ -1,0 +1,209 @@
+
+<!DOCTYPE html>
+<html lang class="loading">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SpringBoot - HaiRui.hexo</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="Harrying,"> 
+    <meta name="description" content="一个java程序猿的空间,1.SpringBoot是干什么的？Spring Boot是一个构建在Spring框架顶部的项目。它提供了一种更简单、更快捷的方法来设置、配置和运行简单和基于Web的应用程序。
+在过去Spring框,"> 
+    <meta name="author" content="海瑞"> 
+    <link rel="alternative" href="atom.xml" title="HaiRui.hexo" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+</html>
+<body class="loading">
+    <span id="config-title" style="display:none">HaiRui.hexo</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" data-url="http://yoursite.com"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">SpringBoot</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class="main">
+        <h1 class="title">SpringBoot</h1>
+        <div class="stuff">
+            <span>八月 19, 2019</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/SpringBoot/">SpringBoot</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h2 id="1-SpringBoot是干什么的？"><a href="#1-SpringBoot是干什么的？" class="headerlink" title="1.SpringBoot是干什么的？"></a>1.SpringBoot是干什么的？</h2><pre><code>Spring Boot是一个构建在Spring框架顶部的项目。它提供了一种更简单、更快捷的方法来设置、配置和运行简单和基于Web的应用程序。
+在过去Spring框架中，我们需要为应用配置所有的内容，会有许多配置文件，例如XML或元注释，这是Spring Boot解决的主要问题之一，基本无需XML配置了，都使用@注释。
+Spring boot巧妙地根据我们选择的依赖配置，可以自动启动我们想要的所有功能，并且只需单击一下即可启动应用程序。此外，它还简化了应用程序的部署过程。</code></pre><h2 id="2-Spring-Boot开发流程"><a href="#2-Spring-Boot开发流程" class="headerlink" title="2.Spring Boot开发流程"></a>2.Spring Boot开发流程</h2><pre><code>配置环境  --&gt;Spring Initializr  --&gt; 配置参数（可选）
+--&gt; 业务开发  --&gt; 自动构建    --&gt;自动部署</code></pre><h2 id="核心特性"><a href="#核心特性" class="headerlink" title="核心特性"></a>核心特性</h2><pre><code>1.极低的学习成本
+2.可独立运行的Spring项目
+3.“习惯优于配置”，极大的提高了开发效率
+4.及简的组件依赖，自动发现与自动装配
+5.提供运行时的应用监控
+6.与分布式架构和云计算的天然集成</code></pre><h2 id="SpringBoot目录结构"><a href="#SpringBoot目录结构" class="headerlink" title="SpringBoot目录结构"></a>SpringBoot目录结构</h2><pre><code>/src/main                    项目根目录
+/java                        java源代码目录
+/resources                   资源目录
+/resources/static            静态资源目录（css,js）
+/resources/templates         表示层页面目录(jsp)
+/resources/application.properties    SpringBoot配置文件
+/test                        测试文件目录</code></pre><h2 id="SpringBoot的入口类，以Application结尾"><a href="#SpringBoot的入口类，以Application结尾" class="headerlink" title="SpringBoot的入口类，以Application结尾"></a>SpringBoot的入口类，以Application结尾</h2><pre><code>/**
+ * 说明这是一个SpringBoot应用的入口类
+ * 利用SpringApplication.run()方法启动应用
+ */
+@SpringBootApplication
+public class MySpringBootApplication {
+    public static void main(String[] args) {
+        //启动springBoot应用
+        SpringApplication.run(MySpringBootApplication.class);
+    }
+}</code></pre><h2 id="SpringBoot的启动流程"><a href="#SpringBoot的启动流程" class="headerlink" title="SpringBoot的启动流程"></a>SpringBoot的启动流程</h2><pre><code>1.加载配置文件application.properties
+2.自动装配：大量的启动器starter,对工程提供相应的支持
+3.加载组件：@Repository对应dao用于数据处理
+          |@Service对应业务逻辑类
+          |@Controller对应mvc中的控制器类
+          |@Component对应一些不太好区分的类
+          |@Entity对应实体类
+4.应用初始化</code></pre><h2 id="SpringBoot中常用的配置"><a href="#SpringBoot中常用的配置" class="headerlink" title="SpringBoot中常用的配置"></a>SpringBoot中常用的配置</h2><pre><code>server.port                    8080                端口号
+server.servlet.context-path        /        设置应用上下文
+logging.file                      无       日志文件输出路径    
+logging.level                    info       最低日志输出级别
+/*debug(程序的调试)--&gt;info(程序的一般性输出信息)--&gt;warn(警告信息)--&gt;error(程序异常)--&gt;fatal(灾难性错误)*/
+debug                            false      开启/关闭调试模式
+spring.datasource.*                        与数据库相关的设置</code></pre><h2 id="SpringBoot支持的两种配置文件"><a href="#SpringBoot支持的两种配置文件" class="headerlink" title="SpringBoot支持的两种配置文件"></a>SpringBoot支持的两种配置文件</h2><p>1.属性文件：application.properties</p>
+<p>2.YAML格式：application.yml<br><img src="_v_images/_1565519802_23168.png" alt></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">debug: true</span><br><span class="line">#logging.level.root</span><br><span class="line">#logging.file</span><br><span class="line">logging:</span><br><span class="line"> level:</span><br><span class="line">  root: info</span><br><span class="line"> file: e:/myspringboot.log</span><br><span class="line"></span><br><span class="line">spring:</span><br><span class="line">  datasource:</span><br><span class="line">    driver-class-name: com.mysql.jdbc.Driver</span><br><span class="line">    url: jdbc:mysql://localhost:3306/test</span><br><span class="line">    username: root</span><br><span class="line">    password: 123456</span><br><span class="line">mall:</span><br><span class="line"> config:</span><br><span class="line">  name: 爱美商城            如果需要在代码中读取该参数：@Value(&quot;$&#123;mall.config.name&#125;&quot;)</span><br><span class="line">  description: 这是一家化妆品特卖网站</span><br><span class="line">  hot-sales: 20</span><br><span class="line">  show-advert: true</span><br></pre></td></tr></table></figure>
+
+<h2 id="SpringBoot环境配置文件Profile文件"><a href="#SpringBoot环境配置文件Profile文件" class="headerlink" title="SpringBoot环境配置文件Profile文件"></a>SpringBoot环境配置文件Profile文件</h2><p>默认命名格式application-{env}.yml<br>在属配置文件使用spring.profiles.active选项来指定不同的profile</p>
+<pre><code>例如：在application.yml中指定：
+    spring:
+     profiles:
+      active: prd
+
+application-dav.yml        开发环境
+application-prd.yml        线上环境</code></pre><h2 id="打包与运行"><a href="#打包与运行" class="headerlink" title="打包与运行"></a>打包与运行</h2><p><img src="_v_images/_1565521504_9230.png" alt></p>
+<p>命令行中用  java -jar  jar包名<br>如果需要修改jar包中的配置文件信息，就将工程中的配置文件复制到jar包的同级目录下，jar包运行就会优先读取新的配置文件</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="true">
+                <source type="audio/mpeg" src>
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        <li title="0" data-url="https://link.hhtjim.com/163/461301470.mp3"></li>
+                    
+                        <li title="1" data-url="https://link.hhtjim.com/163/191146.mp3"></li>
+                    
+                        <li title="2" data-url="https://link.hhtjim.com/163/436514312.mp3"></li>
+                    
+                        <li title="3" data-url="http://link.hhtjim.com/163/5146554.mp3"></li>
+                    
+                        <li title="4" data-url="http://link.hhtjim.com/qq/001faIUs4M2zna.mp3"></li>
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link" data-ae="false" data-ci data-cs data-r data-o data-a data-d="false">查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>
