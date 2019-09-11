@@ -1,0 +1,388 @@
+
+<!DOCTYPE html>
+<html lang class="loading">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Redis——Jedis - HaiRui.hexo</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="Harrying,"> 
+    <meta name="description" content="一个java程序猿的空间,1.Jedis 是 Redis 官方首选的 Java 客户端开发包。源码地址:https://github.com/xetorthio/jedis/releases
+其相关jar可以从maven的中,"> 
+    <meta name="author" content="海瑞"> 
+    <link rel="alternative" href="atom.xml" title="HaiRui.hexo" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+</html>
+<body class="loading">
+    <span id="config-title" style="display:none">HaiRui.hexo</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" data-url="http://yoursite.com"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">Redis——Jedis</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class="main">
+        <h1 class="title">Redis——Jedis</h1>
+        <div class="stuff">
+            <span>九月 11, 2019</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Redis/">Redis</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h4 id="1-Jedis-是-Redis-官方首选的-Java-客户端开发包。"><a href="#1-Jedis-是-Redis-官方首选的-Java-客户端开发包。" class="headerlink" title="1.Jedis 是 Redis 官方首选的 Java 客户端开发包。"></a>1.Jedis 是 Redis 官方首选的 Java 客户端开发包。</h4><pre><code>源码地址:https://github.com/xetorthio/jedis/releases
+其相关jar可以从maven的中央仓库中下载:
+http://central.maven.org/maven2/redis/clients/jedis/2.9.0/jedis-2.9.0.jar</code></pre><h4 id="2-jedis的相关jar包"><a href="#2-jedis的相关jar包" class="headerlink" title="2.jedis的相关jar包"></a>2.jedis的相关jar包</h4><pre><code>在java中使用jedis中的api操作redis的时候所需jar包主要有俩个:
+    jedis-2.x.jar
+    commons-pool2-2.4.2.jar
+
+另外需要一个junit的包进行单元测试:
+    junit-4.x.jar</code></pre><h4 id="3-Jedis对象的使用"><a href="#3-Jedis对象的使用" class="headerlink" title="3.Jedis对象的使用"></a>3.Jedis对象的使用</h4><pre><code>整个过程类似之前使用Connection对象一样,一个Jedis对象就是一个数据库连接对象,这不过这个数据库是Redis(内存数据库)
+1)创建Jedis对象
+    Jedis jedis = new Jedis();
+    或者:
+    Jedis jedis = new Jedis(&quot;127.0.0.1&quot;,6379);
+    或者:
+    Jedis jedis = new Jedis(new URI(&quot;redis://:passwd@127.0.0.1:6379/0&quot;));
+    注意:这里最后一个0代表的时候index为0的数据库,同时这种方式必须要求有密码
+
+2)使用Jedis对象
+    使用Jedis的API对redis进行操作,Jedis中的方法名和Redis中命令名基本上一模一样,所以只要了解Redis中命令的作用,那么Jedis中对应的方法的作用也是一样的.
+
+3)关闭Jedis对象
+    每个Jedis对象在内部都会建立一个Socket和Redis服务器连接,所以Jedis对象使用完毕后可以进行关闭。
+
+
+所以在使用junit进行基本的jedis操作测试的时候,可以编写如下代码:</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public class RedisTest &#123;</span><br><span class="line">	private Jedis jedis;</span><br><span class="line">	@Before</span><br><span class="line">	public void before()&#123;</span><br><span class="line">		jedis = new Jedis();</span><br><span class="line">	&#125;</span><br><span class="line">	@After</span><br><span class="line">	public void after()&#123;</span><br><span class="line">		jedis.close();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	@Test</span><br><span class="line">	public void test()&#123;</span><br><span class="line">		//使用jedis对进行操作</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<pre><code>意思是,在单元测试方法执行之前,junit先调用使用了@Before注解的方法,然后再调用使用了@Test注解的方法,最后再调用使用了@After注解的方法</code></pre><h4 id="4-Jedis对Redis中key的操作"><a href="#4-Jedis对Redis中key的操作" class="headerlink" title="4.Jedis对Redis中key的操作"></a>4.Jedis对Redis中key的操作</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void test_key()&#123;</span><br><span class="line">	//选择数据库 默认是0</span><br><span class="line">	System.out.println(jedis.select(0));</span><br><span class="line">	//查看当前数据库</span><br><span class="line">	System.out.println(jedis.getDB());</span><br><span class="line">	//查看当前数据库中所有key值</span><br><span class="line">	System.out.println(jedis.keys(&quot;*&quot;));</span><br><span class="line">	//判断当前数据库中是否存在名字为name的key值</span><br><span class="line">	System.out.println(jedis.exists(&quot;name&quot;));</span><br><span class="line">	//判断key值的在Redis中的数据类型</span><br><span class="line">	System.out.println(jedis.type(&quot;name&quot;));</span><br><span class="line">	//查看key的过期时间 单位是毫秒 -1表示永不过期 -2表示已经过去</span><br><span class="line">	System.out.println(jedis.pttl(&quot;name&quot;));</span><br><span class="line">	//查看key的过期时间 单位是秒   -1表示永不过期 -2表示已经过去</span><br><span class="line">	System.out.println(jedis.ttl(&quot;name&quot;));</span><br><span class="line">	//修改key的名字 不管新名字是否被使用 如果老的key不存在会报错</span><br><span class="line">	System.out.println(jedis.rename(&quot;name&quot;, &quot;username&quot;));</span><br><span class="line">	//修改key的名字 新名字没有被使用的时候才生效 如果老的key不存在会报错</span><br><span class="line">	System.out.println(jedis.renamenx(&quot;username&quot;, &quot;name&quot;));</span><br><span class="line">	//把指定的key移动到指定的数据库中(数据库索引表示)</span><br><span class="line">	System.out.println(jedis.move(&quot;name&quot;,3));</span><br><span class="line">	//在当前数据库中随机获取一个key</span><br><span class="line">	System.out.println(jedis.randomKey());</span><br><span class="line">	//设置指定key的过期时间 单位是秒</span><br><span class="line">	System.out.println(jedis.expire(&quot;name&quot;, 10));</span><br><span class="line">	//设置指定key的过期时间 单位是毫秒</span><br><span class="line">	System.out.println(jedis.pexpire(&quot;name&quot;, 5000L));</span><br><span class="line">	//设置指定key的过期时间 时间用时间戳表示</span><br><span class="line">	System.out.println(jedis.expireAt(&quot;name&quot;, 1000000L));</span><br><span class="line">	//在指定的key过期之前,移除key上的过期时间</span><br><span class="line">	System.out.println(jedis.persist(&quot;name&quot;));</span><br><span class="line">	</span><br><span class="line">	//当前数据库中key的数量 返回值Long类型</span><br><span class="line">	jedis.dbSize();</span><br><span class="line">	//清空当前db</span><br><span class="line">	jedis.flushDB();</span><br><span class="line">	//清空所有db</span><br><span class="line">	jedis.flushAll();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-Jedis对Redis中string的操作"><a href="#5-Jedis对Redis中string的操作" class="headerlink" title="5.Jedis对Redis中string的操作"></a>5.Jedis对Redis中string的操作</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void test_String()&#123;</span><br><span class="line">	//设置k-v的值,如果k已经则会覆盖旧值,且无视数据类型</span><br><span class="line">	System.out.println(jedis.set(&quot;name&quot;, &quot;zhangsan&quot;));</span><br><span class="line">	//获得指定key的值</span><br><span class="line">	System.out.println(jedis.get(&quot;name&quot;));</span><br><span class="line">	//通过下标截取指定key的值</span><br><span class="line">	System.out.println(jedis.getrange(&quot;name&quot;, 0, 3));</span><br><span class="line">	//替换key值,并且返回旧值</span><br><span class="line">	System.out.println(jedis.getSet(&quot;name&quot;, &quot;briup&quot;));</span><br><span class="line">	//可以连续设置多组K-V</span><br><span class="line">	System.out.println(jedis.mset(&quot;name&quot;,&quot;briup&quot;,&quot;age&quot;,&quot;20&quot;));</span><br><span class="line">	//获得多个key分别对应的值</span><br><span class="line">	System.out.println(jedis.mget(&quot;name&quot;,&quot;age&quot;));</span><br><span class="line">	//设置K-V的同时设置一下过期时间,单位是秒</span><br><span class="line">	System.out.println(jedis.setex(&quot;password&quot;, 10, &quot;123&quot;));</span><br><span class="line">	//设置K-V的同时设置一下过期时间,单位是毫秒</span><br><span class="line">	System.out.println(jedis.psetex(&quot;myname&quot;, 10000L, &quot;test&quot;));</span><br><span class="line">	//设置K-V,只有指定的key没有被使用的时候才生效</span><br><span class="line">	System.out.println(jedis.setnx(&quot;name&quot;,&quot;tom&quot;));</span><br><span class="line">	//连续设置多组K-V,只有在所有指定的key都没有被使用的时候才生效</span><br><span class="line">	System.out.println(jedis.msetnx(&quot;a&quot;,&quot;testA&quot;,&quot;b&quot;,&quot;testB&quot;));</span><br><span class="line">	//使用第三个参数的值,从下标为3的位置开始覆盖指定key的值</span><br><span class="line">	System.out.println(jedis.setrange(&quot;name&quot;, 3, &quot;aaaa&quot;));</span><br><span class="line">	//返回指定key的值的长度</span><br><span class="line">	System.out.println(jedis.strlen(&quot;name&quot;));</span><br><span class="line">	//指定的值自增1 num的值必须是整数</span><br><span class="line">	System.out.println(jedis.incr(&quot;num&quot;));</span><br><span class="line">	//指定的值自增5 num的值必须是整数</span><br><span class="line">	System.out.println(jedis.incrBy(&quot;num&quot;,5));</span><br><span class="line">	//指定的值自减1 num的值必须是整数</span><br><span class="line">	System.out.println(jedis.decr(&quot;num&quot;));</span><br><span class="line">	//指定的值自减5 num的值必须是整数</span><br><span class="line">	System.out.println(jedis.decrBy(&quot;num&quot;, 5));</span><br><span class="line">	//指定的值自增10.5 </span><br><span class="line">	System.out.println(jedis.incrByFloat(&quot;num&quot;, 10.5));</span><br><span class="line">	//指定的key的值后面进行追加</span><br><span class="line">	System.out.println(jedis.append(&quot;name&quot;, &quot;gogogo&quot;));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-Jedis对Redis中hash的操作"><a href="#6-Jedis对Redis中hash的操作" class="headerlink" title="6.Jedis对Redis中hash的操作"></a>6.Jedis对Redis中hash的操作</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void test_Hash()&#123;</span><br><span class="line">	//为哈希表中的字段赋值</span><br><span class="line">	//给key为user的hash表中的name字段赋值为briup</span><br><span class="line">	System.out.println(jedis.hset(&quot;user&quot;, &quot;name&quot;, &quot;briup&quot;));</span><br><span class="line">	//为哈希表中的字段赋值 字段name不存在是才生效</span><br><span class="line">	System.out.println(jedis.hsetnx(&quot;user&quot;, &quot;name&quot;, &quot;tom&quot;));</span><br><span class="line">	//连续为哈希表中的多个字段赋值</span><br><span class="line">	Map&lt;String,String&gt; map = new HashMap&lt;&gt;();</span><br><span class="line">	map.put(&quot;age&quot;, &quot;20&quot;);</span><br><span class="line">	map.put(&quot;dob&quot;, &quot;2016-11-11&quot;);</span><br><span class="line">	System.out.println(jedis.hmset(&quot;user&quot;,map));</span><br><span class="line">	//获得名字为user的hash表中指定字段的值</span><br><span class="line">	System.out.println(jedis.hget(&quot;user&quot;, &quot;name&quot;));</span><br><span class="line">	//连续获得名字为user的hash表中多个字段的值</span><br><span class="line">	System.out.println(jedis.hmget(&quot;user&quot;, &quot;age&quot;,&quot;dob&quot;));</span><br><span class="line">	//获得名字为user的hash表中所有字段的值</span><br><span class="line">	System.out.println(jedis.hgetAll(&quot;user&quot;));</span><br><span class="line">	//检查名字为user的hash表中指定字段是否存在</span><br><span class="line">	System.out.println(jedis.hexists(&quot;user&quot;, &quot;name&quot;));</span><br><span class="line">	//获得名字为user的hash表中字段的个数</span><br><span class="line">	System.out.println(jedis.hlen(&quot;user&quot;));</span><br><span class="line">	//删除名字为user的hash表中的指定字段,同时忽略掉不存在的字段</span><br><span class="line">	System.out.println(jedis.hdel(&quot;user&quot;, &quot;dob&quot;,&quot;f1&quot;,&quot;f2&quot;));</span><br><span class="line">	//获得名字为user的hash表中所有的字段名</span><br><span class="line">	System.out.println(jedis.hkeys(&quot;user&quot;));</span><br><span class="line">	//获得名字为user的hash表中所有的字段值</span><br><span class="line">	System.out.println(jedis.hvals(&quot;user&quot;));</span><br><span class="line">	//名字为user的hash表中的age字段值自增1</span><br><span class="line">	System.out.println(jedis.hincrBy(&quot;user&quot;, &quot;age&quot;, 1L));</span><br><span class="line">	//名字为user的hash表中的age字段值自增10.5</span><br><span class="line">	System.out.println(jedis.hincrByFloat(&quot;user&quot;, &quot;age&quot;, 10.5));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="7-Jedis对Redis中其他类型的操作"><a href="#7-Jedis对Redis中其他类型的操作" class="headerlink" title="7.Jedis对Redis中其他类型的操作"></a>7.Jedis对Redis中其他类型的操作</h4><pre><code>Jedis对Redis中list的操作
+Jedis对Redis中set的操作
+Jedis对Redis中zset的操作
+和Redis中的命令名字及用户一样,这里就不再一一列举</code></pre><h4 id="8-Jedis处理Redis中的事务"><a href="#8-Jedis处理Redis中的事务" class="headerlink" title="8.Jedis处理Redis中的事务"></a>8.Jedis处理Redis中的事务</h4><pre><code>Transaction tx = jedis.multi();
+
+//操作数据
+
+//List集合中是每个操作返回的执行结果
+List&lt;Object&gt; results = tx.exec();
+
+例如:</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void test_List()&#123;</span><br><span class="line">	//开启事务之后 要是tx来操作,而不是jedis对象</span><br><span class="line">	Transaction tx = jedis.multi();</span><br><span class="line">	tx.set(&quot;age&quot;, &quot;20&quot;);</span><br><span class="line">	tx.set(&quot;test&quot;, &quot;test&quot;);</span><br><span class="line">	Response&lt;String&gt; response = tx.get(&quot;name&quot;);</span><br><span class="line">	</span><br><span class="line">	//返回值是List集合,里面是每个操作的执行结果</span><br><span class="line">	tx.exec();</span><br><span class="line">	</span><br><span class="line">	//事务中查询到的数据 要到事务结束后再拿出结果</span><br><span class="line">	System.out.println(response.get());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="9-JedisPool的使用-连接池"><a href="#9-JedisPool的使用-连接池" class="headerlink" title="9.JedisPool的使用(连接池)"></a>9.JedisPool的使用(连接池)</h4><pre><code>在不同的线程中使用相同的Jedis实例会发生并发错误。但是创建太多的Jedis实例也不好,因为这意味着会建立很多Socket连接,也会导致不必要的错误发生。单一Jedis实例不是线程安全的。为了避免这些问题，可以使用JedisPool, JedisPool是一个线程安全的网络连接池。可以用JedisPool创建一些可靠Jedis实例，可以从池中拿到Jedis的实例。 这种方式可以解决那些问题并且会实现高效的性能 
+
+**1)创建JedisPool**</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">JedisPool pool = new JedisPool();</span><br><span class="line">或者</span><br><span class="line">JedisPool pool = new JedisPool(&quot;127.0.0.1&quot;,6379);</span><br><span class="line">或者</span><br><span class="line">JedisPoolConfig config = new JedisPoolConfig();  </span><br><span class="line">//设置最大连接数</span><br><span class="line">config.setMaxTotal(80);</span><br><span class="line">//设置最大空闲数</span><br><span class="line">config.setMaxIdle(20);</span><br><span class="line">//设置超时时间</span><br><span class="line">config.setMaxWaitMillis(3000);</span><br><span class="line">JedisPool jedisPool = new JedisPool(config, &quot;127.0.0.1&quot;, 6379);</span><br></pre></td></tr></table></figure>
+
+<pre><code>**2)使用JedisPool获得Jedis对象**</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">JedisPool pool = new JedisPool();</span><br><span class="line">Jedis jedis = pool.getResource();</span><br></pre></td></tr></table></figure>
+
+<pre><code>**3)从JedisPool获得的Jedis对象再使用后调用close方法即可**</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">通过查看源码可知,close方法内部会把这个jedis对象进回收</span><br><span class="line">public void close()&#123;</span><br><span class="line">	if (this.dataSource != null) &#123;</span><br><span class="line">		if (this.client.isBroken())</span><br><span class="line">			this.dataSource.returnBrokenResource(this);</span><br><span class="line">		else</span><br><span class="line">			this.dataSource.returnResource(this);</span><br><span class="line">	&#125;else&#123;</span><br><span class="line">		this.client.close();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="10-使用Jedis存储java对象"><a href="#10-使用Jedis存储java对象" class="headerlink" title="10.使用Jedis存储java对象"></a>10.使用Jedis存储java对象</h4><pre><code>Jedis类继承了BinaryJedis类
+Jedis中的方法的参数基本上全都是String类型,BinaryJedis类中的方法参数基本全都是byte[]类型的,所以Jedis对象也可以调用那些可以接受byte[]类型参数的方法,而且java中的任何可以被序列化的对象都可以转换为字节数组.
+
+1)创建工具类SerializingUtils
+负责把对象和byte[]之间进行转换</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">public class SerializingUtils &#123;</span><br><span class="line"></span><br><span class="line">	public static byte[] serialize(Object obj) &#123;</span><br><span class="line">		ByteArrayOutputStream bos = null;</span><br><span class="line">		ObjectOutputStream out = null;</span><br><span class="line">		try &#123;</span><br><span class="line">			bos = new ByteArrayOutputStream();</span><br><span class="line">			out = new ObjectOutputStream(bos);</span><br><span class="line">			out.writeObject(obj);</span><br><span class="line">			out.flush();</span><br><span class="line">		&#125;</span><br><span class="line">		catch (IOException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;finally &#123;</span><br><span class="line">			try &#123;</span><br><span class="line">				if(out!=null)out.close();</span><br><span class="line">			&#125;catch (IOException e) &#123;</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		return bos.toByteArray();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public static Object deserialize(byte[] data) &#123;</span><br><span class="line">		ObjectInputStream in = null;</span><br><span class="line">		Object obj = null;</span><br><span class="line">		try &#123;</span><br><span class="line">			ByteArrayInputStream bis = new ByteArrayInputStream(data);</span><br><span class="line">			in = new ObjectInputStream(bis);</span><br><span class="line">			obj = in.readObject();</span><br><span class="line">		&#125;catch (Exception e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;finally &#123;</span><br><span class="line">			try &#123;</span><br><span class="line">				if(in!=null)in.close();</span><br><span class="line">			&#125;catch (IOException e) &#123;</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		return obj;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<pre><code>**2)创建工具类JedisUtils**
+把Jedis对Redis的操作进行封装,使其更加方便使用,例如可以直接存/取java对象,要求对象实现序列化接口,同时也可以使用之前的Jedis相关方法
+
+src下面的资源文件redis.properties
+redis.pool.maxTotal=100
+redis.pool.maxIdle=20
+redis.pool.maxWait=3000
+redis.ip=127.0.0.1
+redis.port=6379
+
+封装的工具类:
+注意:这里只时封装了几个方法,可以根据自己的实现需求而进一步的封装扩展</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">public class JedisUtils &#123;</span><br><span class="line">	public static JedisPool jedisPool;</span><br><span class="line"></span><br><span class="line">	static &#123;</span><br><span class="line">		//ResourceBundle会查找classpath下的xxx.properties的文件,xxx是方法中指定的</span><br><span class="line">		ResourceBundle resourceBundle = ResourceBundle.getBundle(&quot;redis&quot;);</span><br><span class="line">		int maxTotal = Integer.parseInt(resourceBundle.getString(&quot;redis.pool.maxTotal&quot;));</span><br><span class="line">		int maxIdle = Integer.parseInt(resourceBundle.getString(&quot;redis.pool.maxIdle&quot;));</span><br><span class="line">		int maxWait = Integer.parseInt(resourceBundle.getString(&quot;redis.pool.maxWait&quot;));</span><br><span class="line">		String ip = resourceBundle.getString(&quot;redis.ip&quot;);</span><br><span class="line">		int port = Integer.parseInt(resourceBundle.getString(&quot;redis.port&quot;));</span><br><span class="line"></span><br><span class="line">		JedisPoolConfig config = new JedisPoolConfig();</span><br><span class="line">		// 设置最大连接数</span><br><span class="line">		config.setMaxTotal(maxTotal);</span><br><span class="line">		// 设置最大空闲数</span><br><span class="line">		config.setMaxIdle(maxIdle);</span><br><span class="line">		// 设置超时时间</span><br><span class="line">		config.setMaxWaitMillis(maxWait);</span><br><span class="line">		// 初始化连接池</span><br><span class="line">		jedisPool = new JedisPool(config, ip, port);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public static void set(Object key, Object value) &#123;</span><br><span class="line">		Jedis jedis = null;</span><br><span class="line">		try &#123;</span><br><span class="line">			jedis = jedisPool.getResource();</span><br><span class="line">			jedis.set(SerializingUtils.serialize(key), SerializingUtils.serialize(value));</span><br><span class="line">		&#125; catch (Exception e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;finally &#123;</span><br><span class="line">			jedis.close();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">	public static Object get(Object key) &#123;</span><br><span class="line">		Jedis jedis = null;</span><br><span class="line">		try &#123;</span><br><span class="line">			jedis = jedisPool.getResource();</span><br><span class="line">			byte[] keyBytes = SerializingUtils.serialize(key);</span><br><span class="line">			if(jedis.exists(keyBytes))&#123;</span><br><span class="line">				return SerializingUtils.deserialize(jedis.get(keyBytes));</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; catch (Exception e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;finally &#123;</span><br><span class="line">			jedis.close();</span><br><span class="line">		&#125;</span><br><span class="line">		return null;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public static void del(Object key) &#123;</span><br><span class="line">		Jedis jedis = null;</span><br><span class="line">		try &#123;</span><br><span class="line">			jedis = jedisPool.getResource();</span><br><span class="line">			jedis.del(SerializingUtils.serialize(key));</span><br><span class="line">		&#125; catch (Exception e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;finally &#123;</span><br><span class="line">			jedis.close();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public static void clear() &#123;</span><br><span class="line">		Jedis jedis = null;</span><br><span class="line">		try &#123;</span><br><span class="line">			jedis = jedisPool.getResource();</span><br><span class="line">			jedis.flushDB();</span><br><span class="line">		&#125; catch (Exception e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;finally &#123;</span><br><span class="line">			jedis.close();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	public static int getSize() &#123;</span><br><span class="line">		Jedis jedis = null;</span><br><span class="line">		try &#123;</span><br><span class="line">			jedis = jedisPool.getResource();</span><br><span class="line">			</span><br><span class="line">		&#125; catch (Exception e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;finally &#123;</span><br><span class="line">			jedis.close();</span><br><span class="line">		&#125;</span><br><span class="line">		//返回的是long，通过intValue转成int值</span><br><span class="line">		return jedis.dbSize().intValue();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public static Jedis getResource()&#123;</span><br><span class="line">		return jedisPool.getResource();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="11-Redis和mybatis结合"><a href="#11-Redis和mybatis结合" class="headerlink" title="11.Redis和mybatis结合"></a>11.Redis和mybatis结合</h4><pre><code>注意:Jedis是用来操作Redis的
+
+mybatis缓存分为一级缓存和二级缓存
+
+一级缓存，又叫本地缓存，是PerpetualCache类型的永久缓存，保存在执行器中（BaseExecutor），而执行器又在SqlSession（DefaultSqlSession）中，所以一级缓存的生命周期与SqlSession是相同的。
+二级缓存，又叫自定义缓存，实现了Cache接口的类都可以作为二级缓存，所以可配置如encache等的第三方缓存。二级缓存以namespace名称空间为其唯一标识，被保存在Configuration核心配置对象中。
+所以我们可以自定义缓存类,实现Mybatis提供的缓存接口Cache,其中的方法使用Jedis来实现,然后把这个缓存实现类配置为Mybatis的二级缓存提供者即可</code></pre><h5 id="1-建表语句及实体类"><a href="#1-建表语句及实体类" class="headerlink" title="1)建表语句及实体类:"></a>1)建表语句及实体类:</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">create table t_user(</span><br><span class="line">	id number primary key,</span><br><span class="line">	name varchar2(50) not null,</span><br><span class="line">	age number,</span><br><span class="line">	dob date</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public class User implements Serializable&#123;</span><br><span class="line">	private static final long serialVersionUID = 1L;</span><br><span class="line">	private long id;</span><br><span class="line">	private String name;</span><br><span class="line">	private int age;</span><br><span class="line">	private Date dob;</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">	get/set</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h5 id="2-Mybatis配置文件及config-properties文件"><a href="#2-Mybatis配置文件及config-properties文件" class="headerlink" title="2)Mybatis配置文件及config.properties文件"></a>2)Mybatis配置文件及config.properties文件</h5><pre><code>src下面的mybatis-config.xml文件:</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE configuration PUBLIC </span><br><span class="line">	&quot;-//mybatis.org//DTD Config 3.0//EN&quot; </span><br><span class="line">	&quot;http://mybatis.org/dtd/mybatis-3-config.dtd&quot;&gt;</span><br><span class="line">&lt;configuration&gt;</span><br><span class="line">	&lt;properties resource=&quot;config.properties&quot;&gt;&lt;/properties&gt;</span><br><span class="line">	</span><br><span class="line">	&lt;settings&gt;</span><br><span class="line">		&lt;!-- 开启二级缓存 --&gt;</span><br><span class="line">		&lt;setting name=&quot;cacheEnabled&quot; value=&quot;true&quot;/&gt;</span><br><span class="line">	&lt;/settings&gt;</span><br><span class="line">	</span><br><span class="line">	&lt;typeAliases&gt;</span><br><span class="line">		&lt;package name=&quot;com.briup.bean&quot;/&gt;</span><br><span class="line">	&lt;/typeAliases&gt;</span><br><span class="line">	</span><br><span class="line">	&lt;environments default=&quot;development&quot;&gt;</span><br><span class="line">		&lt;environment id=&quot;development&quot;&gt;</span><br><span class="line">			&lt;transactionManager type=&quot;JDBC&quot;&gt;&lt;/transactionManager&gt;</span><br><span class="line">			&lt;dataSource type=&quot;POOLED&quot;&gt;</span><br><span class="line">				&lt;property name=&quot;driver&quot; value=&quot;$&#123;driver&#125;&quot; /&gt; </span><br><span class="line">				&lt;property name=&quot;url&quot; value=&quot;$&#123;url&#125;&quot; /&gt; </span><br><span class="line">				&lt;property name=&quot;username&quot; value=&quot;$&#123;username&#125;&quot; /&gt;</span><br><span class="line">				&lt;property name=&quot;password&quot; value=&quot;$&#123;password&#125;&quot; /&gt;</span><br><span class="line">			&lt;/dataSource&gt;</span><br><span class="line">		&lt;/environment&gt;</span><br><span class="line">	&lt;/environments&gt;</span><br><span class="line">	</span><br><span class="line">	&lt;mappers&gt;</span><br><span class="line">		&lt;mapper resource=&quot;com/briup/dao/UserMapper.xml&quot;/&gt;</span><br><span class="line">	&lt;/mappers&gt;</span><br><span class="line">	</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+
+<pre><code>src下面的config.properties文件</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">driver=oracle.jdbc.driver.OracleDriver</span><br><span class="line">url=jdbc:oracle:thin:@127.0.0.1:1521:XE</span><br><span class="line">username=test</span><br><span class="line">password=test</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="3-Mybatis映射接口和映射文件"><a href="#3-Mybatis映射接口和映射文件" class="headerlink" title="3)Mybatis映射接口和映射文件"></a>3)Mybatis映射接口和映射文件</h5><pre><code>映射接口:</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public interface UserMapper &#123;</span><br><span class="line">	public void insertUser(User user);</span><br><span class="line">	public List&lt;User&gt; findAllUsers();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<pre><code>映射文件:</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE mapper PUBLIC </span><br><span class="line">	&quot;-//mybatis.org//DTD Mapper 3.0//EN&quot; </span><br><span class="line">	&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;</span><br><span class="line">&lt;mapper namespace=&quot;com.briup.dao.UserMapper&quot;&gt;</span><br><span class="line">	&lt;cache type=&quot;com.briup.cache.MybatisRedisCache&quot;&gt;&lt;/cache&gt;</span><br><span class="line">	</span><br><span class="line">	&lt;insert id=&quot;insertUser&quot; parameterType=&quot;User&quot;&gt;</span><br><span class="line">		&lt;selectKey resultType=&quot;long&quot; keyProperty=&quot;id&quot; order=&quot;BEFORE&quot;&gt;</span><br><span class="line">			select my_seq.nextval from dual</span><br><span class="line">		&lt;/selectKey&gt;</span><br><span class="line">		insert into t_user(id,name,age,dob) </span><br><span class="line">		values(#&#123;id&#125;,#&#123;name&#125;,#&#123;age&#125;,#&#123;dob&#125;)</span><br><span class="line">	&lt;/insert&gt;</span><br><span class="line">	</span><br><span class="line">	&lt;select id=&quot;findAllUsers&quot; resultType=&quot;User&quot;&gt;</span><br><span class="line">		select id,name,age,dob</span><br><span class="line">		from t_user</span><br><span class="line">	&lt;/select&gt;</span><br><span class="line">	</span><br><span class="line">&lt;/mapper&gt;</span><br></pre></td></tr></table></figure>
+
+
+<h5 id="4-Jedis相关配置文件和工具类"><a href="#4-Jedis相关配置文件和工具类" class="headerlink" title="4)Jedis相关配置文件和工具类"></a>4)Jedis相关配置文件和工具类</h5><pre><code>src下面的config.properties
+
+封装Jedis的工具类
+JedisUtils.java
+SerializingUtils.java
+封装MyBatis的工具类
+MyBatisSqlSessionFactory.java</code></pre><h5 id="5-自定义cache接口实现类MybatisRedisCache-java"><a href="#5-自定义cache接口实现类MybatisRedisCache-java" class="headerlink" title="5)自定义cache接口实现类MybatisRedisCache.java"></a>5)自定义cache接口实现类MybatisRedisCache.java</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br></pre></td><td class="code"><pre><span class="line">package com.briup.cache;</span><br><span class="line">import java.util.concurrent.locks.ReadWriteLock;</span><br><span class="line">import org.apache.ibatis.cache.Cache;</span><br><span class="line">import org.apache.ibatis.cache.CacheException;</span><br><span class="line">import com.briup.util.JedisUtils;</span><br><span class="line">import redis.clients.jedis.Jedis;</span><br><span class="line">/**</span><br><span class="line"> * Cache为缓存接口,给缓存供应商的SPI(Service Provider Interface)</span><br><span class="line"> * Cache接口的实现类必须有一个具有String类型参数的构造方法，该参数作为实现类对象的id，对其进行唯一标识</span><br><span class="line"> */</span><br><span class="line">public class MybatisRedisCache implements Cache&#123;</span><br><span class="line"></span><br><span class="line">	private String id;</span><br><span class="line">	</span><br><span class="line">	public MybatisRedisCache(String id) &#123;</span><br><span class="line">		this.id = id;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	/**</span><br><span class="line">	 * 清空缓存</span><br><span class="line">	 */</span><br><span class="line">	@Override</span><br><span class="line">	public void clear() &#123;</span><br><span class="line">		JedisUtils.clear();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	/**</span><br><span class="line">	 * 获取缓存对象的唯一标识</span><br><span class="line">	 */</span><br><span class="line">	@Override</span><br><span class="line">	public String getId() &#123;</span><br><span class="line">		return this.id;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	/**</span><br><span class="line">	 * 从缓存对象中获取key对应的value</span><br><span class="line">	 */</span><br><span class="line">	@Override</span><br><span class="line">	public Object getObject(Object key) &#123;</span><br><span class="line">		return JedisUtils.get(key);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	/**</span><br><span class="line">	 * 获取读写锁</span><br><span class="line">	 * 可选的方法，从3.2.6起这个方法不再被框架核心调用</span><br><span class="line">	 * 任何需要的锁，都必须由缓存供应商提供</span><br><span class="line">	 */</span><br><span class="line">	@Override</span><br><span class="line">	public ReadWriteLock getReadWriteLock() &#123;</span><br><span class="line">		</span><br><span class="line">		return null;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	/**</span><br><span class="line">	 * 获取缓存对象中存储的键/值对的数量</span><br><span class="line">	 * 可选的方法，没有被框架核心调用</span><br><span class="line">	 */</span><br><span class="line">	@Override</span><br><span class="line">	public int getSize() &#123;</span><br><span class="line">		return JedisUtils.getSize();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	/**</span><br><span class="line">	 * 保存key/value到缓存对象中</span><br><span class="line">	 * key可以是任何对象</span><br><span class="line">	 */</span><br><span class="line">	@Override</span><br><span class="line">	public void putObject(Object key, Object value) &#123;</span><br><span class="line">		JedisUtils.set(key, value);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	/**</span><br><span class="line">	 * 可选的方法，没有被核心框架调用，移除key对应的value</span><br><span class="line">	 */</span><br><span class="line">	@Override</span><br><span class="line">	public Object removeObject(Object key) &#123;</span><br><span class="line">		</span><br><span class="line">		return null;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	/**</span><br><span class="line">	 * 重新equals方法</span><br><span class="line">	 */</span><br><span class="line">	@Override</span><br><span class="line">	public boolean equals(Object o) &#123;</span><br><span class="line">		if (getId() == null)</span><br><span class="line">			throw new CacheException(&quot;Cache instances require an ID.&quot;);</span><br><span class="line">		if (this == o)</span><br><span class="line">			return true;</span><br><span class="line">		if (!(o instanceof Cache))</span><br><span class="line">			return false;</span><br><span class="line"></span><br><span class="line">		Cache otherCache = (Cache) o;</span><br><span class="line">		return getId().equals(otherCache.getId());</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	/**</span><br><span class="line">	 * 重新hashCode方法</span><br><span class="line">	 */</span><br><span class="line">	@Override</span><br><span class="line">	public int hashCode() &#123;</span><br><span class="line">		if (getId() == null)</span><br><span class="line">			throw new CacheException(&quot;Cache instances require an ID.&quot;);</span><br><span class="line">		return getId().hashCode();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">注意:在mybatis中开启二级缓存(虽然默认也是开启的)</span><br><span class="line">&lt;settings&gt;</span><br><span class="line">	&lt;setting name=&quot;cacheEnabled&quot; value=&quot;true&quot;/&gt;</span><br><span class="line">&lt;/settings&gt;</span><br></pre></td></tr></table></figure>
+
+<h5 id="6-配置标签"><a href="#6-配置标签" class="headerlink" title="6)配置标签"></a>6)配置<cache>标签</cache></h5><pre><code>在需要缓冲的映射文件中加入&lt;cache/&gt;标签,并且指定提供缓存功能的cache实现类的全限定名
+&lt;cache type=&quot;com.briup.cache.MybatisRedisCache&quot;&gt;&lt;/cache&gt;</code></pre><h5 id="7-测试方法"><a href="#7-测试方法" class="headerlink" title="7)测试方法"></a>7)测试方法</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void findAllUsers()&#123;</span><br><span class="line">	SqlSession session = null;</span><br><span class="line">	try &#123;</span><br><span class="line">		session = MyBatisSqlSessionFactory.openSession();</span><br><span class="line">		</span><br><span class="line">		UserMapper dao = session.getMapper(UserMapper.class);</span><br><span class="line">		</span><br><span class="line">		List&lt;User&gt; list = dao.findAllUsers();</span><br><span class="line">		System.out.println(list);</span><br><span class="line">		</span><br><span class="line">	&#125; catch (Exception e) &#123;</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125;finally &#123;</span><br><span class="line">		if(session!=null)session.close();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<pre><code>第一次运行,mybatis【发出】对应select进行查询数据库,然后在redis中查看key可知,已经把数据存进了redis中,
+之后再运行,mybatis【不发出】sql语句,数据直接从redis中取出</code></pre><h5 id="8-注意事项"><a href="#8-注意事项" class="headerlink" title="8)注意事项"></a>8)注意事项</h5><pre><code>注意1
+在MyBatis中标签中有flushCache、useCache这两个配置属性
+如果属性是在select标签中设置: 
+    flushCache默认为false，表示任何时候此标签中的sql语句被调用，都不会去清空本地缓存和二级缓存。 
+    useCache默认为true，表示会将本条语句的查询结果进行二级缓存。 
+如果属性是在insert、update、delete标签中设置
+    flushCache默认为true，表示任何时候语句被调用，都会导致本地缓存和二级缓存被清空。 
+    useCache属性在该情况下不存在。
+
+注意2
+&lt;settings&gt;
+    &lt;!-- 开启二级缓存 --&gt;
+    &lt;setting name=&quot;cacheEnabled&quot; value=&quot;true&quot;/&gt;
+
+    &lt;!-- 禁用延迟加载 --&gt; 
+    &lt;!-- 因为不应该把一个代理对象缓存到Redis里面 --&gt; 
+    &lt;setting name=&quot;lazyLoadingEnabled&quot; value=&quot;false&quot; /&gt;  
+&lt;/settings&gt;</code></pre><h4 id="12-Redis和Spring结合-同时还要加上Mybatis"><a href="#12-Redis和Spring结合-同时还要加上Mybatis" class="headerlink" title="12.Redis和Spring结合(同时还要加上Mybatis)"></a>12.Redis和Spring结合(同时还要加上Mybatis)</h4><pre><code>主要依赖的核心jar为:
+    spring-data-redis-1.x.x.RELEASE.jar
+注意:
+    spring3.2.4需要结合使用spring-data-redis-1.6.2.RELEASE.jar
+    spring4.3.3可以结合使用spring-data-redis-1.6.2.RELEASE.jar或者更高的版本
+
+从3.1开始，spring引入了对Cache的支持。当我们在调用一个方法时会把该方法参数和返回结果作为一个键值对存放在缓存中，等到下次利用同样的参数来调用该方法时将不再执行该方法，而是直接从缓存中获取结果进行返回。
+    使用Spring Cache需要我们做的事情：
+        配置Spring对Cache的支持
+        配置jedis工厂、redis模板、cache管理器
+        声明哪些方法要使用缓存</code></pre><h5 id="1-配置Spring对Cache的支持"><a href="#1-配置Spring对Cache的支持" class="headerlink" title="1)配置Spring对Cache的支持"></a>1)配置Spring对Cache的支持</h5><pre><code>配置Spring对基于注解的Cache的支持，首先我们需要在Spring的配置文件中引入cache命名空间，其次通过&lt;cache:annotation-driven /&gt;就可以启用Spring对基于注解的Cache的支持。
+
+&lt;cache:annotation-driven/&gt;有一个cache-manager属性用来指定当前所使用的CacheManager对应的bean的名称，默认值是cacheManager，所以当我们的CacheManager的id为cacheManager时我们可以不指定该参数，否则就需要我们指定了。
+
+&lt;cache:annotation-driven/&gt;还可以指定一个mode属性，可选值有proxy和aspectj。默认是使用proxy。当mode为proxy时，只有缓存方法在外部被调用的时候Spring Cache才会发生作用，这也就意味着如果一个缓存方法在其声明对象内部被调用时Spring Cache是不会发生作用的。而mode为aspectj时就不会有这种问题。另外使用proxy时，只有public方法上的@Cacheable等标注才会起作用，如果需要非public方法上的方法也可以使用Spring Cache时把mode设置为aspectj。
+
+&lt;cache:annotation-driven/&gt;还可以指定一个proxy-target-class属性，表示是否要代理class，默认为false。缓存注解@Cacheable、@cacheEvict等是可以标注在接口上，这对于基于接口的代理来说是没有什么问题的，但是需要注意的是当我们设置proxy-target-class为true或者mode为aspectj时，是直接基于class进行操作的，定义在接口上的@Cacheable等Cache注解不会被识别到，那对应的Spring Cache也不会起作用了。
+同时注意&lt;aop:config proxy-target-class=&quot;false&quot;&gt;这里设置为false才行</code></pre><h5 id="2-配置jedis工厂、redis模板、cache管理器"><a href="#2-配置jedis工厂、redis模板、cache管理器" class="headerlink" title="2)配置jedis工厂、redis模板、cache管理器"></a>2)配置jedis工厂、redis模板、cache管理器</h5><pre><code>&lt;!-- 配置jedis工厂 --&gt;
+&lt;bean id=&quot;jedisConnectionFactory&quot; class=&quot;org.springframework.data.redis.connection.jedis.JedisConnectionFactory&quot;&gt;
+    &lt;property name=&quot;hostName&quot; value=&quot;127.0.0.1&quot;&gt;&lt;/property&gt;
+    &lt;property name=&quot;port&quot; value=&quot;6379&quot;&gt;&lt;/property&gt;
+    &lt;property name=&quot;usePool&quot; value=&quot;true&quot;&gt;&lt;/property&gt;
+    &lt;property name=&quot;database&quot; value=&quot;0&quot;&gt;&lt;/property&gt;
+&lt;/bean&gt;
+
+&lt;!-- 配置redis模板 --&gt;
+&lt;bean id=&quot;redisTemplate&quot; class=&quot;org.springframework.data.redis.core.RedisTemplate&quot;&gt;
+    &lt;property name=&quot;connectionFactory&quot; ref=&quot;jedisConnectionFactory&quot;&gt;&lt;/property&gt;
+&lt;/bean&gt;
+
+&lt;!-- 配置cache管理器 --&gt;
+&lt;bean id=&quot;cacheManager&quot; class=&quot;org.springframework.data.redis.cache.RedisCacheManager&quot;&gt;
+    &lt;constructor-arg index=&quot;0&quot; ref=&quot;redisTemplate&quot;&gt;&lt;/constructor-arg&gt;
+&lt;/bean&gt;</code></pre><h5 id="3-声明某些方法要使用缓存"><a href="#3-声明某些方法要使用缓存" class="headerlink" title="3)声明某些方法要使用缓存"></a>3)声明某些方法要使用缓存</h5><pre><code>    @Cacheable
+        标记在一个方法上,表示该方法是支持缓存的.对于一个支持缓存的方法，Spring会在其被调用后将其返回值缓存起来，以保证下次利用同样的参数来执行该方法时可以直接从缓存中获取结果，而不需要再次执行该方法
+        @Cacheable中常用的有三个属性，value、key和condition。
+
+        value属性是必须指定的，其表示当前方法的返回值是会被缓存在哪个Cache上的，对应Cache的名称。注意是cache的名称,而不是cache中的key,key值会默认生成也可以是自己指定的。cache的名称是我们操作时用的,cache的key是redis中存储value时用的。
+
+        key属性是用来指定Spring缓存方法的返回结果时对应的key的。该属性支持SpringEL表达式。当我们没有指定该属性时，Spring将使用默认策略生成key。
+            例如:使用user的id值作为缓存的key值
+            @Cacheable(value=&quot;users&quot;, key=&quot;#user.id&quot;)
+            public User find(User user) {..}
+
+        condition属性指定缓存发生的条件,有的时候我们可能希望满足一定条件才进行缓存。其值是通过SpringEL表达式来指定的，当为true时表示进行缓存处理；当为false时表示不进行缓存处理
+            例如:user的id值大于等于100的时候才进行缓存
+            @Cacheable(value=&quot;users&quot;,condition=&quot;#user.id&gt;=100&quot;)
+            public User find(User user) {..}
+
+
+
+    2)@CachePut
+        对于使用@Cacheable标注的方法，Spring在每次执行前都会检查Cache中是否存在相同key的缓存元素，如果存在就不再执行该方法，而是直接从缓存中获取结果进行返回，否则才会执行并将返回结果存入指定的缓存中。@CachePut也可以声明一个方法支持缓存功能。与@Cacheable不同的是,使用@CachePut标注的方法在执行前不会去检查缓存中是否存在之前执行过的结果，而是每次都会执行该方法，并将执行结果以键值对的形式存入指定的缓存中。
+
+
+    3)@CacheEvict
+        该注解是用来标注在需要清除缓存元素的方法或类上的。当标记在一个类上时表示其中所有的方法的执行都会触发缓存的清除操作。
+
+        @CacheEvict可以指定的属性有value、key、condition、allEntries和beforeInvocation。其中value、key和condition的意思与@Cacheable对应的属性类似。
+
+
+        allEntries属性
+        allEntries是boolean类型，表示是否需要清除缓存中的所有元素。默认为false。
+        @CacheEvict(value=&quot;users&quot;, allEntries=true)
+        public void delete(Integer id) {...}
+
+        beforeInvocation属性
+        清除操作默认是在对应方法成功执行之后触发的，但是方法如果因为抛出异常而未能成功返回时也不会触发清除操作。使用beforeInvocation可以改变触发清除操作的时间，当我们指定该属性值为true时，Spring会在调用该方法之前清除缓存中的指定元素
+        @CacheEvict(value=&quot;users&quot;, beforeInvocation=true)
+        public void delete(Integer id) {...}
+
+
+注意1:
+测试的项目是把SpringMVC学习中的SSM项目里面的代码拿过来进行测试的,没有修改之前的配置,只是去掉了web层而已.
+
+
+注意2:
+为了测试方便,在项目中的测试使用了spring-test-3.2.4.RELEASE.jar和Junit4.12(必须是4.12版本或以上)
+例如:可以自动帮我们读取spring配置文件并且自动完成依赖注入
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = &quot;classpath:spring.xml&quot;)
+public class Spring_Test {
+
+    @Resource
+    private User user;
+
+    @Test
+    public void test(){
+        System.out.println(user);
+    }
+
+}
+
+之后测试的时候这里可以读取service层配置文件、dao层配置文件、redis的配置文件,然后将service的实现类对象注入到此测试类中,直接使用并调用service方法并观察spring的cache注解是否起作用即可。</code></pre><h4 id="13-SSM结合Redis"><a href="#13-SSM结合Redis" class="headerlink" title="13.SSM结合Redis"></a>13.SSM结合Redis</h4><pre><code>其实就是在上面的spring和redis结合的情况下,再加入SpringMVC即可    
+参照项目
+    redis_ssm_1
+        其中redis和MyBatis结合
+    redis_ssm_2
+        其中redis和Spring4.3.3结合
+        spring-data-redis-1.7.5.RELEASE.jar
+        jedis-2.9.0.jar
+    redis_ssm_3
+        其中redis和Spring3.2.4结合
+        spring-data-redis-1.6.2.RELEASE.jar
+        jedis-2.6.2.jar</code></pre>
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="true">
+                <source type="audio/mpeg" src>
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        <li title="0" data-url="https://link.hhtjim.com/163/461301470.mp3"></li>
+                    
+                        <li title="1" data-url="https://link.hhtjim.com/163/191146.mp3"></li>
+                    
+                        <li title="2" data-url="https://link.hhtjim.com/163/436514312.mp3"></li>
+                    
+                        <li title="3" data-url="http://link.hhtjim.com/163/5146554.mp3"></li>
+                    
+                        <li title="4" data-url="http://link.hhtjim.com/qq/001faIUs4M2zna.mp3"></li>
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link" data-ae="false" data-ci data-cs data-r data-o data-a data-d="false">查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>

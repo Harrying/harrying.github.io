@@ -1,0 +1,534 @@
+
+<!DOCTYPE html>
+<html lang class="loading">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>NoSQL——Redis - HaiRui.hexo</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="Harrying,"> 
+    <meta name="description" content="一个java程序猿的空间,一、什么是NoSQLNoSQlL = Not only SQL二、为什么需要Nosql1.    高并发读写
+2.    海量数据高效率存储访问
+3.    高扩展性和高可用性三、NoSQL的四大分,"> 
+    <meta name="author" content="海瑞"> 
+    <link rel="alternative" href="atom.xml" title="HaiRui.hexo" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+</html>
+<body class="loading">
+    <span id="config-title" style="display:none">HaiRui.hexo</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" data-url="http://yoursite.com"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">NoSQL——Redis</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class="main">
+        <h1 class="title">NoSQL——Redis</h1>
+        <div class="stuff">
+            <span>九月 11, 2019</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Redis/">Redis</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h3 id="一、什么是NoSQL"><a href="#一、什么是NoSQL" class="headerlink" title="一、什么是NoSQL"></a>一、什么是NoSQL</h3><pre><code>NoSQlL = Not only SQL</code></pre><h3 id="二、为什么需要Nosql"><a href="#二、为什么需要Nosql" class="headerlink" title="二、为什么需要Nosql"></a>二、为什么需要Nosql</h3><pre><code>1.    高并发读写
+2.    海量数据高效率存储访问
+3.    高扩展性和高可用性</code></pre><h3 id="三、NoSQL的四大分类"><a href="#三、NoSQL的四大分类" class="headerlink" title="三、NoSQL的四大分类"></a>三、NoSQL的四大分类</h3><pre><code>1.    键值对key-value：例如redis，优势：快速查询 劣势：存储数据缺少结构化
+2.    列存储：优势：查找速度快，扩展性强  劣势：功能相对于局限
+3.    文档数据库：优势：数据结构要求不是特别严格  劣势：查询性能不高，缺少统一查询的语法
+4.    图形数据库：优势：利用图结构的算法   劣势：需要对整个图做计算，不容易做分布式的集群方案</code></pre><h3 id="四、-NoSQL的特点"><a href="#四、-NoSQL的特点" class="headerlink" title="四、    NoSQL的特点"></a>四、    NoSQL的特点</h3><pre><code>易扩展，
+灵活的数据类型，
+大量数据，高性能，
+高可用</code></pre><h3 id="五、Redis介绍"><a href="#五、Redis介绍" class="headerlink" title="五、Redis介绍"></a>五、Redis介绍</h3><pre><code>1.Redis的的是完全开源免费的，遵守BSD协议，是一个高性能的键值数据库。是当前最热门的的的NoSql数据库之一，也被人们称为数据结构服务器。
+2.redis数据库中的所有数据都存储在内存中。由于内存的读写速度远快于硬盘，因此Redis的的的在性能上对比其他基于硬盘存储的数据库有非常明显的优势</code></pre><h3 id="六、redis的特点"><a href="#六、redis的特点" class="headerlink" title="六、redis的特点"></a>六、redis的特点</h3><pre><code>1)Redis支持数据的持久化，可以将内存中的数据保持在磁盘中，重启的时候可以再次加载进行使用。
+    2)Redis不仅仅支持简单的key-value类型的数据，同时还提供list，set，zset，hash等数据结构的存储(这些数据类型主要指的的是value的,key是正常的字符串)
+    3)Redis支持数据的备份</code></pre><h3 id="七-Redis优势"><a href="#七-Redis优势" class="headerlink" title="七.Redis优势"></a>七.Redis优势</h3><pre><code>性能极高
+    Redis能读的速度是110000次/s,写的速度是81000次/s 。
+丰富的数据类型
+    Redis支持二进制类型存储。 Strings, Lists, Hashes, Sets 及 Ordered Sets 数据类型操作。
+原子操作
+    Redis的所有操作都是原子性的，同时Redis还支持对几个操作全并后的原子性执行。
+丰富的特性
+    Redis还支持 publish/subscribe(发布/订阅模式), 通知, key值过期等等特性。</code></pre><h3 id="八-Redis的下载"><a href="#八-Redis的下载" class="headerlink" title="八.Redis的下载"></a>八.Redis的下载</h3><pre><code>Redis官网地址:
+    http://redis.io/
+
+Redis最新stable版本下载地址(稳定版本)
+    http://download.redis.io/
+
+Redis的源码同时也托管在github上面
+    https://github.com/antirez/redis 
+
+windows版本下载地址(官网提供的是Linux版本)
+    https://github.com/MSOpenTech/redis/releases
+    或者
+    https://github.com/dmajkic/redis/downloads</code></pre><h3 id="九-Redis简单的测试"><a href="#九-Redis简单的测试" class="headerlink" title="九.Redis简单的测试"></a>九.Redis简单的测试</h3><pre><code>1.启动Redis服务器
+    开启一个cmd窗口
+    使用cd命令切换目录到 D:\redis 
+    运行 redis-server.exe redis.windows.conf
+    启动成功后会看到启动的图案和启动信息(包括Redis版本、监听端口号等)
+    注意:这个服务器的运行窗口不能关闭,如果关闭Redis服务器就停了
+    注意:ctrl+c可以也关闭redis服务器
+
+2.启动Redis客户端
+另开启一个cmd窗口，原来的不要关闭，不然就无法访问服务端了
+切换到redis目录下运行 
+redis-cli.exe -h 127.0.0.1 -p 6379
+或者
+redis-cli.exe
+不加任何参数默认就是127.0.0.1 和 6379
+
+3.设置键值对操作 set name briup
+取出键值对操作 get name
+
+4.这时候客户端使用shutdown命令可以关闭服务端
+
+
+注意:
+    Redis中命令本身不区分大小写(但是key值是区分
+    大小写的)，在redis自带的客户端执行相关命令是自带命令格式的提示的</code></pre><h4 id="客户端常用命令"><a href="#客户端常用命令" class="headerlink" title="客户端常用命令:"></a>客户端常用命令:</h4><pre><code>Auth 命令用于检测给定的密码和配置文件中的密码是否相符
+Ping 命令使用客户端向 Redis 服务器发送一个 PING ，如果服务器运作正常的话，会返回一个 PONG 。
+    通常用于测试与服务器的连接是否仍然生效，或者用于测量延迟值。
+Quit 命令用于关闭与当前客户端与redis服务的连接。
+    一旦所有等待中的回复(如果有的话)顺利写入到客户端，连接就会被关闭
+Select 命令用于切换到指定的数据库，数据库索引号 index 用数字值指定，以 0 作为起始索引值。</code></pre><h3 id="十-Redis配置参数介绍"><a href="#十-Redis配置参数介绍" class="headerlink" title="十.Redis配置参数介绍"></a>十.Redis配置参数介绍</h3><pre><code>redis.windows.conf文件中配置项如下：
+
+1)Redis默认不是以守护进程的方式运行，可以通过该配置项修改，使用yes启用守护进程(windows版本中不支持)
+    daemonize no
+
+2)当Redis以守护进程方式运行时，Redis默认会把pid写入/var/run/redis.pid文件，可以通过pidfile指定(windows版本中不支持)
+    pidfile /var/run/redis.pid
+
+3)指定Redis监听端口，默认端口为6379
+    port 6379
+
+4)绑定的主机地址
+    bind 127.0.0.1
+
+5)当客户端闲置多长时间后关闭连接，如果指定为0，表示关闭该功能
+    timeout 300
+
+6)指定日志记录级别，Redis总共支持四个级别：debug、verbose、notice、warning，默认为notice(redis版本不同会有所区别)
+    loglevel notice
+
+7)日志记录方式，默认为标准输出
+    logfile stdout
+
+8)设置数据库的数量，默认数据库的index为0，可以使用SELECT &lt;dbid&gt;命令在连接上指定数据库id
+    databases 16
+
+9)指定在多长时间内，有多少次更新操作，就将数据同步到数据文件，可以多个条件配合
+    save &lt;seconds&gt; &lt;changes&gt;
+
+    Redis默认配置文件中提供了三个条件：
+    save 900 1
+    save 300 10
+    save 60 10000
+    分别表示900秒（15分钟）内有1个更改，300秒（5分钟）内有10个更改以及60秒内有10000个更改。
+
+10)指定存储至本地数据库时是否压缩数据，默认为yes，Redis采用LZF压缩，如果为了节省CPU时间，可以关闭该选项，但会导致数据库文件变的巨大
+    rdbcompression yes
+
+11)指定redis的本地数据库文件名，默认值为dump.rdb
+    dbfilename dump.rdb
+
+12)指定redis本地数据库存放目录,默认是./ 可以根据自己的情况更改
+    dir ./
+
+13)设置当本机为slav服务时，设置master服务的IP地址及端口，在Redis启动时，它会自动从master进行数据同步
+    slaveof &lt;masterip&gt; &lt;masterport&gt;
+
+14)当master服务设置了密码保护时，slav服务连接master的密码
+    masterauth &lt;master-password&gt;
+
+15)设置Redis连接密码，如果配置了连接密码，客户端在连接Redis时需要通过AUTH &lt;password&gt;命令提供密码，默认关闭
+    requirepass briup
+
+16)设置同一时间最大客户端连接数，默认无限制，Redis可以同时打开的客户端连接数为Redis进程可以打开的最大文件描述符数，如果设置 maxclients 0，表示不作限制。当客户端连接数到达限制时，Redis会关闭新的连接并向客户端返回max number of clients reached错误信息
+    maxclients 128
+
+17)指定Redis最大内存限制，Redis在启动时会把数据加载到内存中，达到最大内存后，Redis会先尝试清除已到期或即将到期的Key，当此方法处理后，仍然到达最大内存设置，将无法再进行写入操作，但仍然可以进行读取操作。Redis新的vm机制，会把Key存放内存，Value会存放在swap区
+    maxmemory &lt;bytes&gt;
+
+18)指定是否在每次更新操作后进行日志记录，Redis在默认情况下是异步的把数据写入磁盘，如果不开启，可能会在断电时导致一段时间内的数据丢失。因为 redis本身同步数据文件是按上面save条件来同步的，所以有的数据会在一段时间内只存在于内存中。默认为no
+    appendonly no
+
+19)指定更新日志文件名，默认为appendonly.aof
+    appendfilename appendonly.aof
+
+20)指定更新日志条件,共有3个可选值
+    no：表示等操作系统进行数据缓存同步到磁盘（快）     
+    always：表示每次更新操作后手动调用fsync()将数据写到磁盘（慢，安全）     
+    everysec：表示每秒同步一次（折中，默认值）
+    appendfsync everysec
+
+21)指定是否启用虚拟内存机制，默认值为no
+    简单的介绍一下，VM机制将数据分页存放，由Redis将访问量较少的页即冷数据swap到磁盘上，访问多的页面由磁盘自动换出到内存中（在后面的文章我会仔细分析Redis的VM机制）
+    vm-enabled no
+
+22)虚拟内存文件路径，默认值为/tmp/redis.swap，不可多个Redis实例共享
+    vm-swap-file /tmp/redis.swap
+
+23)将所有大于vm-max-memory的数据存入虚拟内存,无论vm-max-memory设置多小,所有索引数据都是内存存储的(Redis的索引数据 就是keys),也就是说,当vm-max-memory设置为0的时候,其实是所有value都存在于磁盘。默认值为0
+     vm-max-memory 0
+
+24)Redis swap文件分成了很多的page页，一个对象可以保存在多个page上面，但一个page上不能被多个对象共享，vm-page-size是要根据存储的 数据大小来设定的，作者建议如果存储很多小对象，page大小最好设置为32或者64bytes；如果存储很大大对象，则可以使用更大的page，如果不 确定，就使用默认值
+     vm-page-size 32
+
+25)设置swap文件中的page数量，由于页表（一种表示页面空闲或使用的bitmap）是在放在内存中的，，在磁盘上每8个pages将消耗1byte的内存。
+     vm-pages 134217728
+
+26)设置访问swap文件的线程数,最好不要超过机器的核数,如果设置为0,那么所有对swap文件的操作都是串行的，可能会造成比较长时间的延迟。默认值为4
+     vm-max-threads 4
+
+27)设置在向客户端应答时，是否把较小的包合并为一个包发送，默认为开启
+    glueoutputbuf yes
+
+28)指定在超过一定的数量或者最大的元素超过某一临界值时，采用一种特殊的哈希算法
+    hash-max-zipmap-entries 64
+    hash-max-zipmap-value 512
+
+29)指定是否激活重置哈希，默认为开启（后面在介绍Redis的哈希算法时具体介绍）
+    activerehashing yes
+
+30)指定包含其它的配置文件，可以在同一主机上多个Redis实例之间使用同一份配置文件，而同时各个实例又拥有自己的特定配置文件
+    include /path/to/local.conf</code></pre><h3 id="十一-Redis支持的数据类型"><a href="#十一-Redis支持的数据类型" class="headerlink" title="十一.Redis支持的数据类型"></a>十一.Redis支持的数据类型</h3><p>string(字符串) hash(哈希) list(列表) set(集合) zset(sorted set：有序集合)</p>
+<h4 id="1-string-字符串"><a href="#1-string-字符串" class="headerlink" title="1)string(字符串)"></a>1)string(字符串)</h4><pre><code>string是redis最基本的类型，一个key对应一个value。
+string类型是二进制安全的。意思是redis的string可以包含任何数据。比如jpg图片或者序列化的对象 。
+string类型是Redis最基本的数据类型，一个键最大能存储512MB。
+
+**例如:**</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; SET name &quot;briup&quot;</span><br><span class="line">OK</span><br><span class="line"></span><br><span class="line">127.0.0.1:6379&gt; GET name</span><br><span class="line">&quot;briup&quot;</span><br><span class="line"></span><br><span class="line">//删除</span><br><span class="line">127.0.0.1:6379&gt; del name</span><br><span class="line">(integer) 1</span><br></pre></td></tr></table></figure>
+
+<pre><code>注意:value中的双引号要不要都可以</code></pre><h4 id="2-hash-哈希"><a href="#2-hash-哈希" class="headerlink" title="2)hash(哈希)"></a>2)hash(哈希)</h4><pre><code>Redis hash 是一个键值对集合。
+Redis hash 是一个string类型的field和value的映射表，hash特别适合用于存储对象。
+**例如:**</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; HMSET user username briup password 123</span><br><span class="line">OK</span><br><span class="line"></span><br><span class="line">127.0.0.1:6379&gt; HGETALL user</span><br><span class="line">1) &quot;username&quot;</span><br><span class="line">2) &quot;briup&quot;</span><br><span class="line">3) &quot;password&quot;</span><br><span class="line">4) &quot;123&quot;</span><br><span class="line"></span><br><span class="line">127.0.0.1:6379&gt; hget user username</span><br><span class="line">&quot;briup&quot;</span><br><span class="line"></span><br><span class="line">//删除</span><br><span class="line">127.0.0.1:6379&gt; del user</span><br><span class="line">(integer) 1</span><br></pre></td></tr></table></figure>
+
+<pre><code>例子中使用了 hash 数据类型存储了包含用户信息的用户对象。 
+每个 hash 可以存储 2的31次方个 键值对（40多亿）。
+
+注意:命令不区分大小写</code></pre><h4 id="3-list-列表"><a href="#3-list-列表" class="headerlink" title="3)list(列表)"></a>3)list(列表)</h4><pre><code>Redis 列表是简单的字符串列表，按照插入顺序排序。你可以添加一个元素导列表的头部（左边）或者尾部（右边）。</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; lpush mylist briup</span><br><span class="line">(integer) 1</span><br><span class="line"></span><br><span class="line">127.0.0.1:6379&gt; lpush mylist hello</span><br><span class="line">(integer) 2</span><br><span class="line"></span><br><span class="line">127.0.0.1:6379&gt; lpush mylist world</span><br><span class="line">(integer) 3</span><br><span class="line"></span><br><span class="line">127.0.0.1:6379&gt; lrange mylist 0 0</span><br><span class="line">1) &quot;world&quot;</span><br><span class="line"></span><br><span class="line">127.0.0.1:6379&gt; lrange mylist 0 1</span><br><span class="line">1) &quot;world&quot;</span><br><span class="line">2) &quot;hello&quot;</span><br><span class="line"></span><br><span class="line">127.0.0.1:6379&gt; lrange mylist 0 2</span><br><span class="line">1) &quot;world&quot;</span><br><span class="line">2) &quot;hello&quot;</span><br><span class="line">3) &quot;briup&quot;</span><br><span class="line"></span><br><span class="line">//删除</span><br><span class="line">127.0.0.1:6379&gt; del mylist</span><br><span class="line">(integer) 1</span><br></pre></td></tr></table></figure>
+
+<pre><code>列表最多可存储 2的31次方个元素 (每个列表可存储40多亿)</code></pre><h4 id="4-set-集合"><a href="#4-set-集合" class="headerlink" title="4)set(集合)"></a>4)set(集合)</h4><pre><code>Redis的Set是string类型的无序集合。
+集合是通过哈希表实现的，所以添加，删除，查找的复杂度都是O(1)。
+sadd 命令
+添加一个string元素到,key对应的set集合中，成功返回1,如果元素已经存在则返回0,key对应的set不存在返回错误。
+
+**例如:**</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; sadd myset hello</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; sadd myset world</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; sadd myset briup</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; sadd myset briup</span><br><span class="line">(integer) 0</span><br><span class="line">127.0.0.1:6379&gt; smembers myset</span><br><span class="line">1) &quot;hello&quot;</span><br><span class="line">2) &quot;world&quot;</span><br><span class="line">3) &quot;briup&quot;</span><br><span class="line"></span><br><span class="line">//删除</span><br><span class="line">127.0.0.1:6379&gt; del myset</span><br><span class="line">(integer) 1</span><br></pre></td></tr></table></figure>
+
+<pre><code>集合中最大的成员数为 2的31次方(每个集合可存储40多亿个成员)。</code></pre><h4 id="5-zset-有序集合"><a href="#5-zset-有序集合" class="headerlink" title="5)zset(有序集合)"></a>5)zset(有序集合)</h4><pre><code>Redis中 zset 和 set 一样也是string类型元素的集合,且不允许重复的成员。
+不同的是每个元素都会关联一个double类型的分数。redis正是通过分数来为集合中的成员进行从小到大的排序。
+
+zset的成员是唯一的,但分数(score)却可以重复。
+
+zadd 命令
+添加元素到集合，元素在集合中存在则更新对应score
+
+**例如:**</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; zadd myzset 2 briup</span><br><span class="line">(integer) 1</span><br><span class="line"></span><br><span class="line">127.0.0.1:6379&gt; zadd myzset 0 hello</span><br><span class="line">(integer) 1</span><br><span class="line"></span><br><span class="line">127.0.0.1:6379&gt; zadd myzset 1 world</span><br><span class="line">(integer) 1</span><br><span class="line"></span><br><span class="line">127.0.0.1:6379&gt; zadd myzset 1 gogo</span><br><span class="line">(integer) 1</span><br><span class="line"></span><br><span class="line">127.0.0.1:6379&gt; zrangebyscore myzset 0 4</span><br><span class="line">1) &quot;hello&quot;</span><br><span class="line">2) &quot;gogo&quot;</span><br><span class="line">3) &quot;world&quot;</span><br><span class="line">4) &quot;briup&quot;</span><br><span class="line"></span><br><span class="line">//删除</span><br><span class="line">127.0.0.1:6379&gt; del myzset</span><br><span class="line">(integer) 1</span><br></pre></td></tr></table></figure>
+
+<h3 id="十二-Redis对key的操作命令"><a href="#十二-Redis对key的操作命令" class="headerlink" title="十二.Redis对key的操作命令"></a>十二.Redis对key的操作命令</h3><pre><code>1.DEL 命令用于删除已存在的键。不存在的 key 会被忽略。
+2.EXISTS 命令用于检查给定 key 是否存在。
+3.Expire 命令用于设置 key 的过期时间。key 过期后将不再可用。
+4.PERSIST 命令用于移除给定 key 的过期时间，使得 key 永不过期。
+5.Keys 命令用于查找所有符合给定模式 pattern 的 key,可以使用*通配符
+6.MOVE 命令用于将当前数据库的 key 移动到给定的数据库 db 当中。
+7.默认Redis中有16个数据库,下标分别为0-15,默认使用的是0(select 0)
+8.通过select可以切换数据库 例如: select 3
+9.TTL 命令以秒为单位返回 key 的剩余过期时间。
+10.Pttl 命令以毫秒为单位返回 key 的剩余过期时间。
+11.RANDOMKEY 命令从当前数据库中随机返回一个 key 。
+12.Rename 命令用于修改 key 的名称 。
+    rename msg my_msg
+13.Renamenx 命令用于在新的 key 不存在时修改 key 的名称 。
+    renamenx username name
+    只要新的名字在redis中不存在的时候才会修改成功
+14.Type 命令用于返回 key 所储存的值的类型。</code></pre><h3 id="十三、Redis对字符串-String-的操作命令"><a href="#十三、Redis对字符串-String-的操作命令" class="headerlink" title="十三、Redis对字符串(String)的操作命令"></a>十三、Redis对字符串(String)的操作命令</h3><pre><code>SET 命令用于设置给定 key 的值。如果 key 已经存储其他值， SET 就覆写旧值，且无视类型。
+Get 命令用于获取指定 key 的值。如果 key 不存在，返回 nil 。如果key 储存的值不是字符串类型，返回一个错误。
+Getrange 命令用于获取存储在指定 key 中字符串的子字符串。字符串的截取范围由 start 和 end 两个偏移量决定(包括 start 和 end 在内)。
+Getset 命令用于设置指定 key 的值，并返回 key 旧的值。
+Mset 命令用于同时设置一个或多个 key-value 对。
+Mget 命令返回所有(一个或多个)给定 key 的值。 如果给定的 key 里面，有某个 key 不存在，那么这个 key 返回特殊值 nil 。
+Setex 命令为指定的 key 设置值及其过期时间。如果 key 已经存在， SETEX 命令将会替换旧的值。
+Psetex 命令以毫秒为单位设置 key 的生存时间。
+Setnx（SET if Not eXists） 命令在指定的 key 不存在时，为 key 设置指定的值。
+Msetnx 命令用于所有给定 key 都不存在时，同时设置一个或多个 key-value 对。
+Setrange 命令用指定的字符串覆盖给定 key 所储存的字符串值，覆盖的位置从偏移量 offset 开始。
+Strlen 命令用于获取指定 key 所储存的字符串值的长度。当 key 储存的不是字符串值时，返回一个错误。
+Incr 命令将 key 中储存的数字值增一。
+    如果 key 不存在，那么 key 的值会先被初始化为 0 ，然后再执行 INCR 操作。
+    如果值包含错误的类型，或字符串类型的值不能表示为数字，那么返回一个错误。
+    本操作的值限制在 64 位(bit)有符号数字表示之内。
+Incrby 命令将 key 中储存的数字加上指定的增量值。
+    如果 key 不存在，那么 key 的值会先被初始化为 0 ，然后再执行 INCRBY 命令。
+    如果值包含错误的类型，或字符串类型的值不能表示为数字，那么返回一个错误。
+    本操作的值限制在 64 位(bit)有符号数字表示之内。
+Incrbyfloat 命令为 key 中所储存的值加上指定的浮点数增量值。
+    如果 key 不存在，那么 INCRBYFLOAT 会先将 key 的值设为 0 ，再执行加法操作。
+Decr 命令将 key 中储存的数字值减一。
+    如果 key 不存在，那么 key 的值会先被初始化为 0 ，然后再执行 DECR 操作。
+    如果值包含错误的类型，或字符串类型的值不能表示为数字，那么返回一个错误。
+    本操作的值限制在 64 位(bit)有符号数字表示之内。
+Decrby 命令将 key 所储存的值减去指定的减量值。
+    如果 key 不存在，那么 key 的值会先被初始化为 0 ，然后再执行 DECRBY 操作。
+    如果值包含错误的类型，或字符串类型的值不能表示为数字，那么返回一个错误。
+    本操作的值限制在 64 位(bit)有符号数字表示之内。
+Append 命令用于为指定的 key 追加值。    
+    如果 key 已经存在并且是一个字符串， APPEND 命令将 value 追加到 key 原来的值的末尾。
+    如果 key 不存在， APPEND 就简单地将给定 key 设为 value ，就像执行 SET key value 一样。</code></pre><h3 id="十四、Redis对哈希-Hash-的操作命令"><a href="#十四、Redis对哈希-Hash-的操作命令" class="headerlink" title="十四、Redis对哈希(Hash)的操作命令"></a>十四、Redis对哈希(Hash)的操作命令</h3><pre><code>Hset 命令用于为哈希表中的字段赋值 。
+    如果哈希表不存在，一个新的哈希表被创建并进行 HSET 操作。
+    如果字段已经存在于哈希表中，旧值将被覆盖。
+Hsetnx 命令用于为哈希表中不存在的的字段赋值 。
+    如果哈希表不存在，一个新的哈希表被创建并进行 HSET 操作。
+    如果字段已经存在于哈希表中，操作无效。
+    如果 key 不存在，一个新哈希表被创建并执行 HSETNX 命令。
+Hmset 命令用于同时将多个 field-value (字段-值)对设置到哈希表中。
+    此命令会覆盖哈希表中已存在的字段。
+    如果哈希表不存在，会创建一个空哈希表，并执行 HMSET 操作
+Hget 命令用于返回哈希表中指定字段的值。
+Hmget 命令用于返回哈希表中，一个或多个给定字段的值。
+    如果指定的字段不存在于哈希表，那么返回一个 nil 值。
+Hgetall 命令用于返回哈希表中，所有的字段和值。
+Hexists 命令用于查看哈希表的指定字段是否存在。
+Hlen 命令用于获取哈希表中字段的数量。
+Hdel 命令用于删除哈希表 key 中的一个或多个指定字段，不存在的字段将被忽略。
+Hkeys 命令用于获取哈希表中的所有字段名。
+Hvals 命令返回哈希表所有字段的值。
+Hincrby 命令用于为哈希表中的字段值加上指定增量值。
+    增量也可以为负数，相当于对指定字段进行减法操作。
+    如果哈希表的 key 不存在，一个新的哈希表被创建并执行 HINCRBY 命令。
+    如果指定的字段不存在，那么在执行命令前，字段的值被初始化为 0 。
+    对一个储存字符串值的字段执行 HINCRBY 命令将造成一个错误。
+    本操作的值被限制在 64 位(bit)有符号数字表示之内。
+Hincrbyfloat 命令用于为哈希表中的字段值加上指定浮点数增量值。
+    如果指定的字段不存在，那么在执行命令前，字段的值被初始化为 0 。</code></pre><h3 id="十五、Redis对列表-List-的操作命令"><a href="#十五、Redis对列表-List-的操作命令" class="headerlink" title="十五、Redis对列表(List)的操作命令"></a>十五、Redis对列表(List)的操作命令</h3><pre><code>Lpush 命令将一个或多个值插入到列表头部。 如果 key 不存在，一个空列表会被创建并执行 LPUSH 操作。 当 key 存在但不是列表类型时，返回一个错误。
+Lpushx 将一个或多个值插入到已存在的列表头部，列表不存在时操作无效。
+Lpop 命令用于移除并返回列表的第一个元素。
+Llen 命令用于返回列表的长度。 如果列表 key 不存在，则 key 被解释为一个空列表，返回 0 。 如果 key 不是列表类型，返回一个错误。
+Lindex 命令用于通过索引获取列表中的元素。你也可以使用负数下标，以 -1 表示列表的最后一个元素， -2 表示列表的倒数第二个元素，以此类推。
+Lrange 返回列表中指定区间内的元素，区间以偏移量 START 和 END 指定。 其中 0 表示列表的第一个元素， 1 表示列表的第二个元素，以此类推。 你也可以使用负数下标，以 -1 表示列表的最后一个元素， -2 表示列表的倒数第二个元素，以此类推。
+Linsert 命令用于在列表的元素前或者后插入元素。 当指定元素不存在于列表中时，不执行任何操作。 当列表不存在时，被视为空列表，不执行任何操作。 如果 key 不是列表类型，返回一个错误。
+    例如:LINSERT list before hello go
+    在名字为list的列表中,往元素hello之前插入数据go
+Lset 通过索引来设置元素的值。当索引参数超出范围，或对一个空列表进行 LSET 时，返回一个错误。
+Ltrim 对一个列表进行修剪(trim)，就是说，让列表只保留指定区间内的元素    ，不在指定区间之内的元素都将被删除。下标 0 表示列表的第一个元素，以 1 表示列表的第二个元素，以此类推。 你也可以使用负数下标，以 -1 表示列表的最后一个元素， -2 表示列表的倒数第二个元素，以此类推。
+Lrem 根据参数 COUNT 的值，移除列表中与参数 VALUE 相等的元素。
+    COUNT 的值可以是以下几种：
+    count &gt; 0 : 从表头开始向表尾搜索，移除与 VALUE 相等的元素，数量为 COUNT 。
+    count &lt; 0 : 从表尾开始向表头搜索，移除与 VALUE 相等的元素，数量为 COUNT 的绝对值。
+    count = 0 : 移除表中所有与 VALUE 相等的值。
+
+Rpush 命令用于将一个或多个值插入到列表的尾部(最右边)。
+Rpushx 命令用于将一个或多个值插入到已存在的列表尾部(最右边)。如果列表不存在，操作无效
+Rpop 命令用于移除最后一个并返回列表的最后一个元素。
+Rpoplpush 命令用于移除列表的最后一个元素，并将该元素添加到另一个列表并返回。
+
+Blpop 命令移出并获取列表的第一个元素， 如果列表没有元素会阻塞列表直到等待超时或发现可弹出元素为止。
+Brpop 命令移出并获取列表的最后一个元素， 如果列表没有元素会阻塞列表直到等待超时或发现可弹出元素为止。
+Brpoplpush 命令从列表中弹出一个值，将弹出的元素插入到另外一个列表中并返回它； 如果列表没有元素会阻塞列表直到等待超时或发现可弹出元素为止。</code></pre><h3 id="十六、Redis对集合-Set-的操作命令"><a href="#十六、Redis对集合-Set-的操作命令" class="headerlink" title="十六、Redis对集合(Set)的操作命令"></a>十六、Redis对集合(Set)的操作命令</h3><pre><code>Sadd 命令将一个或多个成员元素加入到集合中，已经存在于集合的成员元素将被忽略。
+    假如集合 key 不存在，则创建一个只包含添加的元素作成员的集合。
+    当集合 key 不是集合类型时，返回一个错误。
+Scard 命令返回集合中元素的数量。
+Sdiff 命令返回给定集合之间的差集。不存在的集合 key 将视为空集。
+Sdiffstore 命令将给定集合之间的差集存储在指定的集合中。如果指定的集合 key 已存在，则会被覆盖。
+Sinter 命令返回给定所有给定集合的交集。 不存在的集合 key 被视为空集。 当给定集合当中有一个空集时，结果也为空集(根据集合运算定律)。
+Sinterstore 命令将给定集合之间的交集存储在指定的集合中。如果指定的集合已经存在，则将其覆盖。
+Sismember 命令判断成员元素是否是集合的成员。
+Smembers 命令返回集合中的所有的成员。 不存在的集合 key 被视为空集合。
+Smove 命令将指定成员 member 元素从 source 集合移动到 destination 集合
+    SMOVE 是原子性操作。
+    如果 source 集合不存在或不包含指定的 member 元素，则 SMOVE 命令不执行任何操作，仅返回 0 。否则， member 元素从 source 集合中被移除，并添加到 destination 集合中去。
+    当 destination 集合已经包含 member 元素时， SMOVE 命令只是简单地将 source 集合中的 member 元素删除。
+    当 source 或 destination 不是集合类型时，返回一个错误。
+Spop 命令用于移除并返回集合中的一个随机元素。
+Srandmember 命令用于返回集合中的一个随机元素。
+    从 Redis 2.6 版本开始， Srandmember 命令接受可选的 count 参数：
+    如果 count 为正数，且小于集合基数，那么命令返回一个包含 count 个元素的数组，数组中的元素各不相同。如果 count 大于等于集合基数，那么返回整个集合。
+    如果 count 为负数，那么命令返回一个数组，数组中的元素可能会重复出现多次，而数组的长度为 count 的绝对值。
+    该操作和 SPOP 相似，但 SPOP 将随机元素从集合中移除并返回，而 Srandmember 则仅仅返回随机元素，而不对集合进行任何改动。
+Srem 命令用于移除集合中的一个或多个成员元素，不存在的成员元素会被忽略。
+    当 key 不是集合类型，返回一个错误。
+    在 Redis 2.4 版本以前， SREM 只接受单个成员值。
+Sunion 命令返回给定集合的并集。不存在的集合 key 被视为空集。
+Sunionstore 命令将给定集合的并集存储在指定的集合 destination 中。
+Sscan 命令用于迭代集合键中的元素。</code></pre><h3 id="十七、Redis对有序集合-sorted-set-的操作命令"><a href="#十七、Redis对有序集合-sorted-set-的操作命令" class="headerlink" title="十七、Redis对有序集合(sorted set)的操作命令"></a>十七、Redis对有序集合(sorted set)的操作命令</h3><pre><code>Zadd 命令用于将一个或多个成员元素及其分数值加入到有序集当中。
+    如果某个成员已经是有序集的成员，那么更新这个成员的分数值，并通过重新插入这个成员元素，来保证该成员在正确的位置上。
+    分数值可以是整数值或双精度浮点数。
+    如果有序集合 key 不存在，则创建一个空的有序集并执行 ZADD 操作。
+    当 key 存在但不是有序集类型时，返回一个错误。
+Zcard 命令用于计算集合中元素的数量。
+Zcount 命令用于计算有序集合中指定分数区间的成员数量。
+Zincrby 命令对有序集合中指定成员的分数加上增量 increment
+    可以通过传递一个负数值 increment ，让分数减去相应的值，比如 ZINCRBY key -5 member ，就是让 member 的 score 值减去 5 。
+    当 key 不存在，或分数不是 key 的成员时， ZINCRBY key increment member 等同于 ZADD key increment member 。
+    当 key 不是有序集类型时，返回一个错误。
+    分数值可以是整数值或双精度浮点数。
+Zinterstore 命令计算给定的一个或多个有序集的交集，其中给定 key 的数量必须以 numkeys 参数指定，并将该交集(结果集)储存到 destination 。
+    默认情况下，结果集中某个成员的分数值是所有给定集下该成员分数值之和。
+Zlexcount 命令在计算有序集合中指定字典区间内成员数量。
+Zrange 返回有序集中，指定区间内的成员。
+    其中成员的位置按分数值递增(从小到大)来排序。
+    具有相同分数值的成员按字典序(lexicographical order )来排列。
+    如果你需要成员按值递减(从大到小)来排列，请使用 ZREVRANGE 命令。
+    下标参数 start 和 stop 都以 0 为底，也就是说，以 0 表示有序集第一个成员，以 1 表示有序集第二个成员，以此类推。
+    你也可以使用负数下标，以 -1 表示最后一个成员， -2 表示倒数第二个成员，以此类推
+Zrangebylex 通过字典区间返回有序集合的成员。
+Zrangebyscore 返回有序集合中指定分数区间的成员列表。有序集成员按分数值递增(从小到大)次序排列。
+    具有相同分数值的成员按字典序来排列(该属性是有序集提供的，不需要额外的计算)。
+    默认情况下，区间的取值使用闭区间 (小于等于或大于等于)，你也可以通过给参数前增加 ( 符号来使用可选的开区间 (小于或大于)。
+Zrank 返回有序集中指定成员的排名。其中有序集成员按分数值递增(从小到大)顺序排列。
+Zrem 命令用于移除有序集中的一个或多个成员，不存在的成员将被忽略。
+    当 key 存在但不是有序集类型时，返回一个错误。
+Zremrangebylex 命令用于移除有序集合中给定的字典区间的所有成员。
+Zremrangebyrank 命令用于移除有序集中，指定排名(rank)区间内的所有成员
+Zremrangebyscore 命令用于移除有序集中，指定分数（score）区间内的所有成员。
+Zrevrange 命令返回有序集中，指定区间内的成员。
+    其中成员的位置按分数值递减(从大到小)来排列。
+    具有相同分数值的成员按字典序的逆序(reverse lexicographical order)排列。
+    除了成员按分数值递减的次序排列这一点外， ZREVRANGE 命令的其他方面和 ZRANGE 命令一样。
+Zrevrangebyscore 返回有序集中指定分数区间内的所有的成员。有序集成员按分数值递减(从大到小)的次序排列。
+    具有相同分数值的成员按字典序的逆序(reverse lexicographical order )排列。
+    除了成员按分数值递减的次序排列这一点外， ZREVRANGEBYSCORE 命令的其他方面和 ZRANGEBYSCORE 命令一样。
+Zrevrank 命令返回有序集中成员的排名。其中有序集成员按分数值递减(从大到小)排序。
+    排名以 0 为底，也就是说， 分数值最大的成员排名为 0 。
+    使用 ZRANK 命令可以获得成员按分数值递增(从小到大)排列的排名。
+Zscore 命令返回有序集中，成员的分数值。 如果成员元素不是有序集 key 的成员，或 key 不存在，返回 nil 。
+Zunionstore 命令计算给定的一个或多个有序集的并集，其中给定 key 的数量必须以 numkeys 参数指定，并将该并集(结果集)储存到 destination 。
+    默认情况下，结果集中某个成员的分数值是所有给定集下该成员分数值之和 。
+Zscan 命令用于迭代有序集合中的元素（包括元素成员和元素分值）</code></pre><h3 id="十八、Redis中的事务"><a href="#十八、Redis中的事务" class="headerlink" title="十八、Redis中的事务"></a>十八、Redis中的事务</h3><pre><code>**multi命令 和 exec命令**
+**例如:**</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; multi</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; set name tom</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; set age 20</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; set dob 2016-11-11</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; exec</span><br><span class="line">1) OK</span><br><span class="line">2) OK</span><br><span class="line">3) OK</span><br></pre></td></tr></table></figure>
+
+<pre><code>**例如:**</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; multi</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; set name tom</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; set age 20</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; seta dob 2016-11-11</span><br><span class="line">(error) ERR unknown command &apos;seta&apos;</span><br><span class="line">127.0.0.1:6379&gt; exec</span><br><span class="line">(error) EXECABORT Transaction discarded because of previous errors.</span><br><span class="line">127.0.0.1:6379&gt; get name</span><br><span class="line">(nil)</span><br><span class="line">127.0.0.1:6379&gt; get age</span><br><span class="line">(nil)</span><br><span class="line">127.0.0.1:6379&gt; get dob</span><br><span class="line">(nil)</span><br></pre></td></tr></table></figure>
+
+<pre><code>**    例如:**</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; multi</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; set name tom</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; set age 20</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; hget name age</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; exec</span><br><span class="line">1) OK</span><br><span class="line">2) OK</span><br><span class="line">3) (error) WRONGTYPE Operation against a key holding the wrong kind of value</span><br><span class="line">127.0.0.1:6379&gt; get name</span><br><span class="line">&quot;tom&quot;</span><br><span class="line">127.0.0.1:6379&gt; get age</span><br><span class="line">&quot;20&quot;</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="Redis的事务中的错误分两种"><a href="#Redis的事务中的错误分两种" class="headerlink" title="Redis的事务中的错误分两种:"></a>Redis的事务中的错误分两种:</h4><pre><code>1.语法错误
+    这种情况需要区分Redis的版本，Redis 2.6.5之前的版本会忽略错误的命令，执行其他正确的命令，2.6.5之后的版本会忽略这个事务中的所有命令，都不执行
+
+2.运行错误 
+    运行错误表示命令在执行过程中出现错误，比如用hget命令获取string的值
+    这种错误在命令执行之前Redis是无法发现的，所以在事务里这样的命令会被Redis接受并执行。如果事务里有一条命令执行错误，其他命令依旧会执行</code></pre>
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="true">
+                <source type="audio/mpeg" src>
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        <li title="0" data-url="https://link.hhtjim.com/163/461301470.mp3"></li>
+                    
+                        <li title="1" data-url="https://link.hhtjim.com/163/191146.mp3"></li>
+                    
+                        <li title="2" data-url="https://link.hhtjim.com/163/436514312.mp3"></li>
+                    
+                        <li title="3" data-url="http://link.hhtjim.com/163/5146554.mp3"></li>
+                    
+                        <li title="4" data-url="http://link.hhtjim.com/qq/001faIUs4M2zna.mp3"></li>
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link" data-ae="false" data-ci data-cs data-r data-o data-a data-d="false">查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>
