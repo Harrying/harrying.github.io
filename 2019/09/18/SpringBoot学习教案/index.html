@@ -1,0 +1,350 @@
+
+<!DOCTYPE html>
+<html lang class="loading">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SpringBoot - HaiRui.hexo</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="Harrying,"> 
+    <meta name="description" content="一个java程序猿的空间,This is SpringBoot
+1$ SpringBoot
+
+一、    Spring介绍1.1、SpringBoot简介在我们第1次接触和学习Spring框架的时候，是否因为其繁杂的配置而退,"> 
+    <meta name="author" content="海瑞"> 
+    <link rel="alternative" href="atom.xml" title="HaiRui.hexo" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+</html>
+<body class="loading">
+    <span id="config-title" style="display:none">HaiRui.hexo</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" data-url="http://yoursite.com"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">SpringBoot</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class="main">
+        <h1 class="title">SpringBoot</h1>
+        <div class="stuff">
+            <span>九月 18, 2019</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/SpringBoot/">SpringBoot</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <p>This is SpringBoot</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ SpringBoot</span><br></pre></td></tr></table></figure>
+
+<h3 id="一、-Spring介绍"><a href="#一、-Spring介绍" class="headerlink" title="一、    Spring介绍"></a>一、    Spring介绍</h3><h4 id="1-1、SpringBoot简介"><a href="#1-1、SpringBoot简介" class="headerlink" title="1.1、SpringBoot简介"></a>1.1、SpringBoot简介</h4><pre><code>在我们第1次接触和学习Spring框架的时候，是否因为其繁杂的配置而退却了？在你第n次使用Spring框架的时候，是否觉得一堆反复黏贴的配置有一些厌烦？那么您就不妨来试试使用Spring Boot来让你更易上手，更简单快捷地构建Spring应用！
+Spring Boot让我们的Spring应用变的更轻量化。比如：你可以仅仅依靠一个Java类来运行一个Spring引用。你也可以打包你的应用为jar并通过使用java -jar来运行你的Spring Web应用。</code></pre><h5 id="Spring-Boot的主要优点："><a href="#Spring-Boot的主要优点：" class="headerlink" title="Spring Boot的主要优点："></a>Spring Boot的主要优点：</h5><pre><code>为所有Spring开发者更快的入门
+开箱即用，提供各种默认配置来简化项目配置
+内嵌式容器简化Web项目
+没有冗余代码生成和XML配置的要求</code></pre><h4 id="1-2、系统要求："><a href="#1-2、系统要求：" class="headerlink" title="1.2、系统要求："></a>1.2、系统要求：</h4><pre><code>Java 8及以上
+Spring Framework 4.1.5及以上
+本文采用Java 1.8.0_74、Spring Boot 2.1.7调试通过。</code></pre><h3 id="二、快速入门"><a href="#二、快速入门" class="headerlink" title="二、快速入门"></a>二、快速入门</h3><h4 id="2-1、创建一个Maven工程"><a href="#2-1、创建一个Maven工程" class="headerlink" title="2.1、创建一个Maven工程"></a>2.1、创建一个Maven工程</h4><pre><code>名为”springboot-helloworld” 类型为Jar工程项目</code></pre><h4 id="2-2、pom文件引入依赖"><a href="#2-2、pom文件引入依赖" class="headerlink" title="2.2、pom文件引入依赖"></a>2.2、pom文件引入依赖</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">  &lt;parent&gt;</span><br><span class="line">	&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">	&lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;</span><br><span class="line">	&lt;version&gt;2.1.7.RELEASE&lt;/version&gt;</span><br><span class="line">	&lt;relativePath/&gt; &lt;!-- lookup parent from repository --&gt;</span><br><span class="line">&lt;/parent&gt;	</span><br><span class="line">&lt;dependencies&gt;</span><br><span class="line">  &lt;!--SpringBoot web 组件 --&gt;</span><br><span class="line">	&lt;dependency&gt;</span><br><span class="line">		&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">		&lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;</span><br><span class="line">	&lt;/dependency&gt;</span><br><span class="line">&lt;/dependencies&gt;</span><br></pre></td></tr></table></figure>
+
+<h5 id="spring-boot-starter-parent作用"><a href="#spring-boot-starter-parent作用" class="headerlink" title="spring-boot-starter-parent作用"></a>spring-boot-starter-parent作用</h5><pre><code>在pom.xml中引入spring-boot-start-parent,spring官方的解释叫什么stater poms,它可以提供dependency management,也就是说依赖管理，引入以后在申明其它dependency的时候就不需要version了，后面可以看到。
+spring-boot-starter-web作用
+springweb 核心组件</code></pre><h4 id="2-3、编写HelloWorld服务"><a href="#2-3、编写HelloWorld服务" class="headerlink" title="2.3、编写HelloWorld服务"></a>2.3、编写HelloWorld服务</h4><p>创建package命名为com.briup.controller（根据实际情况修改）<br>创建HelloController类，内容如下</p>
+<p>@SpringBootApplication<br>@RestController<br>public class HelloController {<br>    @RequestMapping(“/hello”)<br>       public String hello() {<br>           return “hello”;<br>       }<br>        public static void main(String[] args) {<br>            //开始运行<br>            SpringApplication.run(HelloController.class, args);<br>        }<br>}</p>
+<h4 id="2-4、-RestController"><a href="#2-4、-RestController" class="headerlink" title="2.4、@RestController"></a>2.4、@RestController</h4><pre><code>在上加上RestController 表示修饰该Controller所有的方法返回JSON格式,直接可以编写</code></pre><p>Restful接口</p>
+<h4 id="2-5、-SpringBootApplication"><a href="#2-5、-SpringBootApplication" class="headerlink" title="2.5、@SpringBootApplication"></a>2.5、@SpringBootApplication</h4><pre><code>注解:作用在于让 Spring Boot   根据应用所声明的依赖来对 Spring 框架进行自动配置
+    这个注解告诉Spring Boot根据添加的jar依赖猜测你想如何配置Spring。由于spring-boot-starter-web添加了Tomcat和Spring MVC，所以auto-configuration将假定你正在开发一个web应用并相应地对Spring进行设置。</code></pre><h4 id="2-6-SpringApplication-run-HelloController-class-args"><a href="#2-6-SpringApplication-run-HelloController-class-args" class="headerlink" title="2.6 SpringApplication.run(HelloController.class, args);"></a>2.6 SpringApplication.run(HelloController.class, args);</h4><pre><code>标识为启动类</code></pre><h4 id="2-7、SpringBoot启动方式1"><a href="#2-7、SpringBoot启动方式1" class="headerlink" title="2.7、SpringBoot启动方式1"></a>2.7、SpringBoot启动方式1</h4><pre><code>Springboot默认端口号为8080</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@SpringBootApplication</span><br><span class="line">@RestController</span><br><span class="line">public class TestController &#123;</span><br><span class="line">	@RequestMapping(&quot;/hello&quot;)</span><br><span class="line">   public String hello() &#123;</span><br><span class="line">			   return &quot;success&quot;;</span><br><span class="line">   &#125;	</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		//开始运行</span><br><span class="line">		SpringApplication.run(TestController.class, args);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<pre><code>启动主程序，打开浏览器访问http://localhost:8080/hello，可以看到页面输出success</code></pre><h4 id="2-8、SpringBoot启动方式2"><a href="#2-8、SpringBoot启动方式2" class="headerlink" title="2.8、SpringBoot启动方式2"></a>2.8、SpringBoot启动方式2</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@ComponentScan(basePackages = &quot;com.briup.controller&quot;)---控制器扫包范围</span><br><span class="line">@SpringBootApplication</span><br><span class="line">@ComponentScan(basePackages=&quot;com.briup.controller&quot;)</span><br><span class="line">public class Application&#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		SpringApplication.run(Application.class, args);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="三、-Web开发"><a href="#三、-Web开发" class="headerlink" title="三、    Web开发"></a>三、    Web开发</h3><h4 id="3-1、静态资源访问"><a href="#3-1、静态资源访问" class="headerlink" title="3.1、静态资源访问"></a>3.1、静态资源访问</h4><pre><code>在我们开发Web应用的时候，需要引用大量的js、css、图片等静态资源。
+默认配置
+Spring Boot默认提供静态资源目录位置需置于classpath下，目录名需符合如下规则：
+/static
+/public
+/resources
+/META-INF/resources
+举例：我们可以在src/main/resources/目录下创建static，在该位置放置一个图片文件。启动程序后，尝试访问http://localhost:8080/D.jpg。如能显示图片，配置成功。</code></pre><h4 id="3-2、全局捕获异常"><a href="#3-2、全局捕获异常" class="headerlink" title="3.2、全局捕获异常"></a>3.2、全局捕获异常</h4><pre><code>@ExceptionHandler 表示拦截异常
+•    @ControllerAdvice 是 controller 的一个辅助类，最常用的就是作为全局异常处理的切面类
+•    @ControllerAdvice 可以指定扫描范围
+•    @ControllerAdvice 约定了几种可行的返回值，如果是直接返回 model 类的话，需要使用 @ResponseBody 进行 json 转换
+o    返回 String，表示跳到某个 view
+o    返回 modelAndView
+o    返回 model + @ResponseBody</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@ControllerAdvice</span><br><span class="line">public class GlobalExceptionHandler &#123;</span><br><span class="line">	@ExceptionHandler(RuntimeException.class)</span><br><span class="line">	@ResponseBody </span><br><span class="line">	public Map&lt;String, Object&gt; exceptionHandler() &#123;</span><br><span class="line">		Map&lt;String, Object&gt; map = new HashMap&lt;String, Object&gt;();</span><br><span class="line">		map.put(&quot;errorCode&quot;, &quot;500&quot;);</span><br><span class="line">		map.put(&quot;errorMsg&quot;, &quot;系統错误!&quot;);</span><br><span class="line">		return map;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-3、渲染Web页面"><a href="#3-3、渲染Web页面" class="headerlink" title="3.3、渲染Web页面"></a>3.3、渲染Web页面</h4><p>渲染Web页面<br>在之前的示例中，我们都是通过@RestController来处理请求，所以返回的内容为json对象。那么如果需要渲染html页面的时候，要如何实现呢？<br>模板引擎<br>在动态HTML实现上Spring Boot依然可以完美胜任，并且提供了多种模板引擎的默认配置支持，所以在推荐的模板引擎下，我们可以很快的上手开发动态网站。<br>    Spring Boot提供了默认配置的模板引擎主要有以下几种：<br>    •    Thymeleaf<br>    •    FreeMarker<br>    •    Velocity<br>    •    Groovy<br>    •    Mustache<br>当你使用上述模板引擎中的任何一个，它们默认的模板配置路径为：src/main/resources/templates。当然也可以修改这个路径，具体如何修改，可在后续各模板引擎的配置属性中查询并修改。</p>
+<h4 id="3-4、使用Freemarker模板引擎渲染web视图"><a href="#3-4、使用Freemarker模板引擎渲染web视图" class="headerlink" title="3.4、使用Freemarker模板引擎渲染web视图"></a>3.4、使用Freemarker模板引擎渲染web视图</h4><h5 id="3-4-1、pom文件引入"><a href="#3-4-1、pom文件引入" class="headerlink" title="3.4.1、pom文件引入:"></a>3.4.1、pom文件引入:</h5><pre><code>&lt;!-- 引入freeMarker的依赖包. --&gt;
+&lt;dependency&gt;
+&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+&lt;artifactId&gt;spring-boot-starter-freemarker&lt;/artifactId&gt;
+&lt;/dependency&gt;</code></pre><h5 id="3-4-2、后台代码"><a href="#3-4-2、后台代码" class="headerlink" title="3.4.2、后台代码"></a>3.4.2、后台代码</h5><p>在src/main/resources/创建一个templates文件夹,后缀为*.ftl</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@RequestMapping(&quot;/index&quot;)</span><br><span class="line">public String index(Map&lt;String, Object&gt; map) &#123;</span><br><span class="line">    map.put(&quot;name&quot;,&quot;美丽的天使...&quot;);</span><br><span class="line">	return &quot;index&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="3-4-3、前台代码"><a href="#3-4-3、前台代码" class="headerlink" title="3.4.3、前台代码"></a>3.4.3、前台代码</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;meta charset=&quot;UTF-8&quot; /&gt;</span><br><span class="line">&lt;title&gt;&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">	  $&#123;name&#125;</span><br><span class="line">&lt;/body&gt; </span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<h5 id="3-4-4、Freemarker其他用法"><a href="#3-4-4、Freemarker其他用法" class="headerlink" title="3.4.4、Freemarker其他用法"></a>3.4.4、Freemarker其他用法</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@RequestMapping(&quot;/index&quot;)</span><br><span class="line"> public String index(ModelMap map) &#123;</span><br><span class="line">	 map.addAttribute(&quot;name&quot;,&quot;潘广闯&quot;);</span><br><span class="line">	 map.put(&quot;sex&quot;,1);</span><br><span class="line">	 List&lt;String&gt; users=new ArrayList&lt;&gt;();</span><br><span class="line">	 users.add(&quot;张三&quot;);</span><br><span class="line">	 users.add(&quot;李四&quot;);</span><br><span class="line">	 users.add(&quot;王五&quot;);</span><br><span class="line">	 map.addAttribute(&quot;users&quot;, users);</span><br><span class="line">	 return &quot;index&quot;;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;meta charset=&quot;UTF-8&quot; /&gt;</span><br><span class="line">&lt;title&gt;&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">	  $&#123;name&#125;</span><br><span class="line">	  &lt;#if sex==1&gt;</span><br><span class="line">	   男</span><br><span class="line">	   &lt;#elseif sex==2&gt;</span><br><span class="line">	   女</span><br><span class="line">	   &lt;#else&gt;</span><br><span class="line">	   其他</span><br><span class="line">	   &lt;/#if&gt;</span><br><span class="line">	&lt;#list users as user&gt;</span><br><span class="line">	   $&#123;user&#125;</span><br><span class="line">	 &lt;/#list&gt;</span><br><span class="line">	</span><br><span class="line">&lt;/body&gt; </span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<h5 id="3-4-5、Freemarker配置"><a href="#3-4-5、Freemarker配置" class="headerlink" title="3.4.5、Freemarker配置"></a>3.4.5、Freemarker配置</h5><p>新建application.properties文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">########################################################</span><br><span class="line">###FREEMARKER (FreeMarkerAutoConfiguration)</span><br><span class="line">########################################################</span><br><span class="line">spring.freemarker.allow-request-override=false</span><br><span class="line">spring.freemarker.cache=true</span><br><span class="line">spring.freemarker.check-template-location=true</span><br><span class="line">spring.freemarker.charset=UTF-8</span><br><span class="line">spring.freemarker.content-type=text/html</span><br><span class="line">spring.freemarker.expose-request-attributes=false</span><br><span class="line">spring.freemarker.expose-session-attributes=false</span><br><span class="line">spring.freemarker.expose-spring-macro-helpers=false</span><br><span class="line">#spring.freemarker.prefix=</span><br><span class="line">#spring.freemarker.request-context-attribute=</span><br><span class="line">#spring.freemarker.settings.*=</span><br><span class="line">spring.freemarker.suffix=.ftl</span><br><span class="line">spring.freemarker.template-loader-path=classpath:/templates/</span><br><span class="line">#comma-separated list</span><br><span class="line">#spring.freemarker.view-names= # whitelist of view names that can be resolved</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-5、使用JSP渲染Web视图"><a href="#3-5、使用JSP渲染Web视图" class="headerlink" title="3.5、使用JSP渲染Web视图"></a>3.5、使用JSP渲染Web视图</h4><h5 id="3-5-1、pom文件引入以下依赖"><a href="#3-5-1、pom文件引入以下依赖" class="headerlink" title="3.5.1、pom文件引入以下依赖"></a>3.5.1、pom文件引入以下依赖</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;parent&gt;</span><br><span class="line">		&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">		&lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;</span><br><span class="line">		&lt;version&gt;2.1.7.RELEASE&lt;/version&gt;</span><br><span class="line">		&lt;relativePath/&gt; &lt;!-- lookup parent from repository --&gt;</span><br><span class="line">	&lt;/parent&gt;</span><br><span class="line">	&lt;dependencies&gt;</span><br><span class="line"></span><br><span class="line">		&lt;dependency&gt;</span><br><span class="line">			&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">			&lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;</span><br><span class="line">		&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">			&lt;groupId&gt;org.apache.tomcat.embed&lt;/groupId&gt;</span><br><span class="line">			&lt;artifactId&gt;tomcat-embed-jasper&lt;/artifactId&gt;</span><br><span class="line">		&lt;/dependency&gt;</span><br><span class="line">			&lt;/dependencies&gt;</span><br></pre></td></tr></table></figure>
+
+<h5 id="3-5-2、在application-properties创建以下配置"><a href="#3-5-2、在application-properties创建以下配置" class="headerlink" title="3.5.2、在application.properties创建以下配置"></a>3.5.2、在application.properties创建以下配置</h5><p>spring.mvc.view.prefix=/WEB-INF/jsp/<br>spring.mvc.view.suffix=.jsp</p>
+<h5 id="3-5-3、后台代码"><a href="#3-5-3、后台代码" class="headerlink" title="3.5.3、后台代码"></a>3.5.3、后台代码</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Controller</span><br><span class="line">public class IndexController &#123;</span><br><span class="line">	@RequestMapping(&quot;/index&quot;)</span><br><span class="line">	public String index() &#123;</span><br><span class="line">		return &quot;index&quot;;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="四、-数据访问"><a href="#四、-数据访问" class="headerlink" title="四、    数据访问"></a>四、    数据访问</h3><h4 id="4-1、springboot整合使用JdbcTemplate"><a href="#4-1、springboot整合使用JdbcTemplate" class="headerlink" title="4.1、springboot整合使用JdbcTemplate"></a>4.1、springboot整合使用JdbcTemplate</h4><h5 id="4-1-1-pom文件引入"><a href="#4-1-1-pom文件引入" class="headerlink" title="4.1.1 pom文件引入"></a>4.1.1 pom文件引入</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;parent&gt;</span><br><span class="line">		&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">		&lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;</span><br><span class="line">		&lt;version&gt;2.1.7.RELEASE&lt;/version&gt;</span><br><span class="line">		&lt;relativePath/&gt; &lt;!-- lookup parent from repository --&gt;</span><br><span class="line">	&lt;/parent&gt;</span><br><span class="line">	&lt;dependencies&gt;</span><br><span class="line">	&lt;dependency&gt;</span><br><span class="line">			&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">			&lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;</span><br><span class="line">		&lt;/dependency&gt;</span><br><span class="line">		&lt;dependency&gt;</span><br><span class="line">			&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">			&lt;artifactId&gt;spring-boot-starter-jdbc&lt;/artifactId&gt;</span><br><span class="line">		&lt;/dependency&gt;</span><br><span class="line">		</span><br><span class="line">		&lt;dependency&gt;</span><br><span class="line">			&lt;groupId&gt;mysql&lt;/groupId&gt;</span><br><span class="line">			&lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;</span><br><span class="line">			&lt;version&gt;5.1.37&lt;/version&gt;</span><br><span class="line">		&lt;/dependency&gt;</span><br><span class="line">			&lt;/dependencies&gt;</span><br></pre></td></tr></table></figure>
+
+<h5 id="4-1-2-application-properties新增配置"><a href="#4-1-2-application-properties新增配置" class="headerlink" title="4.1.2 application.properties新增配置"></a>4.1.2 application.properties新增配置</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">spring.datasource.url=jdbc:mysql://localhost:3306/test?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf-8</span><br><span class="line">spring.datasource.username=root</span><br><span class="line">spring.datasource.password=root</span><br><span class="line">spring.datasource.driver-class-name= com.mysql.jdbc.Driver</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-1-3-UserDAO类"><a href="#4-1-3-UserDAO类" class="headerlink" title="4.1.3 UserDAO类"></a>4.1.3 UserDAO类</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@Repository</span><br><span class="line">public class UserDaoImpl implements UserDao&#123;</span><br><span class="line">	@Autowired</span><br><span class="line">    private JdbcTemplate jdbcTemplate;</span><br><span class="line">	</span><br><span class="line">	public void save() &#123;</span><br><span class="line">		 jdbcTemplate.update(&quot;insert into T_USER(ID,NAME) values(?, ?)&quot;, 1, &quot;lisi&quot;);</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-1-4-App类"><a href="#4-1-4-App类" class="headerlink" title="4.1.4 App类"></a>4.1.4 App类</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@SpringBootApplication</span><br><span class="line">@ComponentScan(basePackages= &#123;&quot;com.briup.controller&quot;,&quot;com.briup.dao&quot;&#125;)</span><br><span class="line">public class Application&#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		SpringApplication.run(Application.class, args);</span><br><span class="line">	&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<pre><code>注意: spring-boot-starter-parent要在1.5以上
+将来可能遇到驱动名为com.mysql.cj.jdbc.Driver，现在高版本的mysql都是这种驱动，但由于我们版本低需要用老的形式，以及mysql配置也许你会看到</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">			&lt;groupId&gt;mysql&lt;/groupId&gt;</span><br><span class="line">			&lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;</span><br><span class="line">			&lt;scope&gt;runtime&lt;/scope&gt;</span><br><span class="line">		&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这种默认就是parent指定的高版本，一般和上面的驱动匹配，但我们版本低才需要指定版本</p>
+<h4 id="4-2、springboot整合使用mybatis"><a href="#4-2、springboot整合使用mybatis" class="headerlink" title="4.2、springboot整合使用mybatis"></a>4.2、springboot整合使用mybatis</h4><h5 id="4-2-1、pom文件引入"><a href="#4-2-1、pom文件引入" class="headerlink" title="4.2.1、pom文件引入"></a>4.2.1、pom文件引入</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;parent&gt;</span><br><span class="line">	&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">	&lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;</span><br><span class="line">	&lt;version&gt;2.1.7.RELEASE&lt;/version&gt;</span><br><span class="line">	&lt;relativePath/&gt; &lt;!-- lookup parent from repository --&gt;</span><br><span class="line">&lt;/parent&gt;</span><br><span class="line">&lt;dependencies&gt;</span><br><span class="line"></span><br><span class="line">	&lt;dependency&gt;</span><br><span class="line">		&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">		&lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;</span><br><span class="line">	&lt;/dependency&gt;</span><br><span class="line">	&lt;dependency&gt;</span><br><span class="line">		&lt;groupId&gt;org.mybatis.spring.boot&lt;/groupId&gt;</span><br><span class="line">		&lt;artifactId&gt;mybatis-spring-boot-starter&lt;/artifactId&gt;</span><br><span class="line">		&lt;version&gt;1.3.2&lt;/version&gt;</span><br><span class="line">	&lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">	&lt;dependency&gt;</span><br><span class="line">		&lt;groupId&gt;mysql&lt;/groupId&gt;</span><br><span class="line">		&lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;</span><br><span class="line">		&lt;version&gt;5.1.37&lt;/version&gt;</span><br><span class="line">	&lt;/dependency&gt;</span><br><span class="line">&lt;/dependencies&gt;</span><br></pre></td></tr></table></figure>
+
+<h5 id="4-2-2、配置文件引入"><a href="#4-2-2、配置文件引入" class="headerlink" title="4.2.2、配置文件引入"></a>4.2.2、配置文件引入</h5><pre><code>spring.datasource.url=jdbc:mysql://localhost:3306/test?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf-8
+spring.datasource.username=root
+spring.datasource.password=root
+spring.datasource.driver-class-name=com.mysql.jdbc.Driver</code></pre><h5 id="4-2-3、Mapper代码，注解方式"><a href="#4-2-3、Mapper代码，注解方式" class="headerlink" title="4.2.3、Mapper代码，注解方式"></a>4.2.3、Mapper代码，注解方式</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public interface UserMapper &#123;</span><br><span class="line">	@Select(&quot;SELECT * FROM USERS WHERE NAME = #&#123;name&#125;&quot;)</span><br><span class="line">	User findByName(@Param(&quot;name&quot;) String name);</span><br><span class="line">	@Insert(&quot;INSERT INTO USERS(NAME, AGE) VALUES(#&#123;name&#125;, #&#123;age&#125;)&quot;)</span><br><span class="line">	int insert(@Param(&quot;name&quot;) String name, @Param(&quot;age&quot;) Integer age);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="4-2-4、启动方式"><a href="#4-2-4、启动方式" class="headerlink" title="4.2.4、启动方式"></a>4.2.4、启动方式</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@SpringBootApplication</span><br><span class="line">@ComponentScan(basePackages=&quot;com.briup.controller&quot;)</span><br><span class="line">@MapperScan(basePackages=&quot;com.briup.mapper&quot;)</span><br><span class="line">public class Application &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		SpringApplication.run(Application.class, args);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="4-2-5、配置文件引入，xml形式"><a href="#4-2-5、配置文件引入，xml形式" class="headerlink" title="4.2.5、配置文件引入，xml形式"></a>4.2.5、配置文件引入，xml形式</h5><pre><code>mybatis.config-location=classpath:mybatis/mybatis-config.xml
+mybatis.mapper-locations=classpath:mybatis/mapper/*.xml
+mybatis.type-aliases-package=com.briup.entity</code></pre><h5 id="4-2-6、Mapper代码，xml形式"><a href="#4-2-6、Mapper代码，xml形式" class="headerlink" title="4.2.6、Mapper代码，xml形式"></a>4.2.6、Mapper代码，xml形式</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public interface UserMapper &#123;</span><br><span class="line">	@Select(&quot;SELECT * FROM USERS WHERE NAME = #&#123;name&#125;&quot;)</span><br><span class="line">	User findByName(@Param(&quot;name&quot;) String name);</span><br><span class="line">	@Insert(&quot;INSERT INTO USERS(NAME, AGE) VALUES(#&#123;name&#125;, #&#123;age&#125;)&quot;)</span><br><span class="line">	int insert(@Param(&quot;name&quot;) String name, @Param(&quot;age&quot;) Integer age);</span><br><span class="line">List&lt;User&gt; getAll();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<pre><code>在resource下创建mybatis目录放入mybatis-config.xml
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
+&lt;!DOCTYPE configuration PUBLIC &quot;-//mybatis.org//DTD Config 3.0//EN&quot; &quot;http://mybatis.org/dtd/mybatis-3-config.dtd&quot;&gt;
+&lt;configuration&gt;
+    &lt;!-- 如果需要，可以在这里使用原来的方式配置相关信息 --&gt;
+&lt;/configuration&gt;
+
+在mybatis包下创建mapper文件夹写入UserMapper.xml
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
+&lt;!DOCTYPE mapper PUBLIC &quot;-//mybatis.org//DTD Mapper 3.0//EN&quot; &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot; &gt;
+&lt;mapper namespace=&quot;com.briup.mapper.UserMapper&quot; &gt;
+    &lt;select id=&quot;getAll&quot; resultType=&quot;User&quot;&gt;
+       SELECT 
+            id, name, age
+       FROM users
+    &lt;/select&gt;
+
+&lt;/mapper&gt;</code></pre><h4 id="4-3、springboot整合多数据源"><a href="#4-3、springboot整合多数据源" class="headerlink" title="4.3、springboot整合多数据源"></a>4.3、springboot整合多数据源</h4><p>同学们思考下，你们在项目中有使用到多数据源吗？</p>
+<h5 id="4-3-1配置文件中新增两个数据源"><a href="#4-3-1配置文件中新增两个数据源" class="headerlink" title="4.3.1配置文件中新增两个数据源"></a>4.3.1配置文件中新增两个数据源</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">spring.datasource.test1.driverClassName = com.mysql.jdbc.Driver</span><br><span class="line">spring.datasource.test1.jdbc-url = jdbc:mysql://localhost:3306/test01?useUnicode=true&amp;characterEncoding=utf-8</span><br><span class="line">spring.datasource.test1.username = root</span><br><span class="line">spring.datasource.test1.password = root</span><br><span class="line"></span><br><span class="line">spring.datasource.test2.driverClassName = com.mysql.jdbc.Driver</span><br><span class="line">spring.datasource.test2.jdbc-url = jdbc:mysql://localhost:3306/test02?useUnicode=true&amp;characterEncoding=utf-8</span><br><span class="line">spring.datasource.test2.username = root</span><br><span class="line">spring.datasource.test2.password = root</span><br></pre></td></tr></table></figure>
+
+<h5 id="4-3-2配置文件中新增两个数据源"><a href="#4-3-2配置文件中新增两个数据源" class="headerlink" title="4.3.2配置文件中新增两个数据源"></a>4.3.2配置文件中新增两个数据源</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">@Configuration // 注册到springboot容器中</span><br><span class="line">@MapperScan(basePackages=&quot;com.briup.test1&quot;,sqlSessionFactoryRef = &quot;test1SqlSessionFactory&quot;)</span><br><span class="line">public class Datasource1 &#123;</span><br><span class="line">	@Bean(name = &quot;test1DataSource&quot;)</span><br><span class="line">	@Primary</span><br><span class="line">	@ConfigurationProperties(prefix = &quot;spring.datasource.test1&quot;)//加载的数据源</span><br><span class="line">	public DataSource testDataSource() &#123;</span><br><span class="line">		return DataSourceBuilder.create().build();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	/**</span><br><span class="line">	 * </span><br><span class="line">	 * @methodDesc: 功能描述:(test1 sql会话工厂)</span><br><span class="line">	</span><br><span class="line">	 */</span><br><span class="line">	@Bean(name = &quot;test1SqlSessionFactory&quot;)</span><br><span class="line">	@Primary</span><br><span class="line">	public SqlSessionFactory testSqlSessionFactory(@Qualifier(&quot;test1DataSource&quot;) DataSource dataSource)</span><br><span class="line">			throws Exception &#123;</span><br><span class="line">		SqlSessionFactoryBean bean = new SqlSessionFactoryBean();</span><br><span class="line">		bean.setDataSource(dataSource);</span><br><span class="line">		//等同于springmvc中读取mapper的xml一样</span><br><span class="line">//		bean.setMapperLocations(</span><br><span class="line">//				new PathMatchingResourcePatternResolver().getResources(&quot;classpath:mybatis/mapper/test1/*.xml&quot;));</span><br><span class="line">		return bean.getObject();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	/**</span><br><span class="line">	 * </span><br><span class="line">	 * @methodDesc: 功能描述:(test1 事物管理)</span><br><span class="line">	 */</span><br><span class="line">	@Bean(name = &quot;test1TransactionManager&quot;)</span><br><span class="line">	@Primary</span><br><span class="line">	public DataSourceTransactionManager testTransactionManager(@Qualifier(&quot;test1DataSource&quot;) DataSource dataSource) &#123;</span><br><span class="line">		return new DataSourceTransactionManager(dataSource);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	@Bean(name = &quot;test1SqlSessionTemplate&quot;)</span><br><span class="line">	public SqlSessionTemplate testSqlSessionTemplate(</span><br><span class="line">			@Qualifier(&quot;test1SqlSessionFactory&quot;) SqlSessionFactory sqlSessionFactory) throws Exception &#123;</span><br><span class="line">		return new SqlSessionTemplate(sqlSessionFactory);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="4-3-2创建分包Mapper"><a href="#4-3-2创建分包Mapper" class="headerlink" title="4.3.2创建分包Mapper"></a>4.3.2创建分包Mapper</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public interface User1Mapper &#123;</span><br><span class="line">	@Insert(&quot;insert into users values(null,#&#123;name&#125;,#&#123;age&#125;);&quot;)</span><br><span class="line">	public int addUser(@Param(&quot;name&quot;) String name, @Param(&quot;age&quot;) Integer age);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="4-3-3启动项目"><a href="#4-3-3启动项目" class="headerlink" title="4.3.3启动项目"></a>4.3.3启动项目</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@SpringBootApplication</span><br><span class="line">@ComponentScan(basePackages= &#123;&quot;com.briup.controller&quot;,&quot;com.briup.datasource&quot;&#125;)</span><br><span class="line">@MapperScan(basePackages= &#123;&quot;com.briup.test1.mapper&quot;,&quot;com.briup.test2.mapper&quot;&#125;)</span><br><span class="line">public class Application&#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		SpringApplication.run(Application.class, args);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="五、-事物管理"><a href="#五、-事物管理" class="headerlink" title="五、    事物管理"></a>五、    事物管理</h3><h5 id="5-1-1springboot整合事物管理"><a href="#5-1-1springboot整合事物管理" class="headerlink" title="5.1.1springboot整合事物管理"></a>5.1.1springboot整合事物管理</h5><pre><code>springboot默认集成事物,只主要在方法上加上@Transactional即可</code></pre><h3 id="六、-日志管理"><a href="#六、-日志管理" class="headerlink" title="六、    日志管理"></a>六、    日志管理</h3><h4 id="6-1使用log4j记录日志"><a href="#6-1使用log4j记录日志" class="headerlink" title="6.1使用log4j记录日志"></a>6.1使用log4j记录日志</h4><h4 id="6-1-2新建log4j配置文件"><a href="#6-1-2新建log4j配置文件" class="headerlink" title="6.1.2新建log4j配置文件"></a>6.1.2新建log4j配置文件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">#log4j.rootLogger=CONSOLE,info,error,DEBUG</span><br><span class="line">log4j.rootLogger=info,error,CONSOLE,DEBUG</span><br><span class="line">log4j.appender.CONSOLE=org.apache.log4j.ConsoleAppender     </span><br><span class="line">log4j.appender.CONSOLE.layout=org.apache.log4j.PatternLayout     </span><br><span class="line">log4j.appender.CONSOLE.layout.ConversionPattern=%d&#123;yyyy-MM-dd-HH-mm&#125; [%t] [%c] [%p] - %m%n     </span><br><span class="line">log4j.logger.info=info</span><br><span class="line">log4j.appender.info=org.apache.log4j.DailyRollingFileAppender</span><br><span class="line">log4j.appender.info.layout=org.apache.log4j.PatternLayout     </span><br><span class="line">log4j.appender.info.layout.ConversionPattern=%d&#123;yyyy-MM-dd-HH-mm&#125; [%t] [%c] [%p] - %m%n  </span><br><span class="line">log4j.appender.info.datePattern=&apos;.&apos;yyyy-MM-dd</span><br><span class="line">log4j.appender.info.Threshold = info   </span><br><span class="line">log4j.appender.info.append=true   </span><br><span class="line">#log4j.appender.info.File=/home/admin/pms-api-services/logs/info/api_services_info</span><br><span class="line">log4j.appender.info.File=/Users/dddd/Documents/testspace/pms-api-services/logs/info/api_services_info</span><br><span class="line">log4j.logger.error=error  </span><br><span class="line">log4j.appender.error=org.apache.log4j.DailyRollingFileAppender</span><br><span class="line">log4j.appender.error.layout=org.apache.log4j.PatternLayout     </span><br><span class="line">log4j.appender.error.layout.ConversionPattern=%d&#123;yyyy-MM-dd-HH-mm&#125; [%t] [%c] [%p] - %m%n  </span><br><span class="line">log4j.appender.error.datePattern=&apos;.&apos;yyyy-MM-dd</span><br><span class="line">log4j.appender.error.Threshold = error   </span><br><span class="line">log4j.appender.error.append=true   </span><br><span class="line">#log4j.appender.error.File=/home/admin/pms-api-services/logs/error/api_services_error</span><br><span class="line">log4j.appender.error.File=/Users/dddd/Documents/testspace/pms-api-services/logs/error/api_services_error</span><br><span class="line">log4j.logger.DEBUG=DEBUG</span><br><span class="line">log4j.appender.DEBUG=org.apache.log4j.DailyRollingFileAppender</span><br><span class="line">log4j.appender.DEBUG.layout=org.apache.log4j.PatternLayout     </span><br><span class="line">log4j.appender.DEBUG.layout.ConversionPattern=%d&#123;yyyy-MM-dd-HH-mm&#125; [%t] [%c] [%p] - %m%n  </span><br><span class="line">log4j.appender.DEBUG.datePattern=&apos;.&apos;yyyy-MM-dd</span><br><span class="line">log4j.appender.DEBUG.Threshold = DEBUG   </span><br><span class="line">log4j.appender.DEBUG.append=true   </span><br><span class="line">#log4j.appender.DEBUG.File=/home/admin/pms-api-services/logs/debug/api_services_debug</span><br><span class="line">log4j.appender.DEBUG.File=/Users/dddd/Documents/testspace/pms-api-services/logs/debug/api_services_debug</span><br></pre></td></tr></table></figure>
+
+<h5 id="6-1-3、pom文件引入依赖"><a href="#6-1-3、pom文件引入依赖" class="headerlink" title="6.1.3、pom文件引入依赖"></a>6.1.3、pom文件引入依赖</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">           &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">           &lt;artifactId&gt;spring-boot-starter-log4j&lt;/artifactId&gt;</span><br><span class="line">           &lt;version&gt;1.3.8.RELEASE&lt;/version&gt;</span><br><span class="line">       &lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="七、-缓存支持"><a href="#七、-缓存支持" class="headerlink" title="七、    缓存支持"></a>七、    缓存支持</h3><h4 id="7-1注解配置与EhCache使用"><a href="#7-1注解配置与EhCache使用" class="headerlink" title="7.1注解配置与EhCache使用"></a>7.1注解配置与EhCache使用</h4><h5 id="7-1-1-pom文件引入"><a href="#7-1-1-pom文件引入" class="headerlink" title="7.1.1 pom文件引入"></a>7.1.1 pom文件引入</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">&lt;artifactId&gt;spring-boot-starter-cache&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+
+<h5 id="7-1-2新建ehcache-xml-文件"><a href="#7-1-2新建ehcache-xml-文件" class="headerlink" title="7.1.2新建ehcache.xml 文件"></a>7.1.2新建ehcache.xml 文件</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;ehcache xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">	xsi:noNamespaceSchemaLocation=&quot;http://ehcache.org/ehcache.xsd&quot;</span><br><span class="line">	updateCheck=&quot;false&quot;&gt;</span><br><span class="line">	&lt;diskStore path=&quot;java.io.tmpdir/Tmp_EhCache&quot; /&gt;</span><br><span class="line"></span><br><span class="line">	&lt;!-- 默认配置 --&gt;</span><br><span class="line">	&lt;defaultCache maxElementsInMemory=&quot;5000&quot; eternal=&quot;false&quot;</span><br><span class="line">		timeToIdleSeconds=&quot;120&quot; timeToLiveSeconds=&quot;120&quot;</span><br><span class="line">		memoryStoreEvictionPolicy=&quot;LRU&quot; overflowToDisk=&quot;false&quot; /&gt;</span><br><span class="line"></span><br><span class="line">	&lt;cache name=&quot;baseCache&quot; maxElementsInMemory=&quot;10000&quot;</span><br><span class="line">		maxElementsOnDisk=&quot;100000&quot; /&gt;</span><br><span class="line"></span><br><span class="line">&lt;/ehcache&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>配置信息介绍</strong></p>
+<pre><code> name:缓存名称。  
+ maxElementsInMemory：缓存最大个数。  
+ eternal:对象是否永久有效，一但设置了，timeout将不起作用。  
+ timeToIdleSeconds：设置对象在失效前的允许闲置时间（单位：秒）。仅当eternal=false对象不是永久有效时使用，可选属性，默认值是0，也就是可闲置时间无穷大。  
+ timeToLiveSeconds：设置对象在失效前允许存活时间（单位：秒）。最大时间介于创建时间和失效时间之间。仅当eternal=false对象不是永久有效时使用，默认是0.，也就是对象存活时间无穷大。  
+ overflowToDisk：当内存中对象数量达到maxElementsInMemory时，Ehcache将会对象写到磁盘中。  
+ diskSpoolBufferSizeMB：这个参数设置DiskStore（磁盘缓存）的缓存区大小。默认是30MB。每个Cache都应该有自己的一个缓冲区。  
+ maxElementsOnDisk：硬盘最大缓存个数。  
+diskPersistent：是否缓存虚拟机重启期数据 Whether the disk store persists between restarts of the Virtual Machine. The default value is false.  
+ diskExpiryThreadIntervalSeconds：磁盘失效线程运行时间间隔，默认是120秒。  
+ memoryStoreEvictionPolicy：当达到maxElementsInMemory限制时，Ehcache将会根据指定的策略去清理内存。默认策略是LRU（最近最少使用）。你可以设置为FIFO（先进先出）或是LFU（较少使用）。  
+ clearOnFlush：内存数量最大时是否清除。  </code></pre><h5 id="7-1-3代码使用Cacheable"><a href="#7-1-3代码使用Cacheable" class="headerlink" title="7.1.3代码使用Cacheable"></a>7.1.3代码使用Cacheable</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@CacheConfig(cacheNames = &quot;baseCache&quot;)</span><br><span class="line">public interface UserMapper &#123;</span><br><span class="line">	@Cacheable</span><br><span class="line">	@Select(&quot;SELECT * FROM USERS WHERE name = #&#123;name&#125;&quot;)</span><br><span class="line">	User findByName(@Param(&quot;name&quot;) String name);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="7-1-4清除缓存"><a href="#7-1-4清除缓存" class="headerlink" title="7.1.4清除缓存"></a>7.1.4清除缓存</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@Autowired</span><br><span class="line">private CacheManager cacheManager;</span><br><span class="line">@RequestMapping(&quot;/remoKey&quot;)</span><br><span class="line">public void remoKey() &#123;</span><br><span class="line">	cacheManager.getCache(&quot;baseCache&quot;).clear();</span><br><span class="line">&#125;</span><br><span class="line">启动的地方还要加个注解用来开启缓存</span><br><span class="line">@EnableCaching//开启注解</span><br></pre></td></tr></table></figure>
+
+<h4 id="7-2使用Redis做集中式缓存"><a href="#7-2使用Redis做集中式缓存" class="headerlink" title="7.2使用Redis做集中式缓存"></a>7.2使用Redis做集中式缓存</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Pom.xml中引入信息</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">			&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">			&lt;artifactId&gt;spring-boot-starter-data-redis&lt;/artifactId&gt;</span><br><span class="line">		&lt;/dependency&gt;</span><br><span class="line">在application.properties中配置redis相关信息</span><br><span class="line">spring.redis.database=0</span><br><span class="line">spring.redis.host=127.0.0.1</span><br><span class="line">spring.redis.port=6379</span><br><span class="line">spring.redis.timeout=5000</span><br><span class="line">对于springboot集成redis用到模板类RedisTemplate</span><br><span class="line">该类中有以下形式</span><br><span class="line">redisTemplate.opsForValue();//操作字符串</span><br><span class="line">redisTemplate.opsForHash();//操作hash</span><br><span class="line">redisTemplate.opsForList();//操作list</span><br><span class="line">redisTemplate.opsForSet();//操作set</span><br><span class="line">redisTemplate.opsForZSet();//操作有序set</span><br></pre></td></tr></table></figure>
+
+<p>举例<br>  存储User对象</p>
+<h3 id="八、-其他内容"><a href="#八、-其他内容" class="headerlink" title="八、    其他内容"></a>八、    其他内容</h3><h4 id="8-1、自定义参数"><a href="#8-1、自定义参数" class="headerlink" title="8.1、自定义参数"></a>8.1、自定义参数</h4><pre><code>配置文件值
+name=briup.com
+
+配置文件值
+    @Value(&quot;${name}&quot;)
+    private String name;
+@ResponseBody
+    @RequestMapping(&quot;/getValue&quot;)
+    public String getValue() {
+        return name;
+    }</code></pre><h4 id="8-2、多环境配置"><a href="#8-2、多环境配置" class="headerlink" title="8.2、多环境配置"></a>8.2、多环境配置</h4><pre><code>spring.profiles.active=pre
+
+application-dev.properties：开发环境
+application-test.properties：测试环境
+application-prod.properties：生产环境
+8.3、修改端口号
+server.port=8888 
+server.context-path=/briup
+8.4、SpringBoot yml 使用
+创建application.yml，也可以自定义参数结构满足yml格式，使用方式和8.1一样
+server:
+  port:  8090
+  context-path: /briup</code></pre><h4 id="8-5、发布打包"><a href="#8-5、发布打包" class="headerlink" title="8.5、发布打包"></a>8.5、发布打包</h4><pre><code>打包jar工程
+执行Maven install，选中项目中target文件夹，刷新一下，将会产生jar包
+打包web工程
+在pom文件中新增
+    在pom.xml里设置
+packaging&gt;war&lt;/packaging&gt;
+添加tomcat依赖</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line"> &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line"> &lt;artifactId&gt;spring-boot-starter-tomcat&lt;/artifactId&gt;</span><br><span class="line"> &lt;scope&gt;provided&lt;/scope&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;!--生成项目名称--&gt;</span><br><span class="line">&lt;build&gt;</span><br><span class="line">    &lt;finalName&gt;jsp1&lt;/finalName&gt;</span><br><span class="line">    &lt;plugins&gt;</span><br><span class="line">      &lt;plugin&gt;</span><br><span class="line">        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;</span><br><span class="line">      &lt;/plugin&gt;</span><br><span class="line">    &lt;/plugins&gt;</span><br><span class="line">  &lt;/build&gt;</span><br></pre></td></tr></table></figure>
+
+<p>启动类继承SpringBootServletInitializer<br>重写configure方法<br>项目运行run as—maven build..</p>
+<h3 id="九、-热部署"><a href="#九、-热部署" class="headerlink" title="九、    热部署"></a>九、    热部署</h3><h4 id="9-1-什么是热部署"><a href="#9-1-什么是热部署" class="headerlink" title="9.1 什么是热部署"></a>9.1 什么是热部署</h4><p>所谓的热部署：比如项目的热部署，就是在应用程序在不停止的情况下，实现新的部署</p>
+<h4 id="9-2-项目演示案例"><a href="#9-2-项目演示案例" class="headerlink" title="9.2 项目演示案例"></a>9.2 项目演示案例</h4><pre><code>@RestController
+@Slf4j
+public class IndexController {
+    @RequestMapping(&quot;/index&quot;)
+    public String index() {
+        String result = &quot;springboot2.0 V1.0&quot;;
+                Int age=26;
+        return result + age;
+    }
+
+}</code></pre><h4 id="9-3-热部署原理"><a href="#9-3-热部署原理" class="headerlink" title="9.3 热部署原理"></a>9.3 热部署原理</h4><pre><code>spring-boot-devtools 是一个为开发者服务的一个模块，其中最重要的功能就是自动应用代码更改到最新的App上面去。原理是在发现代码有更改之后，重新启动应用，但是速度比手动停止后再启动还要更快，更快指的不是节省出来的手工操作的时间。  
+其深层原理是使用了两个ClassLoader，一个Classloader加载那些不会改变的类（第三方Jar包），另一个ClassLoader加载会更改的类，称为  restart ClassLoader  ,这样在有代码更改的时候，原来的restart ClassLoader 被丢弃，重新创建一个restart ClassLoader，由于需要加载的类相比较少，所以实现了较快的重启时间（5秒以内）  </code></pre><h4 id="9-4-Devtools依赖"><a href="#9-4-Devtools依赖" class="headerlink" title="9.4 Devtools依赖"></a>9.4 Devtools依赖</h4><pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-devtools&lt;/artifactId&gt;
+    &lt;optional&gt;true&lt;/optional&gt;
+    &lt;scope&gt;true&lt;/scope&gt;
+&lt;/dependency&gt;</code></pre><h4 id="9-5-Devtools原理"><a href="#9-5-Devtools原理" class="headerlink" title="9.5 Devtools原理"></a>9.5 Devtools原理</h4><pre><code>1. devtools会监听classpath下的文件变动，并且会立即重启应用（发生在保存时机），注意：因为其采用的虚拟机机制，该项重启是很快的。  
+2. devtools可以实现页面热部署（即页面修改后会立即生效，这个可以直接在application.properties文件中配置spring.thymeleaf.cache=false来实现(这里注意不同的模板配置不一样)  </code></pre><h3 id="十、-性能优化"><a href="#十、-性能优化" class="headerlink" title="十、    性能优化"></a>十、    性能优化</h3><h4 id="10-1-将Servlet容器变成Undertow"><a href="#10-1-将Servlet容器变成Undertow" class="headerlink" title="10.1 将Servlet容器变成Undertow"></a>10.1 将Servlet容器变成Undertow</h4><pre><code>默认情况下，Spring Boot 使用 Tomcat 来作为内嵌的 Servlet 容器可以将 Web 服务器切换到 Undertow 来提高应用性能。Undertow 是一个采用 Java 开发的灵活的高性能 Web 服务器，提供包括阻塞和基于 NIO 的非堵塞机制。Undertow 是红帽公司的开源产品，是 Wildfly 默认的 Web 服务器。首先，从依赖信息里移除 </code></pre><p>   ** Tomcat 配置：**</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">			&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">			&lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;</span><br><span class="line">			&lt;exclusions&gt;</span><br><span class="line">                           &lt;!—排除tomcat依赖-</span><br><span class="line">				&lt;exclusion&gt;</span><br><span class="line">					&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">					&lt;artifactId&gt;spring-boot-starter-tomcat&lt;/artifactId&gt;</span><br><span class="line">				&lt;/exclusion&gt;</span><br><span class="line">			&lt;/exclusions&gt;</span><br><span class="line">		&lt;/dependency&gt;</span><br><span class="line">然后添加 Undertow：</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">	&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">	&lt;artifactId&gt;spring-boot-starter-undertow&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+
+<p>服务器名称    第一次运行    第二次运行    第三次运行    平均值<br>Tomcat    58.5    60    59.4<br>Undertow    62.5    60    89.5    </p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="true">
+                <source type="audio/mpeg" src>
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        <li title="0" data-url="https://link.hhtjim.com/163/461301470.mp3"></li>
+                    
+                        <li title="1" data-url="https://link.hhtjim.com/163/191146.mp3"></li>
+                    
+                        <li title="2" data-url="https://link.hhtjim.com/163/436514312.mp3"></li>
+                    
+                        <li title="3" data-url="http://link.hhtjim.com/163/5146554.mp3"></li>
+                    
+                        <li title="4" data-url="http://link.hhtjim.com/qq/001faIUs4M2zna.mp3"></li>
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link" data-ae="false" data-ci data-cs data-r data-o data-a data-d="false">查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>
